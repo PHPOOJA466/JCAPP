@@ -8384,7 +8384,7 @@ sap.ui.define([
 			ObjectData.LocTyp = sap.ui.getCore().byId("locTypeId").getSelectedKey(),
 				ObjectData.Location = sap.ui.getCore().byId("locId").getValue(),
 				ObjectData.Bill_To = sap.ui.getCore().byId("BilltoOverveiwId").getSelectedKey()
-
+           var fl = "";
 			var POSTflag = "T";
 			if (!ObjectData.Service_Type || !ObjectData.Serv_Sub_Type) {
 				oBusyDialog.close();
