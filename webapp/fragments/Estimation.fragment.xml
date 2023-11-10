@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" displayBlock="true">
+	<!--<VBox id="Estimation">-->
+	<!--	<IconTabBar select="onSelectItem" id="icontab" class="sapUiResponsiveContentPadding" selectedKey="VehicleDetails"-->
+	<!--		expanded="{device>/isNoPhone}" stretchContentHeight="true" backgroundDesign="Transparent" applyContentPadding="false">-->
+	<!--		<items>-->
+	<!--			<IconTabFilter text="Job Card List" key="JobCardList" icon="sap-icon://customize" iconColor="Positive">-->
+					
+					<!--<VBox><Text text="df"></Text>-->
+						<!--	<f:Form editable="false">-->
+						<!--<f:toolbar>-->
+					<!--		<Toolbar>-->
+					<!--			<Text text="Service Type"/>-->
+					<!--			<ComboBox items="{/Revist_ReasonSet}" change="onServiceSubType" class="sapUiSizeCompact">-->
+					<!--				<core:Item text="{Description}" key="{Code}"/>-->
+					<!--			</ComboBox>-->
+					<!--			<Text text="Sub Service Type"/>-->
+					<!--			<ComboBox id="serviceSubtypeId" items="{/Revist_ReasonSet}" change="onServiceSubType" class="sapUiSizeCompact">-->
+					<!--				<core:Item text="{Description}" key="{Code}"/>-->
+					<!--			</ComboBox>-->
+					<!--			<Text text="Location Type"/>-->
+					<!--			<Input></Input>-->
+					<!--			<Text text="Location"/>-->
+					<!--			<Input></Input>-->
+					<!--			<Text text="Type"/>-->
+					<!--			<Input></Input>-->
+					<!--			<Text text="Bill To"/>-->
+					<!--			<Input></Input>-->
+					<!--			<Text text="Ship To"/>-->
+					<!--			<Input></Input>-->
+					<!--			<Text text="Sold To"/>-->
+					<!--			<Input></Input>-->
+					<!--		</Toolbar>-->
+					<!--	</f:toolbar>-->
+					<!--</f:Form>-->
+					<!--</VBox>-->
+				
+					<!--<core:Fragment fragmentName="ndbs.Z_JobCard.fragments.CustomerInformation" type="XML"></core:Fragment>-->
+	<!--			</IconTabFilter>-->
+	<!--			<IconTabFilter text="Vehicle Details" key="VehicleDetails" icon="sap-icon://shipping-status" iconColor="Positive">-->
+	<!--					<core:Fragment fragmentName="ndbs.Z_JobCard.fragments.CustomerInformation" type="XML"></core:Fragment>-->
+	<!--			</IconTabFilter>-->
+	<!--			<IconTabFilter text="Inspection" key="Inspection" icon="sap-icon://inspection" iconColor="Positive">-->
+	<!--					<core:Fragment fragmentName="ndbs.Z_JobCard.fragments.Inspection" type="XML"></core:Fragment>-->
+	<!--			</IconTabFilter>-->
+	<!--			<IconTabFilter text="Job Details" key="JobDetails" icon="sap-icon://settings" iconColor="Positive"></IconTabFilter>-->
+	<!--			<IconTabFilter text="Deputation" key="Deputation" icon="sap-icon://message-popup" iconColor="Positive">-->
+	<!--				<core:Fragment fragmentName="ndbs.Z_JobCard.fragments.Deputation" type="XML"></core:Fragment>-->
+	<!--			</IconTabFilter>-->
+	<!--			<IconTabFilter text="Check In" key="CheckIn" icon="sap-icon://sound-loud" iconColor="Positive"></IconTabFilter>-->
+	<!--		</items>-->
+	<!--	</IconTabBar>-->
+	<!--</VBox>-->
+</core:FragmentDefinition>

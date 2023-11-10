@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Technician Assign" contentWidth="90%" contentHeight="auto">
+		<VBox>
+			<Table id="assignPopupTableId" growing="true" growingThreshold="300" items="{TechReassignInfoModel>/}" fixedLayout="true"
+				noDataText="Data not available" delete="onSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar >
+						<ToolbarSpacer/>
+						<Button text="Assign All" type="Emphasized"></Button>
+						<Input width="8rem" class="sapUiSizeCompact"></Input>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Vehicle"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Start Date and Time"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="End Date and Time"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Concern"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="FRM Code"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="FRM Desc"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Current Technician"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Assign Technician"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Availability Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Reason"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem press="_oNavigateToJobPartsCatgy" class="sapUiContentPadding sapUiSizeCompact">
+						<cells>
+							<Text text="{TechReassignInfoModel>Vehicle}"/>
+							<Text text="{TechReassignInfoModel>Start_Date_Time}"/>
+							<Text text="{TechReassignInfoModel>End_Date_Time}"/>
+							<Text text="{TechReassignInfoModel>Concern}"/>
+							<Text text="{TechReassignInfoModel>FRM_Code}"/>
+							<Text text="{TechReassignInfoModel>FRM_Desc}"/>
+							<Text text="{TechReassignInfoModel>Current_Tech}"/>
+							<ComboBox items="{ path: 'AssignTechModel>/'}" change="test" >
+								<core:Item key="{AssignTechModel>Value}" text="{AssignTechModel>Description}"/>
+							</ComboBox>
+							<Text text="{TechReassignInfoModel>Availability_Status}"/>
+							<ComboBox items="{ path: 'ReassignReasonModel>/'}" change="test">
+								<core:Item key="{ReassignReasonModel>Value}" text="{ReassignReasonModel>Description}"/>
+							</ComboBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+		<beginButton>
+			<Button text="Cancel" type="Reject" press="onCancelAssignment"/>
+		</beginButton>
+		<endButton>
+			<Button text="Assign" type="Emphasized" press="onSaveTechReAssign"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="Upcoming Delivery List" contentWidth="80%" contentHeight="auto">
+		<Table growing="true" items="{UpcomingDeliveryModel>/}" noDataText="No Data Available" alternateRowColors="true" inset="false"
+			class="sapUiTinyMarginTop mobileTableView">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Job Card Number" maxLines="2"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Promised Delivery Date and Time" maxLines="2"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="VIN Number"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Reg Number"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Service Type"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Onsite or Workshop" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Current Status" maxLines="3" class="textBoldClass"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Link text="{UpcomingDeliveryModel>Job_Card}"/>
+						<Text text="{UpcomingDeliveryModel>Promised_Date_Time}"/>
+						<Text text="{UpcomingDeliveryModel>VIN}"/>
+						<Text text="{UpcomingDeliveryModel>Reg_No}"/>
+						<Text text="{UpcomingDeliveryModel>Service_Type_Desc}"/>
+						<Text text="{UpcomingDeliveryModel>Onsite_Workshop}"/>
+						<Text text="{UpcomingDeliveryModel>Current_Status_Desc}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--<beginButton>-->
+		<!--	<Button text="Cancel" press="onCancelUpcomingDelivery"/>-->
+		<!--</beginButton>-->
+		<endButton>
+			<Button text="Cancel" press="onCancelUpcomingDelivery"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

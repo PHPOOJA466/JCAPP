@@ -1,0 +1,168 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table">
+	<VBox id="Feedback" visible="{oLocalJsonModel>/FeedbackTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<SegmentedButton selectedKey="InstantFeedback" class="sapUiResponsiveMargin sapUiSizeCompact" selectionChange="onFeedbackSegButtons"
+			width="50%">
+			<items>
+				<SegmentedButtonItem text="Instant Feedback" key="InstantFeedback"/>
+				<SegmentedButtonItem text="3rd Day PSF" key="3rdDayPSF"/>
+				<SegmentedButtonItem text="10th Day PSF" key="10thDayPSF"/>
+			</items>
+		</SegmentedButton>
+		<VBox id="instantFeedbackId">
+			<OverflowToolbar height="4rem"> 
+				<Label text="Overall Feedback:"></Label>
+				<HBox>
+					<Image  src="{path:'i18n>5C',formatter:'.formatter.getImage'}"
+					 width="" 
+					  class="sapUiSmallMarginBegin"></Image>
+					<Image src="{path:'i18n>4C',formatter:'.formatter.getImage'}"  width=""  ></Image>
+					<Image src="{path:'i18n>3C',formatter:'.formatter.getImage'}"   width="" ></Image>
+					<Image src="{path:'i18n>2C',formatter:'.formatter.getImage'}"   width="" ></Image>
+					<Image src="{path:'i18n>1C',formatter:'.formatter.getImage'}"  width=""  ></Image>
+				</HBox>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Feedback Link Date and Time:"></Label>
+				<Text text="{InstantFeedbackInfoModel>/results/0/Fb_link_Dt}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Response Date and Time:"></Label>
+				<Text text="{InstantFeedbackInfoModel>/results/0/Resp_Dt}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Response By:"></Label>
+				<Text text="{InstantFeedbackInfoModel>/results/0/Response}" class="sapUiSizeCompact"></Text>
+				<!--<ToolbarSeparator></ToolbarSeparator>-->
+				<Label class="sapUiSmallMarginBegin" text="Mode:"></Label>
+				<Text text="{path:'InstantFeedbackInfoModel>/results/0/Mode',formatter:'.formatter.getMode'}"></Text>
+			</OverflowToolbar>
+			<Table growing="true" items="{InstantFeedbackInfoModel>/results}" alternateRowColors="true" inset="false"
+				class="sapUiTinyMarginTop mobileTableView">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<!--<Text text="Customer Voice" maxLines="2" class="textBoldClass"/>-->
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<!--<Text text="Concern Description" maxLines="2" class="textBoldClass"/>-->
+					</Column>
+					
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{InstantFeedbackInfoModel>question}"/>
+							<Text text="{InstantFeedbackInfoModel>answer}"/>
+							<!-- <Text text="{InstantFeedbackInfoModel>Column3}"/>
+							<Text text="{InstantFeedbackInfoModel>Column4}"/> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+		<VBox id="thirdDayId" visible="false">
+			<OverflowToolbar height="4rem">
+				<Label text="Overall Feedback:"></Label>
+				<HBox>
+					<Image src="{path:'i18n>5C',formatter:'.formatter.getImage'}"  width="1.8em" class="sapUiSmallMarginBegin"></Image>
+					<Image src="{path:'i18n>4C',formatter:'.formatter.getImage'}"  width="1.8em"></Image>
+					<Image src="{path:'i18n>3C',formatter:'.formatter.getImage'}"  width="2em"></Image>
+					<Image src="{path:'i18n>2C',formatter:'.formatter.getImage'}"  width="1.8em"></Image>
+					<Image src="{path:'i18n>1C',formatter:'.formatter.getImage'}"  width="1.8em"></Image>
+				</HBox>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Feedback Link Date and Time:"></Label>
+				<Text text="{ThirdDayFeedbackInfoModel>/results/0/Fb_link_Dt}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Response Date and Time:"></Label>
+				<Text text="{ThirdDayFeedbackInfoModel>/results/0/Resp_Dt}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Response By:"></Label>
+				<Text text="{ThirdDayFeedbackInfoModel>/results/0/Response}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Mode:"></Label>
+				<Text  text="{path:'ThirdDayFeedbackInfoModel>/results/0/Mode',formatter:'.formatter.getMode'}"></Text>
+			</OverflowToolbar>
+			<Table growing="true" items="{ThirdDayFeedbackInfoModel>/results}" alternateRowColors="true" inset="false"
+				class="sapUiTinyMarginTop mobileTableView">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<!--<Text text="Customer Voice" maxLines="2" class="textBoldClass"/>-->
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<!--<Text text="Concern Description" maxLines="2" class="textBoldClass"/>-->
+					</Column>
+					
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{ThirdDayFeedbackInfoModel>question}"/>
+							<Text text="{ThirdDayFeedbackInfoModel>answer}"/>
+							<!-- <Text text="{ThirdDayFeedbackTableInfoModel>Answer2}"/>
+							<Text text="{ThirdDayFeedbackTableInfoModel>Answer3}"/> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+		<VBox id="tenthDayId" visible="false">
+			<OverflowToolbar height="4rem">
+				<Label text="Overall Feedback:"></Label>
+				<HBox>
+					<Image src="{path:'i18n>5C',formatter:'.formatter.getImage'}"  width="1.8em" class="sapUiSmallMarginBegin"></Image>
+					<Image src="{path:'i18n>4C',formatter:'.formatter.getImage'}"  width="1.8em"></Image>
+					<Image src="{path:'i18n>3C',formatter:'.formatter.getImage'}"  width="2em"></Image>
+					<Image src="{path:'i18n>2C',formatter:'.formatter.getImage'}"  width="1.8em"></Image>
+					<Image src="{path:'i18n>1C',formatter:'.formatter.getImage'}"  width="1.8em"></Image>
+				</HBox>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Feedback Link Date and Time:"></Label>
+				<Text text="{TenthDayFeedbackInfoModel>/results/0/Fb_link_Dt}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Response Date and Time:"></Label>
+				<Text text="{TenthDayFeedbackInfoModel>/results/0/Res_Dt}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Response By:"></Label>
+				<Text text="{TenthDayFeedbackInfoModel>/results/0/Response}" class="sapUiSizeCompact"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Mode:"></Label>
+				<Text text="{path:'TenthDayFeedbackInfoModel>/results/0/Mode',formatter:'.formatter.getMode'}"></Text>
+			</OverflowToolbar>
+			<Table growing="true" items="{TenthDayFeedbackInfoModel>/results}" alternateRowColors="true" inset="false"
+				class="sapUiTinyMarginTop mobileTableView">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<!--<Text text="Customer Voice" maxLines="2" class="textBoldClass"/>-->
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<!--<Text text="Concern Description" maxLines="2" class="textBoldClass"/>-->
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+						<Text text="{TenthDayFeedbackInfoModel>question}"/>
+						<Text text="{TenthDayFeedbackInfoModel>answer}"/>
+							<!-- <Text text="{TenthdDayFeedbackTableInfoModel>Question1}"/>
+							<Text text="{TenthdDayFeedbackTableInfoModel>Answer1}"/>
+							<Text text="{TenthdDayFeedbackTableInfoModel>Answer2}"/>
+							<Text text="{TenthdDayFeedbackTableInfoModel>Answer3}"/> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

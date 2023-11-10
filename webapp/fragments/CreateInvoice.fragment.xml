@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="Submit Delay Reasons" contentWidth="40%" contentHeight="auto">
+		<VBox class="sapUiSmallMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:FormElement>
+							<Label text="24Hrs Delay Reason" visible="{ReasonVisibleModel>/TwentyFourDelayReason}"/>
+							<f:fields>
+								<ComboBox id="twentyfourdelayID" visible="{ReasonVisibleModel>/TwentyFourDelayReason}" items="{24hrsDelayReasonModel>/}" class="sapUiSizeCompact" width="10rem" selectedKey="{oLocalJsonModel>/selectedTwentyFourDelayReason}">
+									<core:Item text="{24hrsDelayReasonModel>Value}" key="{24hrsDelayReasonModel>Value}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Promised Delay Reason" visible="{ReasonVisibleModel>/PromisedDelayReason}"/>
+							<f:fields>
+								<ComboBox id="PromisedDelayReasonID" items="{PromisedDelayReasonModel>/}" class="sapUiSizeCompact" visible="{ReasonVisibleModel>/PromisedDelayReason}" width="10rem" selectedKey="{oLocalJsonModel>/selectedPromisedDelayReason}">
+									<core:Item text="{PromisedDelayReasonModel>Prom_rsn}" key="{PromisedDelayReasonModel>Prom_rsn}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Cancel" type="Reject" press="onCancelCreateInvoice"/>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSaveCreateInvoice"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

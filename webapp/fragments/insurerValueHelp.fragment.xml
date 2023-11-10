@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	
+	<!--start -Sravani:2000097050_Insurance Process Changes 8/6/22-->
+	
+	<!--<SelectDialog title="{i18n>insurerNames}" cancel="insurerValueHelpClose" confirm="insurerValueHelpClose" search="insurerValueHelpSearch"-->
+	<!--	items="{insurerValueHelpModel>/}" class="sapUiPopupWithPadding">-->
+	<!--	<StandardListItem title="{insurerValueHelpModel>Value}" description="{insurerValueHelpModel>Name}"/>-->
+	<!--</SelectDialog>-->
+	<Dialog title="Insurance Details" horizontalScrolling="true" verticalScrolling="true" contentWidth="90%" contentHeight="70%">
+		<content>
+			<Table id="tableID" mode="SingleSelectMaster" noDataText="Data not available" includeItemInSelection="true" alternateRowColors="true"
+				items="{insurerValueHelpModel>/}" selectionChange="onSelectChangeInsuranceData">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label text="BP ID"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="20%">
+						<Label text="Insurance Name" class="labelStyle"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="30%">
+						<Label text="Address" class="labelStyle"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Pin code" class="labelStyle"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label text="City" class="labelStyle"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Label text="GSTIN" class="labelStyle"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" type="Inactive" press="onRoute">
+						<cells>
+							<Text text="{insurerValueHelpModel>ID}"/>
+							<Text text="{insurerValueHelpModel>Ins_Name}"/>
+							<Text text="{insurerValueHelpModel>Address}"/>
+							<Text text="{insurerValueHelpModel>Ins_Pincode}"/>
+							<Text text="{insurerValueHelpModel>Ins_City}"/>
+							<Text text="{insurerValueHelpModel>Ins_GSTIN}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button text="Cancel" press="onCancelInsuranceTable"/>
+		</buttons>
+	</Dialog>
+	<!--end -Sravani:2000097050_Insurance Process Changes 8/6/22-->
+</core:FragmentDefinition>

@@ -1,0 +1,333 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:table="sap.ui.table">
+	<VBox id="ApprovalLog" visible="{oLocalJsonModel>/ApprovalLogTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<OverflowToolbar>
+			<SegmentedButton selectedKey="CustomerApproval" class="sapUiSizeCompact" selectionChange="onApprovalLogSegButtons" width="50%">
+				<items>
+					<SegmentedButtonItem text="Customer Approval" key="CustomerApproval"/>
+					<SegmentedButtonItem text="DICV Approval" key="DICVApproval"/>
+					<SegmentedButtonItem text="Dealer" key="Dealer"/>
+				</items>
+			</SegmentedButton>
+			<ToolbarSpacer></ToolbarSpacer>
+			<Button text="Reject All" type="Reject" press="onPressRejectAll"></Button>
+			<Button text="Approve All" type="Accept" press="onPressApproveAll"></Button>
+		</OverflowToolbar>
+		<VBox id="CustomerApprovalId">
+			<VBox items="{InitialApprovalInfoModel>/}">
+				<HBox wrap="Wrap" width="100%">
+					<VBox>
+						<Title class="sapUiSmallMarginTop" level="H1" titleStyle="H5" text="{InitialApprovalInfoModel>approvalType}">
+							<customData>
+								<core:CustomData writeToDom="true" key="classType" value="{InitialApprovalInfoModel>status}"/>
+							</customData>
+						</Title>
+						<Text width="8rem" text="{InitialApprovalInfoModel>approvaltime}">
+							<customData>
+								<core:CustomData writeToDom="true" key="classTime" value="{InitialApprovalInfoModel>status}"/>
+							</customData>
+						</Text>
+					</VBox>
+					<VBox>
+						<core:Icon src="sap-icon://accept">
+							<core:customData>
+								<core:CustomData writeToDom="true" key="class" value="{InitialApprovalInfoModel>status}"/>
+							</core:customData>
+						</core:Icon>
+						<Image  class="sapUiTinyMarginEnd"></Image>
+						<Image height="8rem" id="IdDotted" class="dottedImg">
+							<customData>
+								<core:CustomData writeToDom="true" key="class2" value="{InitialApprovalInfoModel>hasData}"/>
+							</customData>
+						</Image>
+					</VBox>
+					<Table id="idInitialAppTable" inset="false" fixedLayout="false" width="500px" class="mobileTableView">
+						<columns class="sapUiSizeCompact">
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Est Delivery Time"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Est Total Amount" maxLines="2" class="textBoldClass"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Approved Date and Time" maxLines="3" class="textBoldClass"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Approved By" maxLines="2"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Est Part Amount"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Est Labor Amount"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Additional Amount"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Advance Amount"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Loyalty Redeemed"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Remaining Payable"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Customer Remarks"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="SA Remarks"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle" type="Inactive" press="onRoute">
+								<cells>
+									<Text text="{InitialApprovalInfoModel>ext_delvry_time}"/>
+									<Text text="{InitialApprovalInfoModel>ext_tot_amt}"/>
+									<Text text="{InitialApprovalInfoModel>Initial_appro_date_time}"/>
+									<Text text="{InitialApprovalInfoModel>approved_by}"/>
+									<Text text="{InitialApprovalInfoModel>ext_part_amt}"/>
+									<Text text="{InitialApprovalInfoModel>ext_labor_amt}"/>
+									<Text text="{InitialApprovalInfoModel>additnl_amt}"/>
+									<Text text="{InitialApprovalInfoModel>advanc_amt}"/>
+									<Text text="{InitialApprovalInfoModel>loy_redeem}"/>
+									<Text text="{InitialApprovalInfoModel>remain_payble}"/>
+									<Text text="{InitialApprovalInfoModel>custmr_remark}"/>
+									<Text text="{InitialApprovalInfoModel>SA_remarks}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</HBox>
+			</VBox>
+			<VBox items="{AdditionalApprovalInfoModel>/}">
+				<HBox wrap="Wrap" width="100%">
+					<VBox>
+						<Title class="sapUiSmallMarginTop" level="H1" titleStyle="H5" text="{AdditionalApprovalInfoModel>approvalType}">
+							<customData>
+								<core:CustomData writeToDom="true" key="classType" value="{AdditionalApprovalInfoModel>status}"/>
+							</customData>
+						</Title>
+						<Text width="8rem" text="{AdditionalApprovalInfoModel>approvaltime}">
+							<customData>
+								<core:CustomData writeToDom="true" key="classTime" value="{AdditionalApprovalInfoModel>status}"/>
+							</customData>
+						</Text>
+					</VBox>
+					<VBox>
+						<core:Icon src="sap-icon://accept">
+							<core:customData>
+								<core:CustomData writeToDom="true" key="class" value="{AdditionalApprovalInfoModel>status}"/>
+							</core:customData>
+						</core:Icon>
+						<Image height="8rem" id="IdDotted1" class="dottedImg">
+							<customData>
+								<core:CustomData writeToDom="true" key="class2" value="{AdditionalApprovalInfoModel>hasData}"/>
+							</customData>
+						</Image>
+					</VBox>
+					<Table growing="true" alternateRowColors="true" inset="false" class="sapUiMediumMarginTop mobileTableView" fixedLayout="false" width="500px">
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Revised Delivery Time" maxLines="3"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Revised Amount" maxLines="3" class="textBoldClass"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Approved Date and Time" maxLines="3" class="textBoldClass"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Approved By" maxLines="3"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Revised Part Amount" maxLines="3"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Revised Labour Amount" maxLines="3"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Additional Total" maxLines="2"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Advanced Amount" maxLines="2"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Loyalty Redeemed" maxLines="2"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Remaining Payable" maxLines="2"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="Customer Remarks" maxLines="2"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true">
+								<Text text="SA Remarks" maxLines="2"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle" type="Inactive" press="onRoute">
+								<cells>
+									<Text text="{AdditionalApprovalInfoModel>revisd_delvry_time}"/>
+									<Text text="{AdditionalApprovalInfoModel>revisd_amt}"/>
+									<Text text="{AdditionalApprovalInfoModel>approved_date_time}"/>
+									<Text text="{AdditionalApprovalInfoModel>approved_by}"/>
+									<Text text="{AdditionalApprovalInfoModel>revisd_part_amt}"/>
+									<Text text="{AdditionalApprovalInfoModel>revisd_labr_amt}"/>
+									<Text text="{AdditionalApprovalInfoModel>aditionl_total}"/>
+									<Text text="{AdditionalApprovalInfoModel>advanc_amt}"/>
+									<Text text="{AdditionalApprovalInfoModel>loylty_redemd}"/>
+									<Text text="{AdditionalApprovalInfoModel>remain_paybl}"/>
+									<Text text="{AdditionalApprovalInfoModel>custmr_remrks}"/>
+									<Text text="{AdditionalApprovalInfoModel>SA_remarks}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</HBox>
+			</VBox>
+			<Panel class="sapUiLargeMarginTop" headerText="Item Details" expandable="true" expanded="true">
+				<table:TreeTable rows="{path:'CAJobsItemsInfoModel>/', parameters: {arrayNames:['HeaderToItem']}}" enableSelectAll="false"
+					ariaLabelledBy="title" toggleOpenState="toggleOpenState" visibleRowCount="5" selectionMode="None">
+					<!--<table:extension>-->
+					<!--	<OverflowToolbar style="Clear">-->
+					<!--		<core:Icon src="sap-icon://expand" press="onpressexpcoll1"></core:Icon>-->
+					<!--	</OverflowToolbar>-->
+					<!--</table:extension>-->
+					<table:columns>
+						<table:Column width="13rem">
+							<Text text="Job Source"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>job_sourc}" wrapping="false">
+									<!--<customData>-->
+									<!--	<core:CustomData key="mydata" value="{CAJobsItemsInfoModel>flag}" writeToDom="true"></core:CustomData>-->
+									<!--</customData>-->
+								</Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="14rem">
+							<Label text="Job Details"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>job_detail}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text="Dealer Remarks"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>dealer_remark}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text=""/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>quntity_uom}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="13rem">
+							<Label text="Labour Amount"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>labor_amt}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text="Part Amount"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>part_amt}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text="Additional Amount"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>aditinl_amt}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text="Status"/>
+							<table:template>
+							<VBox>
+								<Text text="{CAJobsItemsInfoModel>status_des}" visible="{= ${CAJobsItemsInfoModel>main} === 'Yes'? true:false}">
+									<customData>
+										<core:CustomData key="mydataItemheadding" value="{CAJobsItemsInfoModel>main}" writeToDom="true"></core:CustomData>
+									</customData>
+								</Text>
+								<!-- state="{= ${CAJobsItemsInfoModel>status_tog} === 'true' ? true:false }" -->
+								<Switch state="{CAJobsItemsInfoModel>status_tog}"
+								  customTextOn=" " customTextOff=" " 
+								  visible="{= ${CAJobsItemsInfoModel>main} !== 'Yes'? true:false}"
+								  change="onSwitchChange" class="sapUiSizeCompact Mainswitch">
+								   <customData>
+									<core:CustomData key="mydataItemheadding" value="{CAJobsItemsInfoModel>main}" writeToDom="true"></core:CustomData>
+								</customData>
+						</Switch>
+						</VBox>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text="Customer Remarks"/>
+							<table:template>
+								<Text text="{CAJobsItemsInfoModel>customr_remark}" wrapping="false"></Text>
+							</table:template>
+						</table:Column>
+						<table:Column width="9rem">
+							<Label text="SA Remarks"/>
+							<table:template>
+								<core:Icon src="sap-icon://camera" class="Icons sapUiSmallMarginBegin"></core:Icon>
+								<core:Icon src="sap-icon://card" class="Icons sapUiSmallMarginBegin"></core:Icon>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:TreeTable>
+			</Panel>
+		</VBox>
+		<VBox id="DICVApprovalId" visible="false">
+			<Table growing="true" items="{DICVApprovalModel>/}" alternateRowColors="true" inset="false" class="sapUiTinyMarginTop mobileTableView">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Claim Number" maxLines="2" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Creation Date" maxLines="2" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Claim Submission Date"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Claim Invoice Number"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" type="Inactive">
+						<cells>
+							<Text text="{DICVApprovalModel>claim_no}"/>
+							<Text text="{DICVApprovalModel>creation_date}"/>
+							<Text text="{DICVApprovalModel>claim_sub_date}"/>
+							<Text text="{DICVApprovalModel>process_status}"/>
+							<Text text="{DICVApprovalModel>claim_Invoice_no}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+		<VBox id="DealerId" visible="false">
+			<Text text="Invoice Cancellation Approval"></Text>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

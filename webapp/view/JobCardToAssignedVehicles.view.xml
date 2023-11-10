@@ -1,0 +1,53 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="ndbs.Z_JobCard.controller.JobCardToAssignedVehicles" xmlns:html="http://www.w3.org/1999/xhtml">
+	<NavContainer id="_roIdNavContainer">
+		<Page id="sPageTitle" navButtonPress="_onNavBack" showNavButton="true" title="">
+			<content>
+				<Toolbar>
+					<Breadcrumbs>
+						<Link press="onPress" text="Job Card"/>
+						<Link press="onPress" text="Assigned Vehicle"/>
+					</Breadcrumbs>
+				</Toolbar>
+				<Table id="tableId" growing="true" growingThreshold="100" noDataText="{i18n>noTableData}" sticky="ColumnHeaders" alternateRowColors="true">
+					<columns>
+						<Column>
+							<ObjectIdentifier title="{i18n>RegnNo}"/>
+						</Column>
+						<Column>
+							<ObjectIdentifier title="{i18n>CustName}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<ObjectIdentifier title="{i18n>VIN}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<ObjectIdentifier title="{i18n>modelline}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<ObjectIdentifier title="{i18n>ServiceSubType}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<ObjectIdentifier title="{i18n>VehEntryDate}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<ObjectIdentifier title="{i18n>AppointmentDate}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem press="_oNavigateToDetails" type="Navigation">
+							<cells>
+								<Text text="KL69D0196"/>
+								<Text text="Bluedart Logistics"/>
+								<Text text="MEC841EBCNP120275"/>
+								<Text text="9876545612"/>
+								<Text text="Scheduled Service"/>
+								<Text text="6/10/2022 12:10:40"/>
+								<Text text="10/5/2022"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</content>
+		</Page>
+	</NavContainer>
+</mvc:View>

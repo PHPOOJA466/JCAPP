@@ -1,0 +1,453 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table" xmlns:tnt="sap.tnt" class="side-navigation-demo">
+	<VBox id="Inspection" visible="{oLocalJsonModel>/InspectionTabFlag}"> 
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<HBox>
+		
+		<SegmentedButton id="InspSegButtonId" selectedKey="CheckList" class="sapUiResponsiveMargin sapUiSizeCompact"
+			selectionChange="onSelectionChangeSegButtons">
+			<items>
+				<SegmentedButtonItem text="Inventory" key="Inventory"/>
+				<SegmentedButtonItem text="Exterior" key="Exterior"/>
+				<SegmentedButtonItem text="Interior" key="Interior"/>
+				<SegmentedButtonItem text="CheckList" key="CheckList"/>
+			</items>
+		</SegmentedButton>
+		<HBox class="cls-HInsp">
+		<Label text="All Parameters" class="clsAllParamLabel"></Label>
+		<Switch state="{CheckListVehicleParamsInfo>/All_parameters}" class="Mainswitch sapUiTinyMarginBegin" customTextOn=" " customTextOff=" "  change="onPressAllParametersInspection"></Switch>
+				
+		</HBox>
+		</HBox>
+		<VBox>
+			<l:Grid defaultSpan="L5 M5 S12">
+				<Table growing="true" growingThreshold="10" alternateRowColors="true" items="{path:'InventoryInfoModel>/'}" inset="false"
+					class="mobileTableView">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Items" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="In" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Out"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle" type="Inactive">
+							<cells>
+								<Text text="{InventoryInfoModel>Parameter_Desc}"/>
+								<HBox>
+									<Switch state="{InventoryInfoModel>IN_State}" class="Mainswitch sapUiSizeCompact"
+										visible="{= ${InventoryInfoModel>Indicator} === 'TG' ? true : false }" customTextOn=" " customTextOff=" ">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Switch>
+									<ComboBox id="InComboBoxId" items="{InventoryInfoModel>Inv_indrp}" selectedKey="{InventoryInfoModel>In}"
+										visible="{= ${InventoryInfoModel>Indicator} !== 'TG' ? true : false }" class="sapUiSizeCompact" width="5rem">
+										<core:Item text="{InventoryInfoModel>IN}" key="{InventoryInfoModel>IN}"/>
+									</ComboBox>
+								</HBox>
+								<HBox>
+									<Switch state="{InventoryInfoModel>OUT_State}" class="Mainswitch sapUiSizeCompact"
+										visible="{= ${InventoryInfoModel>Indicator} === 'TG' ? true : false }"
+										enabled="{= ${InventoryInfoModel>out_status} === 'C' ? true : false }" customTextOn=" " customTextOff=" "></Switch>
+									<ComboBox items="{InventoryInfoModel>Inv_outdrp}" selectedKey="{InventoryInfoModel>Out}"
+										visible="{= ${InventoryInfoModel>Indicator} !== 'TG' ? true : false }" class="sapUiSizeCompact" width="5rem">
+										<core:Item text="{InventoryInfoModel>OUT}" key="{InventoryInfoModel>OUT}"/>
+									</ComboBox>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<VBox width="56%">
+					<HBox>
+						<Label text="Fuel Level" design="Bold"></Label>
+						<Label id="inspFuelValueId" class="inspFuelValue sapUiSmallMarginBegin"></Label>
+					</HBox>
+					<HBox>
+						<items>
+							<si:StatusIndicator id="fuelStatusIndicator" width="50px" height="auto" viewBox="-1 -1 52 102" value="">
+								<si:ShapeGroup>
+									<si:Rectangle x="0" y="0" width="50" height="100" fillColor="#0070c0" strokeWidth="1" fillingType="Linear"/>
+								</si:ShapeGroup>
+							</si:StatusIndicator>
+							<Slider id="fuelStatusIndicator1" min="0" max="100" enableTickmarks="true" enabled="{oLocalJsonModel>/AdBlueFuelFlag}"
+								showHandleTooltip="true" value="" width="35rem" class="sapUiSmallMarginTop" change="onFuelValueChange">
+								<ResponsiveScale tickmarksBetweenLabels="5"/>
+							</Slider>
+						</items>
+					</HBox>
+					<HBox>
+						<Label text="Ad Blue" design="Bold" class="sapUiMediumMarginTop"></Label>
+						<Label id="inspAdBlueValueId" class="inspFuelValue sapUiSmallMarginBegin sapUiMediumMarginTop"></Label>
+					</HBox>
+					<HBox>
+						<items>
+							<si:StatusIndicator id="AdBlueId" width="50px" height="auto" viewBox="-1 -1 52 102" value="">
+								<si:ShapeGroup>
+									<si:Rectangle x="0" y="0" width="50" height="100" fillColor="#0070c0" strokeWidth="1" fillingType="Linear"/>
+								</si:ShapeGroup>
+							</si:StatusIndicator>
+							<Slider id="AdBlueId1" min="0" max="100" enableTickmarks="true" showHandleTooltip="true" value="" width="35rem"
+								enabled="{oLocalJsonModel>/AdBlueFuelFlag}" class="sapUiSmallMarginTop" change="onAdBlueChange">
+								<ResponsiveScale tickmarksBetweenLabels="5"/>
+							</Slider>
+						</items>
+					</HBox>
+					<Label text="Tyre Depth" design="Bold" class="sapUiMediumMarginTop"></Label>
+					<t:Table id="InspTyreTableId" width="45rem" rows="{TyreTableItemModel>/}" selectionMode="None" visibleRowCount="5">
+						<t:columns>
+							<t:Column width="9rem" headerSpan="4,2">
+								<t:multiLabels>
+									<HBox>
+										<core:Icon src="sap-icon://close-command-field" class="tyreIconLeft" size="1.5rem"></core:Icon>
+										<Label text="Left" textAlign="Center" class="tyreLabelLeft" width="100%"/>
+									</HBox>
+									<HBox>
+										<core:Icon src="sap-icon://response" class="tyreIcon" size="2rem"></core:Icon>
+										<Label text="Outer" textAlign="Center" class="tyreLabelColor" width="100%"/>
+									</HBox>
+									<Label text="Depth" textAlign="Center" width="100%"/>
+								</t:multiLabels>
+								<t:template>
+									<StepInput name="paramStep" id="idParamStep" step="{TyreTableItemModel>Depth_Range}" displayValuePrecision="1"
+										value="{TyreTableItemModel>Left_Outer_Depth}" textAlign="Center" fieldWidth="50%" min="{TyreTableItemModel>Depth_Low_Value}"
+										max="{TyreTableItemModel>Depth_High_Value}" change="onChangeLeftOuterDepth"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="7.6rem" headerSpan="2" sortProperty="Tyre_Axle" filterProperty="Tyre_Axle">
+								<t:multiLabels>
+									<Label text="Left"/>
+									<Label text="Outer" textAlign="Center" class="tyreLabelColor" width="100%"/>
+									<Label text="Make"/>
+								</t:multiLabels>
+								<t:template>
+									<HBox>
+										<ComboBox items="{TyreMakeModel>/}" selectedKey="{TyreTableItemModel>Left_Outer_Make}" class="sapUiSizeCompact sapUiSmallMarginTop"
+											width="6rem">
+											<core:Item text="{TyreMakeModel>Description}" key="{TyreMakeModel>Description}"/>
+										</ComboBox>
+										<si:StatusIndicator width="4rem" height="70%" viewBox="0 0 200 200" value="100">
+											<si:ShapeGroup>
+												<si:Rectangle x="20" y="50" width="20" height="80" fillColor="{TyreTableItemModel>Left_Outer_Color}" strokeWidth="1" fillingType="Linear"/>
+											</si:ShapeGroup>
+										</si:StatusIndicator>
+									</HBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" headerSpan="4,2">
+								<t:multiLabels>
+									<Label text="Left"/>
+									<HBox>
+										<Label text="Inner" class="tyreLabelColor1"/>
+										<core:Icon src="sap-icon://forward" class="tyreIcon1" size="2rem"></core:Icon>
+									</HBox>
+									<Label text="Depth" textAlign="Center" width="100%"/>
+								</t:multiLabels>
+								<t:template>
+									<StepInput id="idParamStep1" step="{TyreTableItemModel>Depth_Range}" displayValuePrecision="1" value="{TyreTableItemModel>Left_Inner_Depth}"
+										textAlign="Center" fieldWidth="50%" min="{TyreTableItemModel>Depth_Low_Value}" max="{TyreTableItemModel>Depth_High_Value}"
+										change="onChangeLeftOuterDepth"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="7.6rem" headerSpan="2">
+								<t:multiLabels>
+									<Label text="Left"/>
+									<Label text="Inner"/>
+									<Label text="Make" textAlign="Center" width="100%"/>
+								</t:multiLabels>
+								<t:template>
+									<HBox>
+										<ComboBox items="{TyreMakeModel>/}" selectedKey="{TyreTableItemModel>Left_Inner_Make}" class="sapUiSizeCompact sapUiSmallMarginTop"
+											width="6rem">
+											<core:Item text="{TyreMakeModel>Description}" key="{TyreMakeModel>Description}"/>
+										</ComboBox>
+										<si:StatusIndicator width="4rem" height="70%" viewBox="0 0 200 200" value="100">
+											<si:ShapeGroup>
+												<si:Rectangle x="20" y="50" width="20" height="80" fillColor="{TyreTableItemModel>Left_Inner_Color}" strokeWidth="1" fillingType="Linear"/>
+											</si:ShapeGroup>
+										</si:StatusIndicator>
+									</HBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="6rem">
+								<Label text=""/>
+								<t:template>
+									<Input value="{TyreTableItemModel>Tyre_Axle}" textAlign="Center" editable="false" class="TyreInputText"></Input>
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" headerSpan="4,2">
+								<t:multiLabels>
+									<HBox>
+										<Label text="Right" textAlign="Center" class="tyreLabelRight"/>
+										<core:Icon src="sap-icon://open-command-field" color="#ffffff" size="1.5rem"></core:Icon>
+									</HBox>
+									<HBox>
+										<core:Icon src="sap-icon://response" class="tyreIcon2" size="2rem"></core:Icon>
+										<Label text="Inner" class="tyreLabelColor2"/>
+									</HBox>
+									<Label text="Depth" textAlign="Center" width="100%"/>
+								</t:multiLabels>
+								<t:template>
+									<StepInput id="idParamStep2" step="{TyreTableItemModel>Depth_Range}" displayValuePrecision="1"
+										value="{TyreTableItemModel>Right_Inner_Depth}" textAlign="Center" fieldWidth="50%" min="{TyreTableItemModel>Depth_Low_Value}"
+										max="{TyreTableItemModel>Depth_High_Value}" change="onChangeLeftOuterDepth"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="7.6rem" headerSpan="2" sortProperty="Tyre_Axle" filterProperty="Tyre_Axle">
+								<t:multiLabels>
+									<Label text="Right"/>
+									<Label text="inner"/>
+									<Label text="Make"/>
+								</t:multiLabels>
+								<t:template>
+									<HBox>
+										<ComboBox items="{TyreMakeModel>/}" selectedKey="{TyreTableItemModel>Right_Inner_Make}" class="sapUiSizeCompact sapUiSmallMarginTop"
+											width="6rem">
+											<core:Item text="{TyreMakeModel>Description}" key="{TyreMakeModel>Description}"/>
+										</ComboBox>
+										<si:StatusIndicator width="4rem" height="70%" viewBox="0 0 200 200" value="100">
+											<si:ShapeGroup>
+												<si:Rectangle x="20" y="50" width="20" height="80" fillColor="{TyreTableItemModel>Right_Inner_Color}" strokeWidth="1" fillingType="Linear"/>
+											</si:ShapeGroup>
+										</si:StatusIndicator>
+									</HBox>
+								</t:template>
+							</t:Column>
+							<t:Column width="9rem" headerSpan="4,2">
+								<t:multiLabels>
+									<Label text="Right"/>
+									<HBox>
+										<Label text="Outer" class="tyreLabelColor3"/>
+										<core:Icon src="sap-icon://forward" class="tyreIcon3" size="2rem"></core:Icon>
+									</HBox>
+									<!--<Label text="Outer" textAlign="Center" class="tyreLabelColor" width="100%"/>-->
+									<Label text="Depth" textAlign="Center" width="100%"/>
+								</t:multiLabels>
+								<t:template>
+									<StepInput id="idParamStep3" step="{TyreTableItemModel>Depth_Range}" displayValuePrecision="1"
+										value="{TyreTableItemModel>Right_Outer_Depth}" textAlign="Center" fieldWidth="50%" min="{TyreTableItemModel>Depth_Low_Value}"
+										max="{TyreTableItemModel>Depth_High_Value}" change="onChangeLeftOuterDepth"/>
+								</t:template>
+							</t:Column>
+							<t:Column width="7.6rem" headerSpan="2">
+								<t:multiLabels>
+									<Label text="Right"/>
+									<Label text="Outer"/>
+									<Label text="Make"/>
+								</t:multiLabels>
+								<t:template>
+									<HBox>
+										<ComboBox items="{TyreMakeModel>/}" selectedKey="{TyreTableItemModel>Right_Outer_Make}" class="sapUiSizeCompact sapUiSmallMarginTop"
+											width="6rem">
+											<core:Item text="{TyreMakeModel>Description}" key="{TyreMakeModel>Description}"/>
+										</ComboBox>
+										<si:StatusIndicator width="4rem" height="70%" viewBox="0 0 200 200" value="100">
+											<si:ShapeGroup>
+												<si:Rectangle x="20" y="50" width="20" height="80" fillColor="{TyreTableItemModel>Right_Outer_Color}" strokeWidth="1" fillingType="Linear"/>
+											</si:ShapeGroup>
+										</si:StatusIndicator>
+									</HBox>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
+				</VBox>
+			</l:Grid>
+		</VBox>
+		<HBox id="extIntId">
+			<VBox width="70rem">
+				<VBox>
+					<core:HTML id="htmlCanvas"></core:HTML>
+					<HBox>
+						<Image densityAware="false" src="{vehImagesModel>/FRONT}" id="idFront" width="10rem" useMap="Map" class="sapUiMediumMarginBegin"
+							press="onPressVehicleImages"></Image>
+						<Image densityAware="false" src="{vehImagesModel>/LEFT}" id="idLeft" width="10rem" useMap="Map" class="sapUiMediumMarginBegin"
+							press="onPressVehicleImages"></Image>
+						<Image densityAware="false" src="{vehImagesModel>/RIGHT}" id="idRight" width="10rem" useMap="Map" class="sapUiMediumMarginBegin"
+							press="onPressVehicleImages"></Image>
+						<Image densityAware="false" src="{vehImagesModel>/REAR}" id="idRear" width="10rem" useMap="Map" class="sapUiMediumMarginBegin"
+							press="onPressVehicleImages"></Image>
+					</HBox>
+				</VBox>
+				<Table id="inspectionRemarksTableId" items="{ path: 'InspectionResults>/' }" mode="MultiSelect" selectionChange="onInspectProblemDetails">
+					<columns>
+						<Column>
+							<Text text="Symptom Code" wrapping="true"/>
+						</Column>
+						<Column>
+							<Text text="Part Name"/>
+						</Column>
+						<Column>
+							<Text text="Problem Type"/>
+						</Column>
+						<Column>
+							<Text text="Intensity"/>
+						</Column>
+						<Column>
+							<Text text="View"/>
+						</Column>
+						<Column>
+							<Text text="Concern"/>
+						</Column>
+						<Column>
+							<Text text="Additional Jobs"/>
+						</Column>
+						<Column>
+							<Text text=""/>
+						</Column>
+						<Column>
+							<Text text="Remarks"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{InspectionResults>Symptom_Code}"/>
+								<Text text="{InspectionResults>partName}"/>
+								<Text text="{InspectionResults>Problem}"/>
+								<Text text="{InspectionResults>Intensity}"/>
+								<Text text="{InspectionResults>View}"/>
+								<Text text="{InspectionResults>Concern}"/>
+								<Switch state="{InspectionResults>Additional_Job}" class="sapUiSizeCompact Mainswitch" customTextOn=" " customTextOff=" "></Switch>
+								<!--<Text text="{InspectionResults>Problem}"/>-->
+									<Button icon="sap-icon://decline" color="red" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+									class="sapUiSmallMarginBegin" press="onPressInspDelete"></Button>
+								<HBox>
+									<Button icon="sap-icon://edit" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" class="sapUiSmallMarginBegin"
+										press="onEdit"></Button>
+									<Button icon="sap-icon://camera" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" class="sapUiSmallMarginBegin"></Button>
+									<Button icon="sap-icon://picture" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" class="sapUiSmallMarginBegin"></Button>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+			<VBox>
+				<f:Form editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4"
+							emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement>
+									<f:fields>
+										<HBox>
+											<core:Icon src="sap-icon://close-command-field" class="inspExpandIcon" press="onPressInspExpandIcon"></core:Icon>
+											<!--<core:Icon src="./Images/Scratch.png"></core:Icon>-->
+												<tnt:SideNavigation id="sideNavigation" class="VehInspImages">
+												<tnt:NavigationList>
+													<!--that.inspImgdisable = false-->
+													<tnt:NavigationListItem text="Scratch" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+														select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Dent" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Crack" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Leak" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Damage" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+														select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Deformed" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+														select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Rust" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}" select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Discolored" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+														select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="Missing" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+														select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+													<tnt:NavigationListItem text="NotWorking" enabled="{= ${oLocalJsonModel>/VehImgDisable} === true? false: true}"
+														select="onSelectVehImagesDamages"></tnt:NavigationListItem>
+												</tnt:NavigationList>
+											</tnt:SideNavigation>
+										</HBox>
+										<!--<HBox>-->
+										<!--</HBox>-->
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+		</HBox>
+		<VBox id="checkListBoxId">
+			<SegmentedButton id="InspChecklistSegButtonsId" items="{checkListAggregatesModel>/}" class="sapUiSizeCompact"
+				selectionChange="onCheckListSegButtons" width="70%">
+				<items>
+					<SegmentedButtonItem key="{checkListAggregatesModel>Description}" text="{checkListAggregatesModel>Value}"/>
+				</items>
+			</SegmentedButton>
+			<Table growing="true" alternateRowColors="true" items="{path:'InspParametersModel>/'}" inset="false" class="mobileTableView">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Parameter" maxLines="2" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Initial Inspection" maxLines="2" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Initial Remarks"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Approval Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Final Inspection"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Approval Status" maxLines="2" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Final Remarks" maxLines="2" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Additional Jobs" maxLines="3" class="textBoldClass"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<HBox>
+							<core:Icon src="sap-icon://camera"></core:Icon>
+							<core:Icon src="sap-icon://card" class="sapUiSmallMarginBegin"></core:Icon>
+						</HBox>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle" type="Inactive">
+						<cells>
+							<Text text="{InspParametersModel>Parameter_Desc}"/>
+							<Switch state="{InspParametersModel>Initial_Insp}" change="onChangeIntialInsp" customTextOn=" " customTextOff=" "
+								class="Mainswitch sapUiSizeCompact"></Switch>
+							<Input value="{InspParametersModel>Initial_Remarks}" change="onChangeIntialRemarks"/>
+							<Switch state="{InspParametersModel>Init_Appr_St}" enabled="false" customTextOn=" " customTextOff=" " class="Mainswitch sapUiSizeCompact"></Switch>
+							<Switch state="{InspParametersModel>Final_Insp}" enabled="false" change="onChangeFinalInsp" customTextOn=" " customTextOff=" "
+								class="Mainswitch sapUiSizeCompact"/>
+							<Switch state="{InspParametersModel>Final_Appr_St}" enabled="false" customTextOn=" " customTextOff=" " class="Mainswitch sapUiSizeCompact"/>
+							<Input value="{InspParametersModel>Final_Remarks}" enabled="false"/>
+							<Switch state="{InspParametersModel>Additional_Jobs}" customTextOn=" " customTextOff=" " class="Mainswitch sapUiSizeCompact"></Switch>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="Point of Contact Details" contentWidth="40%" contentHeight="auto">
+		<VBox class="sapUiSmallMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:FormElement>
+							<Label text="Person Name"/>
+							<f:fields>
+								<Input width="10rem" class=" sapUiSizeCompact" value="{PointofContactModel>/Person_Name}"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Contact Number"/>
+							<f:fields>
+							<Input width="10rem" class=" sapUiSizeCompact" value="{PointofContactModel>/Contact_No}"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Role"/>
+							<f:fields>
+							<Select width="10rem" class="sapUiSizeCompact" selectedKey="{PointofContactModel>/Role}">
+								<core:Item key="Driver" text="Driver" />
+								<core:Item key="FleetManager" text="Fleet Manager" />
+								<core:Item key="Customer" text="Customer" />
+								<core:Item key="Others" text="Others" />
+							</Select>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Cancel" type="Reject" press="onCancelPointofContact"/>
+		</beginButton>
+		<endButton>
+			<Button text="Save" press="onSavePointofContact"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

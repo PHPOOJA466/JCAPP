@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog  title="Campaign Info" contentWidth="100%" contentHeight="">
+		<content>
+		<HBox>
+        <Label text="Campaign Name" design="Bold" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd"></Label>
+        <Input value="{measuresRecallsInfoModel>/CampaignInfoInput}" editable="false" width="20rem"></Input>
+		</HBox>
+			<Table items="{path:'measuresRecallsInfoModel>/CampaignInfo'}" enableBusyIndicator="true" showSeparators="All" fixedLayout="true">
+				<columns>
+					<Column hAlign="Center">
+						<Text text="Type"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="Code"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="Description"/>
+					</Column>
+					<Column hAlign="Center">
+						<Text text="Quantity"/>
+					</Column>
+						<Column hAlign="Center">
+						<Text text="Unit Measure"/>
+					</Column>
+					
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{measuresRecallsInfoModel>CodeTyp}" wrapping="true"/>
+							<Text text="{measuresRecallsInfoModel>Code}" wrapping="true"/>
+							<Text text="{measuresRecallsInfoModel>Description}" wrapping="true"/>
+							<Text text="{measuresRecallsInfoModel>Qty}" wrapping="true"/>
+							<Text text="{measuresRecallsInfoModel>Unit}" wrapping="true"/>
+							
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<endButton>
+			<Button text="Close" press="onCloseCampaignInfoDialg"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

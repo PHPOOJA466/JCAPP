@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="Rejection Reason">
+		<content>
+			<HBox>
+			<Label required="true" text="Rejection Reason" class="sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+			<!-- <Text text="Remarks if any" class="sapUiSmallMarginBegin sapUiTinyMarginTop"></Text> -->
+			<Select width="100%" items="{path: 'oLocalJsonModel>/Checkinrejectmodel'}" selectedKey="{oLocalJsonModel>/Checkinrejectdata}" >
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Prom_rsn}"/>
+					</Select>
+			</HBox>
+		</content>
+		<buttons>
+			<Button text="Cancel" type="Reject" press="oncheckinRejctcancel"></Button>
+			<Button text="Submit" press="oncheckinRejctcancelconfirm" type="Accept"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

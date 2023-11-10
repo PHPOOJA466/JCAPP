@@ -1,0 +1,102 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="idJobsHisLastVisit" title="Job History and Last Visits" contentWidth="100%" contentHeight="100%">
+		<content>
+			<Table items="{path:'jobsDataModel>/'}">
+				<columns>
+					<Column mergeDuplicates="true">
+						<Text text="RO No" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="RO Date" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="Invoice Date" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="Service Type" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="SA Name" wrapping="true"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="Mileage"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="Servicing Dealer Code" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="Job"/>
+					</Column>
+					<Column >
+						<Text text="Technician Name(s)" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="Issue Type" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="Part / Labour Desc" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="P / L" wrapping="true"/>
+					</Column>
+					<Column >
+						<Text text="Quantity"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Text text="Parts Cost" wrapping="true"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="Labour Cost" wrapping="true"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="Total"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="Customer Feedback"/>
+					</Column>
+					<!--start - Sravani:2000083951- After-market Spare Parts/Accessories 9/2/22-->
+					<Column demandPopin="true">
+						<Text text="After Market SpareParts"/>
+					</Column>
+					<!--end - Sravani:2000083951- After-market Spare Parts/Accessories 9/2/22-->
+					<Column demandPopin="true">
+						<Text text="Remark" wrapping="true"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{jobsDataModel>RO_Number}" wrapping="true"/>
+							<Text text="{jobsDataModel>RO_Opn_Date}" wrapping="true"/>
+							<Text text="{jobsDataModel>Invoice_Date}" wrapping="true"/>
+							<Text text="{jobsDataModel>Srv_Type}" wrapping="true"/>
+							<Text text="{jobsDataModel>SA_Name}" wrapping="true"/>
+							<Text text="{jobsDataModel>Mileage}" wrapping="true"/>
+							<Text text="{jobsDataModel>Srvcng_Dealer_Code}" wrapping="true"/>
+							<Text text="{jobsDataModel>Job}" wrapping="true"/>
+							<Text text="{jobsDataModel>Technician}" wrapping="true"/>
+							<Text text="{jobsDataModel>Issue_Type}" wrapping="true"/>
+							<Text text="{jobsDataModel>Part_Lab_Desc}" wrapping="true"/>
+							<Text text="{jobsDataModel>P_And_L}" wrapping="true"/>
+							<Text text="{jobsDataModel>Quantity}" wrapping="true"/>
+							<Text text="{jobsDataModel>Parts_Cost}" wrapping="true"/>
+							<Text text="{jobsDataModel>Labour_Cost}" wrapping="true"/>
+							<Text text="{jobsDataModel>Total}" wrapping="true"/>
+							<!--	Start 2000044469 RE: Manual Remarks in RO by Rudra-->
+							<!--	<Text text="{jobsDataModel>Flag}" wrapping="true"/>-->
+							<Text text="{jobsDataModel>Rating}" wrapping="true"/>
+								<!--start - Sravani:2000083951- After-market Spare Parts/Accessories 9/2/22-->
+							<Text text="{jobsDataModel>Aft_Mrkt_Prts}" wrapping="true"/>
+							<!--end - Sravani:2000083951- After-market Spare Parts/Accessories 9/2/22-->
+							<Text text="{jobsDataModel>Remarks}" wrapping="true"/>
+							<!--	End 2000044469 RE: Manual Remarks in RO by Rudra-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<beginButton>
+			<Button text="Close" press="onJobHisLastVisitPressed"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

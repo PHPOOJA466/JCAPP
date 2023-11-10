@@ -1,0 +1,489 @@
+ {
+
+ 	"RIGHT": [{
+ 			"partName": "FRONT RH DOOR",
+ 			"Coordinate": "332,127:460,197",
+ 			"symptomCode": "IR109",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FUEL CAP",
+ 			"Coordinate": "99,128:118,139",
+ 			"symptomCode": "IR102",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Scratch,Not Closing,Missing"
+ 		}, {
+ 			"partName": "REAR RH DOOR",
+ 			"Coordinate": "207,129: 315,195",
+ 			"symptomCode": "IR111",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT RH WHEEL",
+ 			"Coordinate": "491,191:575,271",
+ 			"symptomCode": "IR106",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Bend, Crack"
+ 		}, {
+ 			"partName": "REAR RH WHEEL",
+ 			"Coordinate": "111,193:191,261",
+ 			"symptomCode": "IR103",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Bend, Crack"
+ 		}, {
+ 			"partName": "PASSENGER DOOR MIRROR",
+ 			"Coordinate": "203,52:284.94",
+ 			"symptomCode": "IL107",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "DRIVER DOOR MIRROR",
+ 			"Coordinate": "429,99:442,109",
+ 			"symptomCode": "IR108",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "DRIVER DOOR MIRROR",
+ 			"Coordinate": "431,106:447,108",
+ 			"symptomCode": "IR108",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT RH DOOR HANDLE",
+ 			"Coordinate": "336,117:370,123",
+ 			"symptomCode": "IR110",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "REAR RH DOOR HANDLE",
+ 			"Coordinate": "187,117:225,126",
+ 			"symptomCode": "IR112",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "REAR RH QUARTER PANEL",
+ 			"Coordinate": "123,110:170,145",
+ 			"symptomCode": "IR112",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT RH FENDER",
+ 			"Coordinate": "484,124:566,146",
+ 			"symptomCode": "IR100",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT RH TYRE",
+ 			"Coordinate": "511,171:557,177",
+ 			"symptomCode": "IR105",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "FRONT RH TYRE",
+ 			"Coordinate": "564,184:578,212",
+ 			"symptomCode": "IR105",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "FRONT RH TYRE",
+ 			"Coordinate": "512,217:563,231",
+ 			"symptomCode": "IR105",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "FRONT RH TYRE",
+ 			"Coordinate": "491,185:509,212",
+ 			"symptomCode": "IR105",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR RH TYRE",
+ 			"Coordinate": "132,166:177,179",
+ 			"symptomCode": "IR102",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR RH TYRE",
+ 			"Coordinate": "182,184:196,222",
+ 			"symptomCode": "IR102",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR RH TYRE",
+ 			"Coordinate": "129,215:183,229 ",
+ 			"symptomCode": "IR102",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR RH TYRE",
+ 			"Coordinate": "114,179:129,215",
+ 			"symptomCode": "IR102",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "DRIVER DOOR MIRROR PANEL",
+ 			"Coordinate": "440,97:462,109",
+ 			"symptomCode": "IR107",
+ 			"ImageView": "RIGHT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}
+
+ 	],
+ 	"LEFT": [{
+ 			"partName": "FRONT LH DOOR",
+ 			"Coordinate": "219,136:356,201",
+ 			"symptomCode": "IL108",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "REAR LH DOOR",
+ 			"Coordinate": "371,130: 469,184",
+ 			"symptomCode": "IL110",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT LH WHEEL",
+ 			"Coordinate": "117,170:188,227",
+ 			"symptomCode": "IL105",
+ 			"ImageView": "LEFT",
+ 			"Options": "Bend, Crack"
+ 		}, {
+ 			"partName": "REAR LH WHEEL",
+ 			"Coordinate": "500,171:569,222",
+ 			"symptomCode": "IL103",
+ 			"ImageView": "LEFT",
+ 			"Options": "Bend, Crack"
+ 		}, {
+ 			"partName": "FRONT LH DOOR HANDLE",
+ 			"Coordinate": "332,119:352,123",
+ 			"symptomCode": "IL109",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "REAR LH DOOR HANDLE",
+ 			"Coordinate": "465,115:500,120",
+ 			"symptomCode": "IL111",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "PASSENGER DOOR MIRROR",
+ 			"Coordinate": "245,97:251,107",
+ 			"symptomCode": "IL107",
+ 			"ImageView": "LEFT",
+ 			"Options": "Crack,Chips Off,Broken"
+ 		}, {
+ 			"partName": "PASSENGER DOOR MIRROR",
+ 			"Coordinate": "233,101:250,103",
+ 			"symptomCode": "IL107",
+ 			"ImageView": "LEFT",
+ 			"Options": "Crack,Chips Off,Broken"
+ 		}, {
+ 			"partName": "REAR LH QUARTER PANEL",
+ 			"Coordinate": "523,115:608,150",
+ 			"symptomCode": "IL101",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT LH FENDER",
+ 			"Coordinate": "120,124:204,150",
+ 			"symptomCode": "IL100",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}, {
+ 			"partName": "FRONT LH TYRE",
+ 			"Coordinate": "126,215:177,228",
+ 			"symptomCode": "IL104",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "FRONT LH TYRE",
+ 			"Coordinate": "108,186:126,210",
+ 			"symptomCode": "IL104",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "FRONT LH TYRE",
+ 			"Coordinate": "179,181:194,220",
+ 			"symptomCode": "IL104",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR LH TYRE",
+ 			"Coordinate": "512,166:556,180",
+ 			"symptomCode": "IL102",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR LH TYRE",
+ 			"Coordinate": "493,183:507,220 ",
+ 			"symptomCode": "IL102",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR LH TYRE",
+ 			"Coordinate": " 514,219:551,229 ",
+ 			"symptomCode": "IL102",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "REAR LH TYRE",
+ 			"Coordinate": "563,184:576,214",
+ 			"symptomCode": "IL102",
+ 			"ImageView": "LEFT",
+ 			"Options": "Cut,Uneven Wear,Punture"
+ 		}, {
+ 			"partName": "PASSENGER DOOR MIRROR PANEL",
+ 			"Coordinate": "227,99:244,106",
+ 			"symptomCode": "IL106",
+ 			"ImageView": "LEFT",
+ 			"Options": "Dent,Scratch,Break"
+ 		}
+
+ 	],
+ 	"TOP": [{
+ 		"partName": "SUN ROOF",
+ 		"Coordinate": "310,89:386,196",
+ 		"symptomCode": "IT100",
+ 		"ImageView": "TOP",
+ 		"Options": "Crack,Noise,Broken"
+ 	}, {
+ 		"partName": "ROOF",
+ 		"Coordinate": "419,95:519,188",
+ 		"symptomCode": "IT101",
+ 		"ImageView": "TOP",
+ 		"Options": "Dent,Scratch,Break"
+ 	}, {
+ 		"partName": "Antenna",
+ 		"Coordinate": "533,132:559,149",
+ 		"symptomCode": "IT101",
+ 		"ImageView": "TOP",
+ 		"Options": "Crack,Broken"
+ 	}],
+ 	"INTERIOR": [{
+ 		"partName": "HORN",
+ 		"Coordinate": "453,94:491,124",
+ 		"symptomCode": "II112",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Noise,Hard"
+ 	}, {
+ 		"partName": "SIDE VIEW MIRROR",
+ 		"Coordinate": "566,167:586,180",
+ 		"symptomCode": "II106",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Working,Broken"
+ 	}, {
+ 		"partName": "STEERING WHEEL",
+ 		"Coordinate": "436,148:507,160",
+ 		"symptomCode": "II111",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Noise,Hard"
+ 	}, {
+ 		"partName": "CLUTCH PEDAL",
+ 		"Coordinate": "380,156:393,177",
+ 		"symptomCode": "II110",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Hard,Free Play,Noise"
+ 	}, {
+ 		"partName": "INSTRUMENT PANEL",
+ 		"Coordinate": "437,67:477,84",
+ 		"symptomCode": "II100",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Indicator Light,Scratch,Broken"
+ 	}, {
+ 		"partName": "INFOTAINMENT",
+ 		"Coordinate": "313,71:365,127",
+ 		"symptomCode": "II102",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "No Sound,No Display,Broken"
+
+ 	}, {
+ 		"partName": "SEAT BELTS",
+ 		"Coordinate": "384,272:398,292",
+ 		"symptomCode": "IR109",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Engaged,Noise,Broken"
+ 	}, {
+ 		"partName": "REAR VIEW MIRROR",
+ 		"Coordinate": "321,1:376,10",
+ 		"symptomCode": "II107",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Loose,Vibrating"
+ 	}, {
+ 		"partName": "CABIN LIGHT",
+ 		"Coordinate": "278,1:318,0",
+ 		"symptomCode": "II107",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Working,Damaged"
+ 	}, {
+ 		"partName": "SEAT RECLINER",
+ 		"Coordinate": "580,256:620,280",
+ 		"symptomCode": "II107",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Engaged,Noise"
+ 	}, {
+ 		"partName": "AC VENT",
+ 		"Coordinate": "149,91:186,104",
+ 		"symptomCode": "II101",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Blowing,Not Cooling,Broken"
+ 	}, {
+ 		"partName": "AC VENT",
+ 		"Coordinate": "379,78:389,116",
+ 		"symptomCode": "II101",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Blowing,Not Cooling,Broken"
+ 	}, {
+ 		"partName": "AC VENT",
+ 		"Coordinate": "288,76:302,115",
+ 		"symptomCode": "II101",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Blowing,Not Cooling,Broken"
+ 	}, {
+ 		"partName": "GLOVE BOX",
+ 		"Coordinate": "175,135:271,154",
+ 		"symptomCode": "II110",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not Closing,Loose,Scratch"
+ 	}, {
+ 		"partName": "Gear",
+ 		"Coordinate": "320,150:350,165",
+ 		"symptomCode": "II103",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not engaged,Noise"
+ 	}, {
+ 		"partName": "PARKING BREAK",
+ 		"Coordinate": "317,231:340,248",
+ 		"symptomCode": "II103",
+ 		"ImageView": "INTERIOR",
+ 		"Options": "Not engaged,Noise"
+ 	}],
+ 	"REAR": [{
+ 		"partName": "REAR WINDSIELD GLASS",
+ 		"Coordinate": "200,50:498,71",
+ 		"symptomCode": "IB100",
+ 		"ImageView": "REAR",
+ 		"Options": "Crack,Chips Off, Broken"
+ 	}, {
+ 		"partName": "REAR VIEW MIRROR",
+ 		"Coordinate": "375,1:517,34",
+ 		"symptomCode": "IB100",
+ 		"ImageView": "REAR",
+ 		"Options": "Loose,Vibrating"
+ 	}, {
+ 		"partName": "REAR VIEW MIRROR",
+ 		"Coordinate": "160,1:251,29",
+ 		"symptomCode": "IB100",
+ 		"ImageView": "REAR",
+ 		"Options": "Loose,Vibrating"
+ 	}, {
+ 		"partName": "REVERSE LAMP",
+ 		"Coordinate": "171,173:523,180",
+ 		"symptomCode": "IB105",
+ 		"ImageView": "REAR",
+ 		"Options": "Broken,Mist Formation"
+ 	}, {
+ 		"partName": "REAR BUMPER",
+ 		"Coordinate": "150,160:516,210",
+ 		"symptomCode": "IB103",
+ 		"ImageView": "REAR",
+ 		"Options": "Dent,Scratch,Break"
+ 	}, {
+ 		"partName": "REVERSE FOG LAMP",
+ 		"Coordinate": "134,140:161,164",
+ 		"symptomCode": "IB106",
+ 		"ImageView": "REAR",
+ 		"Options": "Broken,Defog"
+ 	}, {
+ 		"partName": "TAIL GATE",
+ 		"Coordinate": "178,125:503,153",
+ 		"symptomCode": "IB102",
+ 		"ImageView": "REAR",
+ 		"Options": "Dent,Scratch,Break"
+ 	}, {
+ 		"partName": "REAR WIPER BLADE",
+ 		"Coordinate": "341,76:433,88",
+ 		"symptomCode": "IB101",
+ 		"ImageView": "REAR",
+ 		"Options": "Worn Out , Noise"
+ 	}, {
+ 		"partName": "TAIL LAMP",
+ 		"Coordinate": "158,96:238,116",
+ 		"symptomCode": "IB104",
+ 		"ImageView": "REAR",
+ 		"Options": "Broken,Mist Formation"
+ 	}, {
+ 		"partName": "TAIL LAMP",
+ 		"Coordinate": "442,99:530,115",
+ 		"symptomCode": "IB104",
+ 		"ImageView": "REAR",
+ 		"Options": "Broken,Mist Formation"
+ 	}],
+ 	"FRONT": [{
+ 		"partName": "BUMPER",
+ 		"Coordinate": "214,170:465,213",
+ 		"symptomCode": "IF103",
+ 		"ImageView": "FRONT",
+ 		"Options": "Dent,Scratch,Break"
+ 	}, {
+ 		"partName": "FRONT WINDSHIELD GLASS",
+ 		"Coordinate": "186,40:513,82",
+ 		"symptomCode": "IF100",
+ 		"ImageView": "FRONT",
+ 		"Options": "Crack,Chips Off,Broken"
+ 	}, {
+ 		"partName": "BONNET",
+ 		"Coordinate": "156,100:546,115",
+ 		"symptomCode": "IF102",
+ 		"ImageView": "FRONT",
+ 		"Options": "Dent,Scratch,Breake"
+ 	}, {
+ 		"partName": "FOG LIGHT",
+ 		"Coordinate": "512,188:545,194",
+ 		"symptomCode": "IF105",
+ 		"ImageView": "FRONT",
+ 		"Options": "Broken,Defog"
+ 	}, {
+ 		"partName": "HEAD LIGHTS",
+ 		"Coordinate": "504,161:552,176",
+ 		"symptomCode": "IF104",
+ 		"ImageView": "FRONT",
+ 		"Options": "Broken,Mist Formation"
+ 	}, {
+ 		"partName": "HEAD LIGHTS",
+ 		"Coordinate": "135,161:191,176",
+ 		"symptomCode": "IF104",
+ 		"ImageView": "FRONT",
+ 		"Options": "Broken,Mist Formation"
+ 	}, {
+ 		"partName": "FOG LIGHT",
+ 		"Coordinate": "135,189:180,195",
+ 		"symptomCode": "IF105",
+ 		"ImageView": "FRONT",
+ 		"Options": "Broken,Mist Formation"
+ 	}, {
+ 		"partName": "BATTERY",
+ 		"Coordinate": "245,128:432,159",
+ 		"symptomCode": "IF107",
+ 		"ImageView": "FRONT",
+ 		"Options": "Voltagelow,Dead"
+ 	}, {
+ 		"partName": "DRL",
+ 		"Coordinate": "500,122:566,136",
+ 		"symptomCode": "IF106",
+ 		"ImageView": "FRONT",
+ 		"Options": "Broken,Defog"
+ 	}, {
+ 		"partName": "WIPER BLADE",
+ 		"Coordinate": "202,91:316,97",
+ 		"symptomCode": "IF101",
+ 		"ImageView": "FRONT",
+ 		"Options": "Worn Out,Noise"
+ 	}, {
+ 		"partName": "DRL",
+ 		"Coordinate": "119,120:182,135",
+ 		"symptomCode": "IF106",
+ 		"ImageView": "FRONT",
+ 		"Options": "Broken,Defog"
+ 	}]
+
+ }

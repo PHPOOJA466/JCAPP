@@ -1,0 +1,610 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:vk="sap.ui.vk"
+	xmlns:table="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml">
+	<VBox id="CheckIn" visible="{oLocalJsonModel>/CheckInTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<!--	<Toolbar>
+			<ToolbarSpacer></ToolbarSpacer>
+			<ToolbarSeparator></ToolbarSeparator>
+		<Button text="Reopen" type="Accept"></Button>
+			<Button text="Claim Unclock" type="Accept"></Button>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Button text="Close" type="Reject"></Button>
+		</Toolbar-->
+		<!--<l:Grid defaultSpan="L6 M6 S12">
+			<VBox>
+				<Label text="Estimation Details" design="Bold" class="sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>-->
+					<f:Form id="idCheckinDispForm" editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+					<f:FormContainer expandable="true" expanded="true" title="Estimation Summary">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+				<ScrollContainer height="24rem" horizontal="true" vertical="true">
+					<Table growing="true" alternateRowColors="true" items="{path:'EstimationTableInfoModel>/'}" inset="false"
+						class="sapUiTinyMarginTop mobileTableView">
+						<columns>
+							<Column mergeDuplicates="true" minScreenWidth="Tablet" demandPopin="true" width="6rem">
+								<Text text=""/>
+							</Column>
+							<Column mergeDuplicates="true" minScreenWidth="Tablet" demandPopin="true" width="5rem">
+								<Text text="Bill To"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+								<Text text="Parts"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="8rem" demandPopin="true">
+								<Text text="Consumables"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Labour"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Sublet"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Tax Total"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Total"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<header>
+									<Text text="Approved Amount"/>
+								</header>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Diff"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<!--	<customData>
+								<core:CustomData writeToDom="true" key="background" value="{EstimationTableInfoModel>BillTo}"/>
+							</customData>-->
+									<Text text="{EstimationTableInfoModel>EstmtnTyp}"/>
+									<Text text="{EstimationTableInfoModel>BillTo}"></Text>
+									<Text text="{EstimationTableInfoModel>Parts}"></Text>
+									<Text text="{EstimationTableInfoModel>Consume}"></Text>
+									<Text text="{EstimationTableInfoModel>Labor}"></Text>
+									<Text text="{EstimationTableInfoModel>Sublet}"></Text>
+									<Text text="{EstimationTableInfoModel>TaxTotal}"></Text>
+									<Text text="{EstimationTableInfoModel>Total}"></Text>
+									<Text text="{EstimationTableInfoModel>ApprvdAmt}"></Text>
+									<Text text="{EstimationTableInfoModel>Difference}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+					</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				
+		<!--	</VBox>-->
+		
+					<f:FormContainer expandable="true" expanded="true" title="Estimation Details">
+						<f:FormElement label="">
+							<f:fields>
+							<!--	<Button text="Initial" width="5rem" class="sapUiLargeMarginBegin"></Button>
+								<Button text="Revised" width="5rem" class="sapUiSmallMarginEnd"></Button>-->
+									<HBox>
+								<Button text="Initial" width="9rem" class="sapUiSizeCompact sapUiMediumMarginBegin" ></Button>
+								<Button text="Revised" class="sapUiSizeCompact sapUiTinyMarginBegin"  width="9rem"></Button>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Promised Delivery Date and Time">
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<DateTimePicker width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Promised_Delv_Date_Int}"/>
+									<DateTimePicker class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/Promised_Delv_Date_Rev}"></DateTimePicker>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Total FRM Hrs">
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<Input width="9rem" class="sapUiSizeCompact" enabled="false" value="{checkInInfoModel>/Total_FRM_Hours_Int}"></Input>
+									<Input class="sapUiTinyMarginBegin sapUiSizeCompact" enabled="false" width="9rem" value="{checkInInfoModel>/Total_FRM_Hours_Rev}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Estimate Freeze Date and Time">
+							<!--<Text text="Estimate Freeze Date" maxLines="2"/>-->
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<DatePicker width="9rem" editable="false" class="sapUiSizeCompact" value="{checkInInfoModel>/Estimate_Freeze_Date_Int}"></DatePicker>
+									<DatePicker editable="false" class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/Estimate_Freeze_Date_Rev}"></DatePicker>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Approved By">
+							<!--<Text text="Approved By"/>-->
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Approved_By_Int}"></Input>
+									<Input class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/Approved_By_Rev}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Approved Date">
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<DatePicker width="9rem" editable="false" class=" sapUiSizeCompact" value="{checkInInfoModel>/Approved_Date_Int}"></DatePicker>
+									<DatePicker editable="false"  class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/Approved_Date_Rev}"></DatePicker>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						
+						<f:FormElement label="Number of Revision">
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<Input width="9rem" class="sapUiSizeCompact" enabled="false"></Input>
+									<Input class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/No_Revision_Rev}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<!-- <f:FormElement label="Complaint Id">
+							<f:fields>
+								<ComboBox width="9rem" items="{path:'Complaintsdata>/', templateShareable: false}"
+											selectedKey="{checkInInfoModel>/Policy_Amt_Bill_To}" class="sapUiSizeCompact">
+											<core:Item text="{Complaintsdata>Value}" key="{PolicyAmtBillToModel>Value}"/>
+										</ComboBox>
+							</f:fields>
+						</f:FormElement> -->
+						<f:FormElement label="Salavge Value">
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Salvage_Value_Int}"></Input>
+									<!-- <Input class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/Salvage_Value_Rev}"></Input> -->
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Scrap Value">
+							<f:fields>
+								<HBox class="sapUiMediumMarginBegin">
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Scrap_Value_Int}"></Input>
+									<!-- <Input class="sapUiTinyMarginBegin sapUiSizeCompact" width="9rem" value="{checkInInfoModel>/Scrap_Value_Rev}"></Input> -->
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+	<!--	</l:Grid>-->
+	<!--	<l:Grid defaultSpan="L6 M6 S12">
+			<VBox>
+				<Label text="Invoice Details" design="Bold" class="sapUiSmallMarginBegin"></Label>-->
+					<f:Form  editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+					<f:FormContainer expandable="true" expanded="true" title="Invoice Details">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+			
+							<ScrollContainer height="20rem" horizontal="true" vertical="true">
+					<Table growing="true" items="{CheckInInvoiceInfoModel>/}" alternateRowColors="true" inset="false" class="sapUiTinyMarginTop mobileTableView">
+						<headerToolbar>
+			<!-- <OverflowToolbar class="sapUiSmallMarginBegin sapUiSmallMarginTop">
+					<Label text="Invoice No" class="sapUiTinyMarginEnd"></Label>
+					<Input width="9rem" class="sapUiSizeCompact sapUiTinyMarginEnd"></Input>
+					<Label text="Status" class="sapUiTinyMarginEnd"></Label>
+					<Input width="9rem" class="sapUiSizeCompact sapUiTinyMarginEnd"></Input>
+					<Label text="Invoice Date and Time" class="sapUiTinyMarginEnd"></Label>
+					<DatePicker width="9rem" class="sapUiSizeCompact"></DatePicker>
+				</OverflowToolbar> -->
+				</headerToolbar>
+						<columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+								<Text text="Bill To"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+								<Text text="Parts"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="8rem" demandPopin="true">
+								<Text text="Consumables"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Labour"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Sublet"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Discount"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Taxable Amount"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Tax Total"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Total"/>
+							</Column>
+							<Column minScreenWidth="Tablet" width="5rem" demandPopin="true">
+								<Text text="Tax Type"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem vAlign="Middle">
+								<cells>
+									<Text text="{CheckInInvoiceInfoModel>Bill_To}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Parts}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Consumables}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Labor}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Sublet}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Discount}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Taxable_Amt}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Tax_Total}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Total}"></Text>
+									<Text text="{CheckInInvoiceInfoModel>Tax_Type}"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+				</f:fields>
+							</f:FormElement>
+								</f:formElements>
+					</f:FormContainer>
+				
+						<!--	</f:formContainers>
+					</f:Form>
+	
+			<f:Form editable="false" class="checkInForm1 sapUiSmallMarginBegin">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:toolbar>
+					<Toolbar height="3rem">
+						<Title text="Discount Details"/>
+					</Toolbar>
+				</f:toolbar>
+				<f:formContainers>-->
+					<f:FormContainer expandable="true" expanded="true" title="Discount Details">
+						<!-- <f:FormElement label="Labor Disc₹">
+							<f:fields>
+								<HBox>
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Labor_Disc_Amt}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement> -->
+						<f:FormElement label="Labor Disc₹">
+							<!--<Text text="Labor Disc%"/>-->
+							<f:fields>
+								<HBox>
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Labor_Disc_Per}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<!-- <f:FormElement label="Part Disc₹">
+							
+							<f:fields>
+								<HBox>
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Part_Disc_Amt}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement> -->
+						<f:FormElement label="Part Disc₹">
+							<!--<Text text="Part Disc%"/>-->
+							<f:fields>
+								<HBox>
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Part_Disc_Per}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<!-- <f:FormElement label="Fixed Price₹">
+							
+							<f:fields>
+								<HBox>
+									<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Fixed_Price_Amt}"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement> -->
+							<f:FormElement label="SEZ -Tax applicability" class="sapUiLargeMarginTop">
+							<!--<Text text="Fixed Price₹"/>-->
+							<f:fields>
+							<HBox>
+								<Switch state="{= ${checkInInfoModel>/Sez_Value} === 'Y'? true: false}" customTextOn="Yes" customTextOff="No" 
+								enabled="{checkInInfoModel>/Sez_flag}" change="onChangeSEZValue">
+								</Switch>
+							</HBox>
+							
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		<!--</l:Grid>-->
+		<l:Grid defaultSpan="L4 M4 S12">
+		<!--	<VBox class="sapUiSmallMarginTop">
+				<Label text="Agreement Details" design="Bold"></Label>-->
+				<f:Form editable="false">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="0" labelSpanL="0" labelSpanM="0" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer expandable="true" expanded="true" title="Insurer Details">
+							<f:FormElement>
+								<Text text="Insurer Bill To" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Insurer_Bill_To}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Policy Deductible" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Policy_Deductible}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Policy Amount Bill To" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<ComboBox width="9rem" items="{path:'PolicyAmtBillToModel>/', templateShareable: false}"
+											selectedKey="{checkInInfoModel>/Policy_Amt_Bill_To}" class="sapUiSizeCompact">
+											<core:Item text="{PolicyAmtBillToModel>Value}" key="{PolicyAmtBillToModel>Value}"/>
+										</ComboBox>
+										<!--<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Policy_Amt_Bill_To}"></Input>-->
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<f:Form editable="false">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer expandable="true" expanded="true" title="Agreement Details">
+							<f:FormElement>
+								<Text text="Agreement Name" maxLines="2"/>
+								<f:fields>
+									<HBox>
+											<ComboBox  items="{path:'ZJOB_QUOTATION_SRV>/AgreementShSet', templateShareable: false}"
+											selectedKey="{checkInInfoModel>/Agreement_Name}" class="sapUiSizeCompact">
+											<core:Item text="{ZJOB_QUOTATION_SRV>Agreement}" key="{ZJOB_QUOTATION_SRV>Agreement}"/>
+										</ComboBox>
+										<core:Icon class="sapUiTinyMarginBegin sapUiTinyMarginTop" src="sap-icon://information" press="onAgreementDisp" color="#1470dc"></core:Icon>
+									<!--	<Input width="9rem" class="sapUiSizeCompact" value="{checkInInfoModel>/Agreement_Name}"></Input>-->
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+
+				<f:Form editable="false">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="1" labelSpanL="1" labelSpanM="1" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer expandable="true" expanded="true" title="Dealer Terms and Conditions">
+							<f:FormElement>
+								<f:fields>
+						       <TextArea rows="5"  value="{checkInInfoModel>/Dterm}"/>
+								</f:fields>
+							</f:FormElement>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			<!--</VBox>-->
+		<!--	<VBox class="sapUiSmallMarginTop">
+				<Label text="Insurer Details" design="Bold"></Label>-->
+				
+		<!--	</VBox>-->				
+			</l:Grid>
+		<l:Grid defaultSpan="L4 M4 S12" class="sapUiSmallMarginTop">
+			<VBox>
+				<!--<Label text="Contact Person Details" design="Bold"></Label>-->
+				<f:Form editable="false">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="1" labelSpanL="0" labelSpanM="0" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer expandable="true" expanded="true" title="Contact Person Details">
+							<f:FormElement>
+								<Text text="Person Name" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Person_Name}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Contact Number"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Contact_No}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Role" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Contact_Person_Role}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+			<VBox >
+			<!--	<HBox>
+					<Label text="Loyalty Points" design="Bold"></Label>
+					<Button text="Redeem" type="Emphasized" class="sapUiLargeMarginBegin"></Button>
+				</HBox>-->
+				<f:Form editable="false">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="0" labelSpanL="0" labelSpanM="0" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer expandable="true" expanded="true" title="Loyalty Points">
+								<f:FormElement>
+								<Text text=""/>
+								<f:fields>
+								
+											<Button width="9rem" text="Redeem" type="Emphasized" ></Button>
+									
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Points Available" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Points_Available}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Points Applied"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Points_Applied}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Points Balanced" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Points_Balance}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Redeemed Date" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<DatePicker width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Redeemed_Date}"></DatePicker>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+			<VBox>
+			<!--	<HBox>
+					<Label text="Temporary Gate Pass" design="Bold"></Label>
+					<Button icon="sap-icon://document-text" class="sapUiLargeMarginBegin" press="onPressTempGatePassPDF"></Button>
+				</HBox>-->
+				<f:Form editable="false">
+					<!--	<f:toolbar>
+			
+			</f:toolbar>-->
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanXL="0" labelSpanL="0" labelSpanM="0" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+							emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer expandable="true" expanded="true" title="Temporary Gate Pass">
+							
+								<f:FormElement>
+								<Text text=""/>
+								<f:fields>
+									<HBox>
+										<Button icon="sap-icon://document-text" class="sapUiLargeMarginBegin" press="onPressTempGatePassPDF"></Button>
+										</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Reason" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Reason}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Name"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/GP_Name}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Contact Number" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Contact_No}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Temp Gate Pass No" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Temp_GP_No}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Gate Pass Date and Time" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<DatePicker width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/GP_Date_Time}"></DatePicker>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Role" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Temp_GP_Role}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<Text text="Type" maxLines="2"/>
+								<f:fields>
+									<HBox>
+										<Input width="9rem" class=" sapUiSizeCompact" value="{checkInInfoModel>/Temp_GP_Type}"></Input>
+									</HBox>
+								</f:fields>
+							</f:FormElement>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+		</l:Grid>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,201 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "ndbs.Z_JobCard",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"ZJOB_CARD_SRV": {
+				"uri": "/sap/opu/odata/sap/ZJOB_CARD_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"ZINIT_FIN_INSP_ROAD_TEST_SRV": {
+				"uri": "/sap/opu/odata/sap/ZINIT_FIN_INSP_ROAD_TEST_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZINIT_FIN_INSP_ROAD_TEST_SRV/metadata.xml"
+				}
+			},
+			"ZJOB_QUOTATION_SRV": {
+				"uri": "/sap/opu/odata/sap/ZJOB_QUOTATION_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/ZJOB_QUOTATION_SRV/metadata.xml"
+				}
+			},
+			"ZSVC_ODATA_PCR_APPROVAL_SRV": {
+                "uri": "/sap/opu/odata/sap/ZSVC_ODATA_PCR_APPROVAL_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+			"Z_PRINT_SRV": {
+                "uri": "/sap/opu/odata/sap/Z_PRINT_SRV/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/metadata.xml"
+                }
+            }
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "ndbs.Z_JobCard.view.View1",
+			"type": "XML",
+			"async": true,
+			"id": "View1"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "ndbs.Z_JobCard.i18n.i18n"
+				}
+			},
+			"oLocalJsonModel": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"ZJOB_CARD_SRV": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZJOB_CARD_SRV",
+				"preload": true
+			},
+			"Z_PRINT_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "Z_PRINT_SRV",
+                "preload": true
+            },
+			"ZINIT_FIN_INSP_ROAD_TEST_SRV": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZINIT_FIN_INSP_ROAD_TEST_SRV",
+				"preload": true
+			},
+			"ZJOB_QUOTATION_SRV": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZJOB_QUOTATION_SRV",
+				"preload": true
+			},
+			"ZSVC_ODATA_PCR_APPROVAL_SRV": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZSVC_ODATA_PCR_APPROVAL_SRV",
+                "preload": true
+            }
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}],
+			"js": [{
+				"uri": "utils/xlsxjs.js"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "ndbs.Z_JobCard.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "RouteView1",
+				"pattern": "RouteView1",
+				"target": [
+					"TargetView1"
+				]
+			}, {
+				"name": "JobCardToAssignedVehicles",
+				"pattern": "JobCardToAssignedVehicles",
+				"target": [
+					"JobCardToAssignedVehicles"
+				]
+			}],
+			"targets": {
+				"TargetView1": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "View1"
+				},
+				"JobCardToAssignedVehicles": {
+					"viewType": "XML",
+					"viewName": "JobCardToAssignedVehicles"
+				}
+			}
+		}
+	}
+}

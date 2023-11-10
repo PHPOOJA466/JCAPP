@@ -1,0 +1,127 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:DT="ndbs.Z_JobCard.Custom">
+	<VBox id="Checklist"  visible="{oLocalJsonModel>/ChecklistTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		
+		<SegmentedButton  selectedKey="{oLocalJsonModel>/Selecetedmainchecklistbtn}" class="sapUiSizeCompact" selectionChange="onCheckListTabSegButtons" width="50%">
+			<items>
+			
+				<SegmentedButtonItem text="PDI 1" key="PDI1" enabled="{= ${oLocalJsonModel>/Selecetedmainchecklistbtn} === 'PDI1' ? true : false }" />
+				<SegmentedButtonItem text="PDI 2" key="PDI2" enabled="{= ${oLocalJsonModel>/Selecetedmainchecklistbtn} === 'PDI2' ? true : false }"/>
+				<SegmentedButtonItem text="Long Storage" key="Long Storage" enabled="{= ${oLocalJsonModel>/Selecetedmainchecklistbtn} === 'Long Storage' ? true : false }"/>
+				<SegmentedButtonItem text="PMS" key="PMS" enabled="{= ${oLocalJsonModel>/Selecetedmainchecklistbtn} === 'PMS' ? true : false }"/>
+				<SegmentedButtonItem text="Accidental" key="Accidental" enabled="{= ${oLocalJsonModel>/Selecetedmainchecklistbtn} === 'Accidental' ? true : false }"/>
+			</items>
+		</SegmentedButton>
+		
+		<VBox>
+			<OverflowToolbar>
+				<Label text="Inspected By"></Label>
+				<Text text="{CheckListVehicleParamsInfo>/Inspected_by}"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Inspected Date and Time"></Label>
+				<Text text="{CheckListVehicleParamsInfo>/Inspected_dt}"></Text>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Label text="Remarks"></Label>
+				<Text text="{CheckListVehicleParamsInfo>/Remarks}"></Text>
+				<Label text="All Parameters"></Label>
+				<Switch state="{CheckListVehicleParamsInfo>/All_parameters}" class="Mainswitch" customTextOn=" " customTextOff=" "  change="Onpressallparameters"></Switch>
+				<core:Icon src="sap-icon://camera" class="Icons sapUiSmallMarginBegin" press="JCCapturecamera"></core:Icon>
+				<core:Icon src="sap-icon://card" class="Icons sapUiSmallMarginBegin" press="JCDisplayimages"></core:Icon>
+				<ToolbarSeparator></ToolbarSeparator>
+			</OverflowToolbar>
+		</VBox>
+		<!-- <VBox items="{oLocalJsonModel>/CheckListTabInfo}"></VBox> -->
+		<ScrollContainer horizontal="true">
+		<!--<OverflowToolbar>-->
+			<SegmentedButton selectionChange="onCheckListParamsSegButtons" id="CheckListTabSegParamsButtonId" items="{oLocalJsonModel>/CheckListTabInfo}">
+					<items>
+						<SegmentedButtonItem text="{oLocalJsonModel>Param}" tooltip="{oLocalJsonModel>Param}" key="{oLocalJsonModel>Param}"/>
+					</items>
+				</SegmentedButton>
+				<!--</OverflowToolbar>-->
+				</ScrollContainer>
+		<!-- <SegmentedButton id="CheckListTabSegParamsButtonId" selectedKey="Body" class="sapUiSizeCompact" selectionChange="onCheckListParamsSegButtons" width="50%">
+			<items>
+				<SegmentedButtonItem text="Body" key="Body"/>
+				<SegmentedButtonItem text="Engine" key="Engine"/>
+				<SegmentedButtonItem text="Power Train" key="PowerTrain"/>
+				<SegmentedButtonItem text="Cabin" key="Cabin"/>
+				<SegmentedButtonItem text="Test Drive" key="TestDrive"/>
+			</items>
+		</SegmentedButton> -->
+		<Table id="idCLTree" growing="true" alternateRowColors="true" items="{oLocalJsonModel>/CheckListVehicleParamsInfo}" inset="false" class="mobileTableView">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Parameter"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Specs" maxLines="2" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Observations" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Remarks"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Additional Jobs"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Inactive" press="onRoute">
+					<cells>
+						<Text text="{oLocalJsonModel>Param}"/>
+						<Text text="{oLocalJsonModel>Space}"/>
+							<VBox>
+						<CheckBox text="" selected="{= ${oLocalJsonModel>Param_value} === 'X' ? true : false }" visible="{= ${oLocalJsonModel>Type_pf} === 'C' ? true : false }" select="Checklistcheckboxchange" />
+						<Select selectedKey="{oLocalJsonModel>Param_value}" items="{oLocalJsonModel>ListAray}" change="ChecklistDpchange" visible="{= ${oLocalJsonModel>Type_pf} === 'D' ? true : false }">
+										<core:Item key="{oLocalJsonModel>text}" text="{oLocalJsonModel>text}"/>
+									</Select>
+									 <Switch change="Checklistswitchtoggle" class="Mainswitch"  state="{= ${oLocalJsonModel>Param_value} === 'X' ? true : false }" customTextOn=" " customTextOff=" "  visible="{= ${oLocalJsonModel>Type_pf} === 'S' ? true : false }" >
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</Switch>
+			<TextArea class="Textarea"  liveChange="yy" value="{oLocalJsonModel>Param_value}" enabled="{oLocalJsonModel>/AppRjRetenable}" visible="{= ${oLocalJsonModel>Type_pf} === 'F' ? true : false }" />
+					<ScrollContainer horizontal="true" >
+						<SegmentedButton selectedKey="{oLocalJsonModel>Param_value}"  items="{oLocalJsonModel>ListAray}" class="sapUiSizeCompact" selectionChange="onCheckListTabSegButtons"   visible="{= ${oLocalJsonModel>Type_pf} === 'R' ? true : false }">
+			<items>
+			
+				<SegmentedButtonItem width="4rem" text="{oLocalJsonModel>text}" key="{oLocalJsonModel>text}" />
+				</items>
+		</SegmentedButton>
+		</ScrollContainer>
+						</VBox>
+									<!-- <Text text="{oLocalJsonModel>Obsorvations}"/> -->
+						<!-- <Text text="{oLocalJsonModel>Remarks}"/> -->
+						<core:Icon 	src="sap-icon://edit"  press="onChecklistremarkspress" />
+						 <Switch class="Mainswitch"  state="{oLocalJsonModel>Aditional_jobs}" customTextOn=" " customTextOff=" "   >
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</Switch>
+						<!-- <Text text="{oLocalJsonModel>Aditional_jobs}"/> -->
+						<!-- <HBox>
+							<core:Icon src="sap-icon://camera"></core:Icon>
+							<core:Icon src="sap-icon://card"></core:Icon>
+						</HBox> -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

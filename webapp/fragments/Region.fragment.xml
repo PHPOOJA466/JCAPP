@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog contentHeight="50%" contentWidth="30%" title="Region" confirm="handleConfirmReg" liveChange="onregsearch"
+		items="{ path:'oRegModel>/'}" cancel="handleClose">
+		<StandardListItem title="{oRegModel>BEZEI}-{oRegModel>BLAND}" description="{oRegModel>LAND1}" type="Active"/>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,144 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<l:BlockLayoutCell width="4">
+		<Image id="idImage" src="" densityAware="false" useMap="Map" visible="false"></Image>
+		<html:map name="Map1" id="idMappingLeft">
+			<html:area id="map1" class="L1" coords="117,114,34" shape="circle"/>
+			<html:area id="map2" class="L2" coords="121,168,23" shape="circle"/>
+			<html:area id="map3" class="L3" coords="135,219,25" shape="circle"/>
+			<html:area id="map4" class="L4" coords="205,86,20" shape="circle"/>
+			<html:area id="map5" class="L5" coords="236,80,13" shape="circle"/>
+			<html:area id="map6" class="L6" coords="249,152,38" shape="circle"/>
+			<html:area id="map7" class="L7" coords="306,113,27" shape="circle"/>
+			<html:area id="map8" class="L8" coords="386,150,28" shape="circle"/>
+			<html:area id="map9" class="L9" coords="454,106,24" shape="circle"/>
+			<html:area id="map10" class="L10" coords="548,111,31" shape="circle"/>
+			<html:area id="map11" class="L11" coords="497,169,21" shape="circle"/>
+			<html:area id="map12" class="L12" coords="511,215,23" shape="circle"/>
+		</html:map>
+		<html:map name="Map2" id="idMappingRight">
+			<html:area id="map13" class="R1" coords="495,109,19" shape="circle"/>
+			<html:area id="map14" class="R2" coords="493,159,19" shape="circle"/>
+			<html:area id="map15" class="R3" coords="500,196,22" shape="circle"/>
+			<html:area id="map16" class="R4" coords="417,65,16" shape="circle"/>
+			<html:area id="map17" class="R5" coords="396,83,13" shape="circle"/>
+			<html:area id="map18" class="R6" coords="355,142,24" shape="circle"/>
+			<html:area id="map19" class="R7" coords="322,101,16" shape="circle"/>
+			<html:area id="map20" class="R8" coords="227,145,25" shape="circle"/>
+			<html:area id="map21" class="R9" coords="175,94,20" shape="circle"/>
+			<html:area id="map22" class="R10" coords="102,98,14" shape="circle"/>
+			<html:area id="map23" class="R11" coords="66,116,27" shape="circle"/>
+			<html:area id="map24" class="R12" coords="120,159,24" shape="circle"/>
+			<html:area id="map24" class="R13" coords="131,201,17" shape="circle"/>
+		</html:map>
+		<html:map name="Map3" id="idMappingFront">
+			<html:area id="map25" class="F1" coords="227,93,43" shape="circle"/>
+			<html:area id="map26" class="F2" coords="149,146,36" shape="circle"/>
+			<html:area id="map27" class="F3" coords="260,178,35" shape="circle"/>
+			<html:area id="map28" class="F4" coords="60,348,24" shape="circle"/>
+			<html:area id="map29" class="F5" coords="85,292,492,272" shape="rect"/>
+			<html:area id="map30" class="F6" coords="84,317,498,338" shape="rect"/>
+			<html:area id="map31" class="F7" coords="73,196,503,216" shape="rect"/>
+			<html:area id="map32" class="F8" coords="363,219,33" shape="circle"/>
+		</html:map>
+		<html:map name="Map4" id="idMappingRear">
+			<html:area id="map33" class="B1" coords="239,107,28" shape="circle"/>
+			<html:area id="map34" class="B2" coords="300,129,23" shape="circle"/>
+			<html:area id="map35" class="B3" coords="224,248,26" shape="circle"/>
+			<html:area id="map36" class="B4" coords="250,321,36" shape="circle"/>
+			<html:area id="map37" class="B5" coords="109,176,487,197" shape="rect"/>
+			<html:area id="map38" class="B6" coords="101,313,484,324" shape="rect"/>
+			<html:area id="map39" class="B7" coords="86,337,491,352" shape="rect"/>
+		</html:map>
+		<html:map name="Map5" id="idMappingTop">
+			<html:area id="map40" class="T1" coords="330,174,35" shape="circle"/>
+			<html:area id="map41" class="T2" coords="495,183,22" shape="circle"/>
+			<html:area id="map42" class="T3" coords="491,249,21" shape="circle"/>
+		</html:map>
+		<html:map name="Map6" id="idMappingInterior">
+			<html:area id="map43" class="I01" coords="416,80,17" shape="circle"/>
+			<html:area id="map44" class="I02" coords="268,98,17" shape="circle"/>
+			<html:area id="map45" class="I03" coords="315,120,18" shape="circle"/>
+			<html:area id="map46" class="I04" coords="307,176,21" shape="circle"/>
+			<html:area id="map47" class="I05" coords="358,307,30" shape="circle"/>
+			<html:area id="map48" class="I06" coords="536,294,30" shape="circle"/>
+			<html:area id="map49" class="I07" coords="532,187,25" shape="circle"/>
+			<html:area id="map50" class="I08" coords="326,5,27" shape="circle"/>
+			<html:area id="map51" class="I09" coords="280,8,17" shape="circle"/>
+			<html:area id="map52" class="I10" coords="193,154,23" shape="circle"/>
+			<html:area id="map53" class="I11" coords="355,188,23" shape="circle"/>
+			<html:area id="map54" class="I12" coords="435,120,18" shape="circle"/>
+			<html:area id="map55" class="I13" coords="391,118,15" shape="circle"/>
+			<html:area id="map55" class="I12" coords="449,177,21" shape="circle"/>
+		</html:map>
+		<Image id="idEVImage" src="" densityAware="false" useMap="Map" visible="false"></Image>
+		<html:map name="EVMap1" id="idEVMappingLeft">
+			<html:area class="L1" coords="164,163,17" shape="circle"/>
+			<html:area class="L2" coords="171,216,15" shape="circle"/>
+			<html:area class="L3" coords="175,251,18" shape="circle"/>
+			<html:area class="L4" coords="262,115,9" shape="circle"/>
+			<html:area class="L5" coords="276,125,9" shape="circle"/>
+			<html:area class="L6" coords="312,196,24" shape="circle"/>
+			<html:area class="L7" coords="386,160,355,148" shape="rect"/>
+			<html:area class="L8" coords="460,197,21" shape="circle"/>
+			<html:area class="L9" coords="496,147,526,154" shape="rect"/>
+			<html:area class="L10" coords="579,151,19" shape="circle"/>
+			<html:area class="L11" coords="550,210,18" shape="circle"/>
+			<html:area class="L12" coords="547,247,20" shape="circle"/>
+		</html:map>
+		<html:map name="EVMap2" id="idEVMappingRight">
+			<html:area class="R1" coords="523,137,23" shape="circle"/>
+			<html:area class="R2" coords="525,192,11" shape="circle"/>
+			<html:area class="R3" coords="528,225,15" shape="circle"/>
+			<html:area class="R4" coords="432,92,10" shape="circle"/>
+			<html:area class="R5" coords="429,108,9" shape="circle"/>
+			<html:area class="R6" coords="330,210,454,158" shape="rect"/>
+			<html:area class="R7" coords="322,131,354,141" shape="rect"/>
+			<html:area class="R8" coords="227,203,292,156" shape="rect"/>
+			<html:area class="R9" coords="177,129,211,137" shape="rect"/>
+			<html:area class="R10" coords="132,128,21" shape="circle"/>
+			<html:area class="R11" coords="142,190,10" shape="circle"/>
+			<html:area class="R12" coords="147,224,17" shape="circle"/>
+		</html:map>
+		<html:map name="EVMap3" id="idEVMappingFront">
+			<html:area class="F1" coords="158,90,403,149" shape="rect"/>
+			<html:area class="F2" coords="144,162,359,158" shape="rect"/>
+			<html:area class="F3" coords="380,207,168,172" shape="rect"/>
+			<html:area class="F4" coords="96,248,91,278,221,298,388,291,444,256,261,283" shape="poly"/>
+			<html:area class="F5" coords="430,207,454,221" shape="rect"/>
+			<html:area class="F6" coords="402,219,444,235" shape="rect"/>
+			<html:area class="F7" coords="92,210,136,229" shape="rect"/>
+			<html:area class="F8" coords="298,265,342,221" shape="rect"/>
+		</html:map>
+		<html:map name="EVMap4" id="idEVMappingRear">
+			<html:area class="B1" coords="176,75,396,112" shape="rect"/>
+			<html:area class="B2" coords="205,112,295,126" shape="rect"/>
+			<html:area class="B3" coords="206,162,388,213" shape="rect"/>
+			<html:area class="B4" coords="202,241,370,274" shape="rect"/>
+			<html:area class="B5" coords="368,139,443,163" shape="rect"/>
+			<html:area class="B6" coords="383,238,437,266" shape="rect"/>
+			<html:area class="B7" coords="127,138,181,166" shape="rect"/>
+		</html:map>
+		<html:map name="EVMap5" id="idEVMappingTop">
+			<html:area class="T1" coords="292,103,349,204" shape="rect"/>
+			<html:area class="T2" coords="347,101,492,220" shape="rect"/>
+		</html:map>
+		<html:map name="EVMap6" id="idEVMappingInterior">
+			<html:area class="I01" coords="388,118,466,149" shape="rect"/>
+			<html:area class="I02" coords="219,109,345,125" shape="rect"/>
+			<html:area class="I03" coords="245,143,315,179" shape="rect"/>
+			<html:area class="I04" coords="244,310,307,333" shape="rect"/>
+			<html:area class="I05" coords="333,343,396,366" shape="rect"/>
+			<html:area class="I06" coords="528,351,559,368" shape="rect"/>
+			<html:area class="I07" coords="643,59,730,109" shape="rect"/>
+			<html:area class="I08" coords="291,5,391,43" shape="rect"/>
+			<html:area class="I09" coords="243,9,284,40" shape="rect"/>
+			<html:area class="I10" coords="63,333,175,365" shape="rect"/>
+			<html:area class="I11" coords="85,178,194,221" shape="rect"/>
+			<html:area class="I12" coords="409,250,487,264" shape="rect"/>
+			<html:area class="I13" coords="427,161,461,196" shape="rect"/>
+			<!--<html:area id="map55" class="I13" coords="391,118,15" shape="circle"/>-->
+			<!--<html:area class="I14" coords="449,177,21" shape="circle"/>-->
+		</html:map>
+	</l:BlockLayoutCell>
+</core:FragmentDefinition>

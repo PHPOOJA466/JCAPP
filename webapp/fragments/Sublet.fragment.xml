@@ -1,0 +1,156 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core" xmlns:table="sap.ui.table">
+	<!--<Page>-->
+	<VBox id="Sublet" visible="{oLocalJsonModel>/SubletTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+			<core:Icon src="sap-icon://add" press="onAddSubletRow" class="plusClass"></core:Icon>
+		</OverflowToolbar>
+		<ScrollContainer width="100%" horizontal="true" vertical="true">
+			<Table id="idProductsTable" selectionChange="AddInspectionListasJob" noDataText="Data not available" items="{subletModel>/}">
+				<columns>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Sublet Number"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Concern" design="Bold" required="true"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="FRM Code" required="true"/>
+					</Column>
+					<Column width="13em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Sublet Start date and time" design="Bold" required="true"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Sublet End date and time"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Sublet Duration"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Sublet Kms"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Aggregate" design="Bold" required="true"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Bill To" design="Bold" required="true"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Vendor Name" design="Bold" required="true"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Invoice Number"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Invoice Date"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Label text="Invoice Amount" design="Bold" required="true"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Action Performed"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Remarks"/>
+					</Column>
+					<Column width="12em" minScreenWidth="Tablet" demandPopin="true">
+						<Text text=""/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{subletModel>Sublet_No}"/>
+							<VBox>
+								<ComboBox items="{ path: 'concernModel>/'}" change="onSelectSubletConcern" selectedKey="{subletModel>Concern}" class="sapUiSizeCompact"
+									visible="{= ${subletModel>Flag} === '' ? true:false}">
+									<core:ListItem key="{concernModel>Description}" text="{concernModel>Description}" additionalText="{concernModel>Value}"/>
+								</ComboBox>
+								<Text text="{subletModel>Concern}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+							</VBox>
+							<VBox>
+								<Input value="{subletModel>FRM_Code}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpSubletFRM"
+									class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}" selectedKey="{FRM_Code}"></Input>
+								<Text text="{subletModel>FRM_Code}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+							</VBox>
+							<VBox>
+								<!--value= "{ 'path': '/valueDTP3', 'type': 'sap.ui.model.type.DateTime', 'formatOptions': { 'pattern': 'M/d/yy h:mm a' } }"-->
+								<DateTimePicker value="{subletModel>Sublet_Start_DT}"
+									class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}"></DateTimePicker>
+								<Input value="{subletModel>Sublet_Start_DT}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === 'X' ? true:false}"/>
+							</VBox>
+							<VBox>
+								<DateTimePicker value="{subletModel>Sublet_End_DT}" change="onChangeSubletEndDate" class="sapUiSizeCompact"
+									visible="{= ${subletModel>Flag} === '' ? true:false}"></DateTimePicker>
+								<Input value="{subletModel>Sublet_End_DT}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === 'X' ? true:false}"/>
+							</VBox>
+							<!--<Text text="{subletModel>Sublet_Start_DT}"/>-->
+							<!--<Text text="{subletModel>Sublet_End_DT}"/>-->
+							<VBox>
+								<Text text="{subletModel>Sublet_Duration}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+								<Input value="{subletModel>Sublet_Duration}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}"/>
+							</VBox>
+							<Text text="{subletModel>Sublet_Kms}"/>
+							<VBox>
+								<ComboBox items="{ path: 'AggregateModel>/'}" change="onAggregateSelection" selectedKey="{subletModel>Aggregate}" class="sapUiSizeCompact"
+									visible="{= ${subletModel>Flag} === '' ? true:false}">
+									<core:Item key="{AggregateModel>Value}" text="{AggregateModel>Description}"/>
+								</ComboBox>
+								<Text text="{subletModel>Aggregate}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"/>
+							</VBox>
+							<VBox>
+								<Text text="{subletModel>Bill_To}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+								<ComboBox items="{path:'SubletBillModel>/',templateShareable: false}" change="onBillSelection" class="sapUiSizeCompact"
+									selectedKey="{subletModel>Bill_To}" visible="{= ${subletModel>Flag} === '' ? true:false}">
+									<core:Item key="{SubletBillModel>Value}" text="{SubletBillModel>Value}"/>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<Text text="{subletModel>Vendor_Name}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+								<Input value="{subletModel>Vendor_Name_Desc}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpSubletVendorName"
+									class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}" selectedKey="{Vendor_Name}"/>
+							</VBox>
+							<VBox>
+								<Text text="{subletModel>Invoice_No}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+								<Input value="{subletModel>Invoice_No}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}"/>
+							</VBox>
+							<VBox>
+								<DatePicker value="{subletModel>Invoice_Date}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}"></DatePicker>
+								<Input value="{subletModel>Invoice_Date}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === 'X' ? true:false}"/>
+							</VBox>
+							<VBox>
+								<Text text="{subletModel>Invoice_Amount}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+								<Input value="{subletModel>Invoice_Amount}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}"/>
+							</VBox>
+							<VBox>
+							<core:Icon src="sap-icon://edit" color="#4b4b4b" class="Icons sapUiTinyMarginBegin" press="onPressActionPerformed"></core:Icon>
+								<!-- <Text text="{subletModel>Action_Performed}" visible="{= ${subletModel>Flag} === 'X' ? true:false}"></Text>
+								<Input value="{subletModel>Action_Performed}" class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}"/> -->
+							</VBox>
+							<core:Icon src="sap-icon://edit" color="#4b4b4b" class="Icons sapUiTinyMarginBegin" press="onEdit"></core:Icon>
+							<!--<Text text="{subletModel>Remarks}"/>-->
+							<HBox>
+								<core:Icon src="sap-icon://decline" color="red" press="onPressSubletDelete"></core:Icon>
+								<core:Icon src="sap-icon://camera" press="JCCapturecamera" class="sapUiTinyMarginBegin"></core:Icon>
+								<core:Icon src="sap-icon://background" class="sapUiTinyMarginBegin"></core:Icon>
+								<core:Icon src="sap-icon://attachment" class="sapUiTinyMarginBegin"></core:Icon>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

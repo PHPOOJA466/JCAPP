@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="Remarks">
+		<content>
+			<!--start - 2000048770 Remarks field length restriction in all applications changes by sravani 5/21/21-->
+			<TextArea value="" width="100%" maxLength="150"/>
+			<!--end - 2000048770 Remarks field length restriction in all applications changes by sravani 5/21/21-->
+		</content>
+		<buttons>
+			<Button text="Save and Close" press="onDiaPress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

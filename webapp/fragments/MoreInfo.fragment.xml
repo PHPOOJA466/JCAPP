@@ -1,0 +1,232 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table">
+	<VBox id="MoreInfo" visible="{oLocalJsonModel>/MoreInfoTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<l:Grid defaultSpan="L6 M6 S12">
+			<f:Form width="100%" editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="0" labelSpanM="0" labelSpanS="0" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="4" columnsM="4" singleContainerFullSize="true"/>
+				</f:layout>
+				<f:formContainers  width="100%" >
+					<f:FormContainer  width="100%"  title="Odometer Information">
+						<f:FormElement>
+							<Label text="Current Odometer"/>
+							<f:fields>
+								<HBox>
+									<Label text="Kms"></Label>
+									<Input value="{OdometerInfoModel>/Curr_Odometer_Kms}" class="sapUiSizeCompact sapUiTinyMarginBegin" width="5rem"></Input>
+									<Label text="hr" class="sapUiTinyMarginBegin"></Label>
+									<Input value="{OdometerInfoModel>/Curr_Odometer_Hrs}" class="sapUiSizeCompact sapUiTinyMarginBegin" width="5rem"></Input>
+									<core:Icon src="sap-icon://background" class="sapUiTinyMarginBegin"></core:Icon>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Corrected Odometer"/>
+							<f:fields>
+								<HBox>
+									<Label text="Kms" class="sapUiTinyMarginBegin"></Label>
+									<Input value="{OdometerInfoModel>/Corrected_Odometer_Kms}" class="sapUiSizeCompact sapUiTinyMarginBegin" width="5rem"></Input>
+									<Label text="hr" class="sapUiTinyMarginBegin"></Label>
+									<Input value="{OdometerInfoModel>/Corrected_Odometer_Hrs}" class="sapUiSizeCompact sapUiTinyMarginBegin" width="5rem"></Input>
+									<core:Icon src="sap-icon://background" class="sapUiTinyMarginBegin"></core:Icon>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Correction Reason"/>
+							<f:fields>
+								<Input class="sapUiSizeCompact" value="{OdometerInfoModel>/Correction_Rsn}" width="5rem"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Approved By"/>
+							<f:fields>
+								<Input class="sapUiSizeCompact" value="{OdometerInfoModel>/Approved_By}" width="5rem"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Approved Date and Time" class="zmoreInfo"/>
+							<f:fields>
+								<Input class="sapUiSizeCompact" value="{OdometerInfoModel>/Approved_DT}" width="5rem"></Input>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+			<VBox class="sapUiSmallMarginTop">
+				<Label text="Repeat Job Details" design="Bold"></Label>
+				<t:Table rows="{RepeatJobDetailsInfoModel>/}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title">
+					<t:columns hAlign="Start">
+						<t:Column width="8rem">
+							<Label text="Job Name"/>
+							<t:template>
+								<Text text="{RepeatJobDetailsInfoModel>Job_Name}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Reason"/>
+							<t:template>
+								<Text text="{RepeatJobDetailsInfoModel>Reason}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Status"></Label>
+							<t:template>
+								<Text text="{RepeatJobDetailsInfoModel>Status_Desc}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="8rem">
+							<Label text="Action Taken"/>
+							<t:template>
+								<Text text="{RepeatJobDetailsInfoModel>Action_Taken}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Remarks"/>
+							<t:template>
+								<Text text="{RepeatJobDetailsInfoModel>Remarks}"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</VBox>
+		</l:Grid>
+		<l:Grid defaultSpan="L6 M6 S12">
+			<VBox class="sapUiSmallMarginTop">
+				<Label text="PCR Log" design="Bold"></Label>
+				<t:Table rows="{PCRInfoModel>/}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title">
+					<t:columns hAlign="Start">
+						<t:Column width="8rem">
+							<Label text="Damage Code"/>
+							<t:template>
+								<Text text="{PCRInfoModel>Damage_Code}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Concern Name"/>
+							<t:template>
+								<Text text="{PCRInfoModel>Concern_Name}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="PCR Number"></Label>
+							<t:template>
+								<Text text="{PCRInfoModel>PCR_No}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="8rem">
+							<Label text="Status"/>
+							<t:template>
+								<Text text="{PCRInfoModel>Status}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Remarks"/>
+							<t:template>
+								<Text text="{PCRInfoModel>Remarks}"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</VBox>
+			<VBox class="sapUiSmallMarginTop">
+				<Label text=" Temporary Gate Pass Log" design="Bold"></Label>
+				<t:Table rows="{TempGatePassLogInfoModel>/}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title">
+					<t:columns hAlign="Start">
+						<t:Column width="5rem">
+							<Label text="Reason"/>
+							<t:template>
+								<Text text="{TempGatePassLogInfoModel>Reason}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Name"/>
+							<t:template>
+								<Text text="{TempGatePassLogInfoModel>Name}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Contact"/>
+							<t:template>
+								<Text text="{TempGatePassLogInfoModel>Contact}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Role"/>
+							<t:template>
+								<Text text="{TempGatePassLogInfoModel>Role}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="10rem">
+							<Label text="Generated Date and Time"/>
+							<t:template>
+								<Text text="{TempGatePassLogInfoModel>Generated_DT}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="8rem">
+							<Label text="Gate Out Status"/>
+							<t:template>
+								<Text text="{TempGatePassLogInfoModel>Reason}"/>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</VBox>
+		</l:Grid>
+		<l:Grid defaultSpan="L6 M6 S12">
+			<VBox class="sapUiSmallMarginTop">
+				<Label text="Attachment Details" design="Bold"></Label>
+				<t:Table rows="{oLocalJsonModel>/Attachmentmoreinfo}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title">
+					<t:columns>
+						<t:Column width="5rem">
+							<Label text="Name"/>
+							<t:template>
+								<Text text="{oLocalJsonModel>FileName}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="5rem">
+							<Label text="Type"/>
+							<t:template>
+								<Text text="{oLocalJsonModel>Type}"></Text>
+							</t:template>
+						</t:Column>
+						<t:Column width="12rem">
+							<Label text="Uploaded Date and Time"/>
+							<t:template>
+								<Text text="{path:'oLocalJsonModel>Uploaded_date_time', formatter:'.formatter.getdatetimeformat'}"
+								 ></Text>
+							</t:template>
+						</t:Column>
+						<t:Column width="10rem">
+							<Label text="Uploaded By"/>
+							<t:template>
+								<Text text="{oLocalJsonModel>Uploaded_by}"/>
+							</t:template>
+						</t:Column>
+						<t:Column width="8rem">
+							<Label text=""/>
+							<t:template>
+								<core:Icon src="sap-icon://document-text" press="openmoreinfoattachments"></core:Icon>
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</VBox>
+		</l:Grid>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form">
+	<Dialog type="Standard" title="Damage Code">
+		<form:SimpleForm id="IdSimpleForm" editable="true" backgroundDesign="Transparent">
+			<form:content>
+				<Label text="Fault Location" required="true"/>
+				<Input id="idfaultlocation" suggest="handleSuggestFaultLocation" suggestionItemSelected="onFLSuggestionItemSelected"
+					suggestionItems="{faultLocationModel>/}" showSuggestion="true" filterSuggests="true">
+					<suggestionItems>
+						<core:ListItem text="{faultLocationModel>FaultLoc}" additionalText="{faultLocationModel>Text}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="Fault Code" required="true"/>
+				<ComboBox id="idfaultcode" items="{faultCodeModel>/}" showSecondaryValues="true" selectionChange="onSelectionFaultCode">
+					<core:ListItem key="{faultCodeModel>FaultCode}" text="{faultCodeModel>FaultCode}" additionalText="{faultCodeModel>Text}"/>
+				</ComboBox>
+				<Label text="Repair Code" required="true"/>
+				<ComboBox id="idrepaircode" items="{damageRepairOrderModel>/}" showSecondaryValues="true">
+					<core:ListItem key="{damageRepairOrderModel>RepairCode}" text="{damageRepairOrderModel>RepairCode}"
+						additionalText="{damageRepairOrderModel>Text}"/>
+				</ComboBox>
+			</form:content>
+		</form:SimpleForm>
+		<beginButton>
+			<Button tooltip="Ok" text="Ok" type="Emphasized" press="onOkDamageCode"/>
+		</beginButton>
+		<endButton>
+			<Button tooltip="Ok" text="Cancel" type="Reject" press="onCancelDamageCode"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

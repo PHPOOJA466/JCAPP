@@ -1,0 +1,563 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table" xmlns:table="sap.ui.table">>
+	<VBox id="DefferredJobs" visible="{oLocalJsonModel>/DefferredJobsTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<OverflowToolbar visible="false" class="sapUiSmallMarginTop">
+			<Label text="Repeat"></Label>
+			<Input width="8rem" class="sapUiSizeCompact"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Concern Description"></Label>
+			<Input width="8rem" class="sapUiSizeCompact"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Job Source"></Label>
+			<Input width="8rem" class="sapUiSizeCompact"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Approval Status"></Label>
+			<DatePicker width="8rem" class="sapUiSizeCompact"></DatePicker>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Stock Status"></Label>
+			<Input width="8rem" class="sapUiSizeCompact"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Fault Category"></Label>
+			<Input width="8rem" class="sapUiSizeCompact"></Input>
+		</OverflowToolbar>
+		<VBox id="deferredJobsId">
+			<ScrollContainer width="100%" horizontal="true" vertical="true">
+				<Table growing="true" items="{jobDetailsModel>/}" noDataText="No Data Available" alternateRowColors="true" inset="false"
+					class="sapUiTinyMarginTop mobileTableView">
+					<!--<headerToolbar>
+						<OverflowToolbar>
+							<ToolbarSpacer/>
+							<Button text="Restore" press="onPressRestore"></Button>
+						</OverflowToolbar>
+					</headerToolbar>-->
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+							<Text text="Customer Voice" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+							<Text text="Concern Description" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Job Source"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Status"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Approval"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Not Attending Reason" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Deferred/Cancelled Reason"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Deferred/Cancelled By" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Repeat" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Repeat Reason" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Fault Category" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Stock"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Remarks"/>
+						</Column>
+					</columns>
+					<items>
+
+						<ColumnListItem vAlign="Middle" type="Navigation" press="onNavtoDeferredJobItems">
+							<cells>
+								<Text text="{jobDetailsModel>Package}"/>
+								<Text text="{jobDetailsModel>Description}"/>
+								<Text text="{jobDetailsModel>JobSource}"/>
+								<Text text="{jobDetailsModel>Status_Text}"/>
+								<Text text="{jobDetailsModel>Approval}"/>
+								<Text text="{jobDetailsModel>NtAttendRsn}"/>
+								<Text text=""/>
+								<Text text=""/>
+								<Text text="{jobDetailsModel>Repeat}"/>
+								<Text text="{jobDetailsModel>RptRsn}"/>
+								<Text text="{jobDetailsModel>FaultCat}"/>
+								<Text text="{jobDetailsModel>Stock}"/>
+								<HBox>
+									<core:Icon src="sap-icon://edit" color="#4b4b4b" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://document-text" color="#045fa0" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://decline" color="red" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://alert" color="#045fa0" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://camera" color="#292929" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://picture" color="#292929" class="Icons"></core:Icon>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+						<!--<ColumnListItem vAlign="Middle" type="Navigation" press="onNavtoDeferredJobItems">
+							<cells>
+								<Text text="{DefferredJobsModel>Cust_Voice}"/>
+								<Text text="{DefferredJobsModel>Concern_Desc}"/>
+								<Text text="{DefferredJobsModel>Job_Source}"/>
+								<Text text="{DefferredJobsModel>Status_Desc}"/>
+								<Text text="{DefferredJobsModel>Approval}"/>
+								<Text text="{DefferredJobsModel>Not_Attending_Reasons}"/>
+								<Text text="{DefferredJobsModel>Deferred_Reason}"/>
+								<Text text="{DefferredJobsModel>Deferred_By}"/>
+								<Text text="{DefferredJobsModel>Repeat}"/>
+								<Text text="{DefferredJobsModel>Repeat_Rsn}"/>
+								<Text text="{DefferredJobsModel>Fault_Cat}"/>
+								<Text text="{DefferredJobsModel>Stock}"/>
+								<HBox>
+									<core:Icon src="sap-icon://edit" color="#4b4b4b" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://document-text" color="#045fa0" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://decline" color="red" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://alert" color="#045fa0" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://camera" color="#292929" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://picture" color="#292929" class="Icons"></core:Icon>
+								</HBox>
+							</cells>
+						</ColumnListItem>-->
+					</items>
+				</Table>
+			</ScrollContainer>
+		</VBox>
+		<VBox id="deferredJobItemsId" visible="false">
+			<!---<ScrollContainer width="100%" horizontal="true" vertical="true">
+				
+				<Table growing="true" items="{DeferredJobItemsModel>/}" alternateRowColors="true" inset="false" class="sapUiTinyMarginTop mobileTableView">
+					<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Button icon="sap-icon://nav-back" press="onDefBack"/>
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+							<Text text="Item Type" maxLines="5" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Sublet/Deput Number" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="10rem" demandPopin="true">
+							<Text text="Code"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Description"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Bill To"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Split %"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Casual/Conseq"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Damage Code"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="UOM"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Ordered Qty"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Stock"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Status"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Reserved Qty"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Unit Price"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Total Price"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="CGST%"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="CGST INR"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="SGST%"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="SGST INR"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="1GST%"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="IGST INR"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Total Tax"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Total Amount"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Discount %"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Discount INR"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="First Fill"/>
+						</Column>
+						<Column minScreenWidth="Tablet" width="12rem" demandPopin="true">
+							<Text text="Remarks"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle">
+							<cells>
+								<Text text="{DeferredJobItemsModel>Item_Type}"/>
+								<Text text="{DeferredJobItemsModel>Sublet_ID}"/>
+								<Text value="{DeferredJobItemsModel>Code}"/>
+								<Text text="{DeferredJobItemsModel>Description}"/>
+								<Text text="{DeferredJobItemsModel>Bill_To}"></Text>
+								<Text text="{DeferredJobItemsModel>Split}"/>
+								<Switch/>
+								<Text text="{DeferredJobItemsModel>Damage_Code}"/>
+								<Text text="{DeferredJobItemsModel>UOM}"/>
+								<Text text="{DeferredJobItemsModel>Ordered_Qty}"/>
+								<Text text="{DeferredJobItemsModel>Stock}"/>
+								<Text text="{DeferredJobItemsModel>Status_Desc}"/>
+								<Text text="{DeferredJobItemsModel>Reserved_Qty}"/>
+								<Text text="{DeferredJobItemsModel>Unit_Price}"/>
+								<Text text="{DeferredJobItemsModel>Total_Price}"/>
+								<Text text="{DeferredJobItemsModel>CGST_Percent}"/>
+								<Text text="{DeferredJobItemsModel>CGST_INR}"/>
+								<Text text="{DeferredJobItemsModel>SGST_percent}"/>
+								<Text text="{DeferredJobItemsModel>SGST_INR}"/>
+								<Text text="{DeferredJobItemsModel>IGST_Percent}"/>
+								<Text text="{DeferredJobItemsModel>IGST_INR}"/>
+								<Text text="{DeferredJobItemsModel>Tax_Total}"/>
+								<Text text="{DeferredJobItemsModel>Total_Amount}"/>
+								<Text text="{DeferredJobItemsModel>Discount_Percent}"/>
+								<Text text="{DeferredJobItemsModel>Discount_INR}"/>
+								<Switch text="{DeferredJobItemsModel>First_Fill}"/>
+								<HBox>
+									<core:Icon src="sap-icon://edit" color="#4b4b4b" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://decline" color="red" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://camera" color="#292929" class="Icons"></core:Icon>
+									<core:Icon src="sap-icon://picture" color="#292929" class="Icons"></core:Icon>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>-->
+<Button icon="sap-icon://nav-back" press="onDefBack"/>
+				<table:TreeTable id="TreeTableitem1" rows="{path:'jobDefItemDetailsModel>/Data', parameters: {arrayNames:['JobItmDtls']}}"
+				selectionMode="MultiToggle" threshold="100" rowSelectionChange="onRowSelected" enableSelectAll="false" ariaLabelledBy="title"
+				toggleOpenState="toggleOpenState" visibleRowCount="10" alternateRowColors="true" width="100%" class="sapUiTinyMarginTop mobileTableView">
+				<table:extension>
+					<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button text="Restore" press="onPressRestore"></Button>
+				</OverflowToolbar>
+			</table:extension>
+				<table:columns>
+					<table:Column width="10rem" hAlign="Center">
+						<Label text="Item Type" required="true"/>
+						<table:template>
+							<VBox>
+								<ComboBox  items="{path:'jobItemTypeModel>/',templateShareable: false}" selectedKey="{jobDefItemDetailsModel>Item_Type}"
+									visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }" enabled="{= ${jobDefItemDetailsModel>Db_Flg} === 'X'? false: true }"
+									class="sapUiSizeCompact" change="onChangetItemType">
+									<core:Item key="{jobItemTypeModel>Value}" text="{jobItemTypeModel>Value}"/>
+								</ComboBox>
+								<Text text="{jobDefItemDetailsModel>Item_Type}" visible="{= ${jobDefItemDetailsModel>Flag} === ''? true: false }"></Text>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="12rem" hAlign="Center">
+						<Label text="Sublet/Deput Number"/>
+						<table:template>
+							<HBox>
+								<Text text="{jobDefItemDetailsModel>Sublet_ID}"></Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Code"/>
+						<table:template>
+							<Input value="{jobDefItemDetailsModel>Code}" enabled="false" class="sapUiSizeCompact"></Input>
+						</table:template>
+					</table:Column>
+					<table:Column width="18rem" hAlign="Center">
+						<Label text="Description"/>
+						<table:template>
+							<VBox>
+								<Input class="sapUiSizeCompact" enabled="false"
+									visible="{= ${jobDefItemDetailsModel>Flag} === 'X' &amp;&amp; ${jobDefItemDetailsModel>Item_Type} !== 'P' &amp;&amp; ${jobDefItemDetailsModel>Item_Type} !== 'L'}"></Input>
+								<Input value="{jobDefItemDetailsModel>Description}" showSuggestion="true" class="sapUiSizeCompact"
+									enabled="false"
+									suggestionItems="{path:'DescriptionPartsModel>/',templateShareable: false}" suggestionItemSelected="onSuggestedItemSelected"
+									valueHelpOnly="true" visible="{= ${jobDefItemDetailsModel>Flag} === 'X' &amp;&amp; ${jobDefItemDetailsModel>Item_Type} === 'P'}">
+									<suggestionItems>
+										<core:ListItem additionalText="{DescriptionPartsModel>Value}" text="{DescriptionPartsModel>Description}" key="{DescriptionPartsModel>Value}"/>
+									</suggestionItems>
+								</Input>
+								<Input value="{jobDefItemDetailsModel>Description}" showSuggestion="true" class="sapUiSizeCompact"
+									suggestionItems="{path:'DescriptionLabourModel>/',templateShareable: false}" suggestionItemSelected="onSuggestedItemSelected"
+									valueHelpOnly="true" enabled="false"
+									visible="{= ${jobDefItemDetailsModel>Flag} === 'X' &amp;&amp; ${jobDefItemDetailsModel>Item_Type} === 'L'}">
+									<suggestionItems>
+										<core:ListItem additionalText="{DescriptionLabourModel>Value}" text="{DescriptionLabourModel>Description}"
+											key="{DescriptionLabourModel>Value}"/>
+									</suggestionItems>
+								</Input>
+								<Text text="{jobDefItemDetailsModel>Description}" visible="{= ${jobDefItemDetailsModel>Flag} === '' ? true:false}"></Text>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Ordered Qty" required="true"/>
+						<table:template>
+							<VBox>
+								<Input required="true" value="{jobDefItemDetailsModel>Ordered_Qty}" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }"
+									class="sapUiSizeCompact" enabled="false"></Input>
+								<Input value="{jobDefItemDetailsModel>Ordered_Qty}" visible="{= ${jobDefItemDetailsModel>Flag} === ''? true: false }" class="sapUiSizeCompact"
+									enabled="false" ></Input>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="UOM"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>UOM}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Bill To" required="true"/>
+						<table:template>
+							<VBox>
+								<ComboBox enabled="false"   items="{path:'jobItemBillToModel>/'}" selectedKey="{jobDefItemDetailsModel>Bill_To}" class="sapUiSizeCompact"
+									change="onChangeBillTo" selectionChange="onSelectionValueChange" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }">
+									<core:Item key="{jobItemBillToModel>Value}" text="{jobItemBillToModel>Value}"/>
+								</ComboBox>
+								<Text text="{jobDefItemDetailsModel>Bill_To}" visible="{= ${jobDefItemDetailsModel>Flag} === ''? true: false }"></Text>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Damage Code"/>
+						<table:template>
+							<VBox>
+								<Input enabled="false" value="{jobDefItemDetailsModel>Damage_Code}" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }" class="sapUiSizeCompact"
+									showValueHelp="true" valueHelpRequest="onDamageCodeValueHelp"></Input>
+								<Input enabled="false"  value="{jobDefItemDetailsModel>Damage_Code}" visible="{= ${jobDefItemDetailsModel>Flag} === ''? true: false }" class="sapUiSizeCompact"
+									editable="{= ${jobDefItemDetailsModel>Flag} === ''? false: true }"></Input>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="8rem" hAlign="Center">
+						<Label text="WTY Type" design="Bold"/>
+							<table:template>
+								<VBox>
+									<ComboBox enabled="false"  items="{path:'warrentyModel>/LocalWarrenty',templateShareable: false}" 
+									selectedKey="{jobDefItemDetailsModel>WtyTyp}">
+										<core:Item key="{warrentyModel>WtyTyp}" text="{warrentyModel>WtyTyp}"/>
+									</ComboBox>
+								</VBox>
+							</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Casual/Conseq"/>
+						<table:template>
+							<SegmentedButton visible="{= ${jobDefItemDetailsModel>Flag} === '' ? false:true}" class="casualConsequesl" selectionChange="onCasualChange"
+								selectedKey="{= ${jobDefItemDetailsModel>Casual_Part} === 'X' ? 'X' : (${jobDefItemDetailsModel>Casual_Part} === 'Y' ? 'Y' : '') || 'O'}" 
+								enabled="false" >
+									<items>
+										<SegmentedButtonItem text="CSL" key="X"/>
+										<SegmentedButtonItem text="O" key="O"/>
+										<SegmentedButtonItem text="CQL" key="Y" enabled="{jobDefItemDetailsModel>enableCQL}"/>
+									</items>
+							</SegmentedButton>
+							<!-- <Switch class="sapUiSizeCompact Mainswitch" state="{jobDefItemDetailsModel>Casual_Part}" customTextOff=" " customTextOn=" "
+								enabled="{= ${jobDefItemDetailsModel>Db_Flg} === ''? true:false}" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }"
+								change="onCasualChange"></Switch> -->
+							<!--<Switch state="{jobDefItemDetailsModel>Casual_Part}" class="sapUiSizeCompact Mainswtch" customTextOn=" " customTextOff=" "></Switch>-->
+						</table:template>
+					</table:Column>
+					
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Split%"/>
+						<table:template>
+							<VBox>
+								<Text text="{jobDefItemDetailsModel>Split}" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }"></Text>
+								<Input enabled="false"  value="{jobDefItemDetailsModel>Split}" visible="{= ${jobDefItemDetailsModel>Flag} === ''? true: false }" class="sapUiSizeCompact"
+									liveChange="handleLiveChangeSplit" change="onSplitValue"></Input>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Status" required="true"/>
+						<table:template>
+							<ComboBox enabled="false"  items="{path:'JobDetailStatus>/', templateShareable: false}" selectedKey="{jobDefItemDetailsModel>Status}" class="sapUiSizeCompact"
+								visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }">
+								<core:Item text="{JobDetailStatus>Description}" key="{JobDetailStatus>Value}"/>
+							</ComboBox>
+							<!--<Text text="{jobDefItemDetailsModel>Status}"></Text>-->
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Stock"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Stock}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Reserved Qty"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Reserved_Qty}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Higher Assembly Flag"/>
+						<table:template>
+							<CheckBox enabled="false" selected="{jobDefItemDetailsModel>Higher_Assembly_Flag}" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }"></CheckBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Child Part Code"/>
+						<table:template>
+							<Input value="{jobDefItemDetailsModel>Child_Part_Code}" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Child Part Quantity"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Child_Part_Qty}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Unit Price"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Unit_Price}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Total Price"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Total_Price}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="CGST %"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>CGST_Percent}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="CGST INR"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>CGST_INR}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="SGST %"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>SGST_percent}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="SGST INR"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>SGST_INR}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="IGST %"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>IGST_Percent}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="IGST INR"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>IGST_INR}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Tax Total"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Tax_Total}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Total Amount"/>
+						<table:template>
+							<Text text="{jobDefItemDetailsModel>Total_Amount}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Discount %"/>
+						<table:template>
+							<Input value="{jobDefItemDetailsModel>Discount_Percent}"></Input>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Discount INR"/>
+						<table:template>
+							<Input value="{jobDefItemDetailsModel>Discount_INR}"></Input>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Rework"/>
+						<table:template>
+							<Switch state="{jobDefItemDetailsModel>Rework}" enabled="false" class="sapUiSizeCompact Mainswitch" customTextOn=" " customTextOff=" " visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }"></Switch>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="First Fill"/>
+						<table:template>
+							<Switch state="{jobDefItemDetailsModel>First_Fill}" enabled="false" class="sapUiSizeCompact Mainswitch" customTextOn=" " customTextOff=" " visible="{= ${jobDefItemDetailsModel>Item_Type} === 'P' ? ${jobDefItemDetailsModel>Flag} === 'X'? true: false :false }"></Switch>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Remark"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" press="onEdit" color="#4b4b4b" class="Icons"></core:Icon>
+								<core:Icon src="sap-icon://decline" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }" color="red"
+									class="Icons sapUiTinyMarginBegin" press="onPressJobItemsDelete"></core:Icon>
+								<core:Icon src="sap-icon://camera" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }" color="#045fa0"
+									class="Icons sapUiTinyMarginBegin" press="JCCapturecamera"></core:Icon>
+								<core:Icon src="sap-icon://card" visible="{= ${jobDefItemDetailsModel>Flag} === 'X'? true: false }" color="#045fa0"
+									class="Icons sapUiTinyMarginBegin" press="JCDisplayimages"></core:Icon>
+							</HBox>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:TreeTable>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

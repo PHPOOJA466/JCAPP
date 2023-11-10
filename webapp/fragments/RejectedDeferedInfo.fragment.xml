@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog contentWidth="auto" contentHeight="auto">
+		<VBox>
+			<Table growing="true" growingThreshold="300" items="{RejDefInfoModel>/results}" fixedLayout="true"
+				noDataText="Data not available" delete="onSelectionChange">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Item Type"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Code"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Description"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="QTY"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Stock"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem class="sapUiContentPadding sapUiSizeCompact">
+						<cells>
+							<Text text="{RejDefInfoModel>Itype}"/>
+							<Text text="{RejDefInfoModel>Code}"/>
+							<Text text="{RejDefInfoModel>Descr}"/>
+							<Text text="{RejDefInfoModel>Qty}"/>
+							<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+						state="{RejDefInfoModel>Stock', formatter:'.formatter.IndicatorState'}"/>
+                        <!-- <ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"></ProgressIndicator> -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+		<!-- <beginButton>
+			<Button text="Cancel" type="Reject" press="onCancelAssignment"/>
+		</beginButton> -->
+		<endButton>
+			<Button text="Cancel" type="Emphasized" press="onCancelRejDefInfo"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

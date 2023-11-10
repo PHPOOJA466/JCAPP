@@ -1,0 +1,412 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:table="sap.ui.table">
+	<VBox id="Assignment" visible="{oLocalJsonModel>/AssignmentTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+			<!-- <core:Icon src="sap-icon://add" color="#2e6da6" press="onPressAssignmentAdd"></core:Icon> -->
+		</OverflowToolbar>
+		<SegmentedButton id="assignmentSegButtonId" selectedKey="Technician" class="sapUiSizeCompact sapUiMediumMarginBegin sapUiSmallMarginTop"
+			selectionChange="onAssignmentsSegButtons" width="30%">
+			<items>
+				<SegmentedButtonItem text="Labour" key="Technician"/>
+				<SegmentedButtonItem text="Parts" key="Parts"/>
+			</items>
+		</SegmentedButton>
+		<VBox id="AssignmentTechId">
+			<OverflowToolbar>
+				<Label text="Job Card Level Technician"></Label>
+					<MultiInput tokens="{oLocalJsonModel>/Technicianheaderlevel/Technicain_list}" width="10rem" class="sapUiSizeCompact" id="JCLevelTechId" showValueHelp="true"
+					valueHelpRequest="onChangeJCLevelTechnician" valueHelpOnly="true" >
+					<tokens>
+						<Token key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Description}"/>
+					</tokens>
+				</MultiInput>
+				<Label text="Availability Status"></Label>
+				<!-- onSaveTechReAssign -->
+				<Button text="Assign" type="Accept" press="onAssignmenttabAssignTechnician"></Button>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Button text="To Be Attended" icon="sap-icon://less" type="Transparent" class="LegendButton whitelegbtn"
+					press="onPressAssignmentTechFilters"></Button>
+				<Button text="WIP" icon="sap-icon://less" type="Transparent" class="LegendButton yellowlegbtn" press="onPressAssignmentTechFilters"></Button>
+				<Button text="Hold" icon="sap-icon://less" type="Transparent" class="LegendButton redlegbtn" press="onPressAssignmentTechFilters"></Button>
+				<Button text="Completed" icon="sap-icon://less" type="Transparent" class="LegendButton bluelegbtn" press="onPressAssignmentTechFilters"></Button>
+				<ToolbarSeparator></ToolbarSeparator>
+				<Button text="Absent" icon="sap-icon://less" type="Transparent" class="LegendButton bluelegbtn" press="onTableLegendpress"></Button>
+				<core:Icon src="sap-icon://private" color="#0093c8"></core:Icon>
+			</OverflowToolbar>
+			<table:TreeTable id="TreeTableADDJob" rows="{path:'TechnicianInfoModel>/', parameters: {arrayNames:['TECH_ASS_TAB']}}" selectionMode="None"
+				enableSelectAll="false" ariaLabelledBy="title" visibleRowCount="5" toggleOpenState="toggleOpenState">
+				<table:extension>
+					<OverflowToolbar style="Clear">
+						<core:Icon id="iconexpa" src="sap-icon://expand" press="onpressexpcoll"></core:Icon>
+					</OverflowToolbar>
+				</table:extension>
+				<table:columns>
+					<table:Column width="13rem">
+						<Text text="Job Source"/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Job_Source}" wrapping="false"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Customer Voice"/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Cust_Voice}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Concern"/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Concern}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Technician"/>
+						<table:template>
+						<VBox>
+					
+						<!-- <Select items="{path: 'jcLevelTechniciansModel>/'}" selectedKey="{TechnicianInfoModel>Technician}"
+				 	visible="{= ${TechnicianInfoModel>Main} === 'ITEM'}">
+						<core:Item key="{jcLevelTechniciansModel>Value}" text="{jcLevelTechniciansModel>Description}"/>
+					</Select> -->
+					<MultiInput tokens="{TechnicianInfoModel>Technicain_list}"  class="sapUiSizeCompact"  showValueHelp="true"
+						valueHelpRequest="onChangeAssTechJob" valueHelpOnly="true" visible="{= ${TechnicianInfoModel>Main} !== ''}" enabled="{= ${TechnicianInfoModel>F4_FLAG} === '' ? false : true }" >
+							<tokens>
+								<Token key="{TechnicianInfoModel>Value}" text="{TechnicianInfoModel>Description}"/>
+							</tokens>
+						</MultiInput>
+							<Text text="{TechnicianInfoModel>Technician}" visible="{= ${TechnicianInfoModel>Main} === ''}"></Text>
+						</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Availability Status"/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Availability_Status}">
+								<customData>
+									<core:CustomData key="mydata" value="{TechnicianInfoModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="11rem">
+						<Text text="Main Technician Flag" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Main_Tech_Flag}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Status"/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Status}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="SA Remarks"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" alt="SARemarks" press="onEdit" visible="{= ${TechnicianInfoModel>Main} === 'JOB' ? true : false }"></core:Icon>
+								<Text text="{TechnicianInfoModel>SA_Remarks}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="FS Remarks"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" alt="FSRemarks"  visible="{= ${TechnicianInfoModel>Main} === 'JOB' ? true : false }" press="onEdit"></core:Icon>
+								<Text text="{TechnicianInfoModel>FS_Remarks}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="QI Remarks"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" alt="QIRemarks"  visible="{= ${TechnicianInfoModel>Main} === 'JOB' ? true : false }" press="onEdit"></core:Icon>
+								<Text text="{TechnicianInfoModel>QI_Remarks}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<!-- <Text text="WIP Time"/> -->
+						<Text text=""/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>WIP_Time}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<!-- <Text text="Idle Time"/> -->
+						<Text text=""/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Idle_Time}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<!-- <Text text="Act Completion Time"/> -->
+						<Text text=""/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Act_Compl_Time}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<!-- <Text text="Technician Flag"/> -->
+						<Text text=""/>
+						<table:template>
+							<Text text="{TechnicianInfoModel>Technician_Flag}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<!-- <HBox> -->
+							<!-- <Text text="Remarks"/> -->
+							<Text text="{TechnicianInfoModel>Remarks}" visible="{= ${TechnicianInfoModel>Main} === '' ? true : false }"/>
+							<!-- <core:Icon class="sapUiSmallMarginBegin" src="sap-icon://add" size="1rem" color="#87CEEB"></core:Icon> -->
+						<!-- </HBox> -->
+						<table:template>
+						<!-- <HBox> -->
+							<core:Icon src="sap-icon://edit" visible="{= ${TechnicianInfoModel>Main} === 'ITEMS' ? true : false }"></core:Icon>
+							<!-- <core:Icon src="sap-icon://decline" color="red" press="onPressAssignmentTechDelete"></core:Icon> -->
+							<!--<Text text="{TechnicianInfoModel>Remarks}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>-->
+						<!-- </HBox> -->
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<!-- <HBox> -->
+							<!-- <Text text="Remarks"/> -->
+							<Text text=""/>
+							<!-- <core:Icon class="sapUiSmallMarginBegin" src="sap-icon://add" size="1rem" color="#87CEEB"></core:Icon> -->
+						<!-- </HBox> -->
+						<table:template>
+						<!-- <HBox> -->
+							<!-- <core:Icon src="sap-icon://edit"></core:Icon> -->
+							<core:Icon src="sap-icon://decline" color="red" press="onPressAssignmentTechDelete" visible="{= ${TechnicianInfoModel>Main} === 'ITEM' ? true : false }"></core:Icon>
+							<!--<Text text="{TechnicianInfoModel>Remarks}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"></Text>-->
+						<!-- </HBox> -->
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:TreeTable>
+		</VBox>
+		<VBox id="AssignmentPartsId" visible="false">
+			<table:TreeTable rows="{path:'AssignmentPartsModel>/', parameters: {arrayNames:['PART_ASS_TAB']}}" selectionMode="None"
+				enableSelectAll="false" ariaLabelledBy="title" toggleOpenState="toggleOpenState">
+				<table:extension>
+					<Toolbar>
+						<content>
+							<ToolbarSpacer/>
+							<!-- <Button text="Reserve" type="Accept"></Button>
+							<Button text="UnReserve" type="Reject"></Button> -->
+							<Button text="Request" type="Emphasized" press="onPresAssignmentRequest"></Button>
+							<Button text="Return" press="onPressReturnAssignment"></Button>
+							<!-- <Button text="Reject" type="Reject" press="onPressRejectAssignment"></Button> -->
+						</content>
+					</Toolbar>
+				</table:extension>
+				<table:columns>
+					<table:Column width="13rem">
+						<Text text=""/>
+						<table:template>
+							<CheckBox selected="{AssignmentPartsModel>Check_Box}" select="onSelectAssignmentCheck" enabled="{= ${AssignmentPartsModel>Main} === 'ITEM' ? true : false }"></CheckBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="13rem">
+						<Text text="Job Source"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Job_Source}" wrapping="false">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Customer Voice"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Cust_Voice}">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Concern"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Concern}">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Technician"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Technician}">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Status" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Itm_Status}" visible="{= ${TechnicianInfoModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="11rem">
+						<Text text="Technician" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Technician}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="UOM" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>UOM}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Reserved QTY" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Reserved_Qty}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Status"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Status}">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="SA Remarks"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" visible="{= ${AssignmentPartsModel>Main} === 'JOB' ? true : false }" press="onAddSApress"></core:Icon>
+								<Text text="{AssignmentPartsModel>SA_Remarks}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+									<customData>
+										<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+									</customData>
+								</Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="FS Remarks"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" visible="{= ${AssignmentPartsModel>Main} === 'JOB' ? true : false }" press="onAddSApress"></core:Icon>
+								<Text text="{AssignmentPartsModel>FS_Remarks}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+									<customData>
+										<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+									</customData>
+								</Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="QI Remarks"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" visible="{= ${AssignmentPartsModel>Main} === 'JOB' ? true : false }" press="onAddSApress"></core:Icon>
+								<Text text="{AssignmentPartsModel>Qi_Remarks}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+									<customData>
+										<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+									</customData>
+								</Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Rejected Qty" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Rejected_Qty}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Invoiced Qty" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Invoiced_Qty}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Not Issued Qty" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Not_issued_Qty}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<!-- <table:Column width="9rem">
+						<Text text="Inventory Location" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>Inventory_Loc}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column> -->
+					<table:Column width="9rem">
+						<Text text="First Fill" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<Text text="{AssignmentPartsModel>First_Fill}" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }">
+								<customData>
+									<core:CustomData key="mydata" value="{AssignmentPartsModel>Main}" writeToDom="true"></core:CustomData>
+								</customData>
+							</Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem">
+						<Text text="Remarks" visible="{= ${AssignmentPartsModel>Main} !== 'JOB' ? true : false }"/>
+						<table:template>
+							<core:Icon src="sap-icon://message-popup" visible="{= ${AssignmentPartsModel>Main} === 'JOB' ? true : false }"></core:Icon>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:TreeTable>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

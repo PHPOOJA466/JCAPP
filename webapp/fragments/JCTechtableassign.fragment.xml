@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog id="customTableSelectDialog" title="Select Values" contentWidth="30%">
+    <!-- Your table definition goes here -->
+    <Table id="table" mode="MultiSelect" items="{path:'jcLevelTechniciansModel>/'}">
+   <ColumnListItem>
+			<cells>
+				<ObjectIdentifier text="{jcLevelTechniciansModel>Description}"/>
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column>
+				<!--<header>-->
+				<!--	<Title text="Repair Orders" visible="false"/>-->
+				<!--</header>-->
+			</Column>
+		</columns>
+    </Table>
+    <beginButton>
+      <Button text="Assign" press="onJCTechTableSelectOK" />
+    </beginButton>
+    <endButton>
+      <Button text="Cancel" press="onJCTableSelectCancel" />
+      <!-- <Button text="Custom Button 1" press="onCustomButton1Press" />
+      <Button text="Custom Button 2" press="onCustomButton2Press" /> -->
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

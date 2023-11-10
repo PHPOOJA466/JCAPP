@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:u="sap.ui.unified">
+	<Dialog title="Job Details File Upload" draggable="true">
+		<l:VerticalLayout class="sapUiTinyMarginBegin">
+			<u:FileUploader id="fileUploader" name="myFileUpload" class="sapUiSizeCompact" uploadUrl="upload/"
+				tooltip="Upload your file to the local server" change="handleUploadComplete"/>
+		</l:VerticalLayout>
+		<beginButton>
+			<Button text="Upload" type="Emphasized" press="onUploadItems"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onCancelUpload"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

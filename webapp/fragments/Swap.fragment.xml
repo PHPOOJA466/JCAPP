@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"  xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:t="sap.ui.table">
+	<Dialog title="Item List">
+		<Table inset="false" items="{ path: 'SwapDisplayModel>/'}">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Job Name"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Item Type"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Item Description"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="{SwapDisplayModel>Descr1}"></Text>
+						<Text text="{SwapDisplayModel>Item_Type}"></Text>
+						<Text text="{SwapDisplayModel>Description}"></Text>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+			
+		<form:SimpleForm  editable="true" backgroundDesign="Transparent">
+			<form:content>
+            	<VBox>
+				<Label text="Swapping Job" required="true"/>
+				<Input id="IdSwapInput" visible="true" suggest="onInputSwappingJob" suggestionItems="{SwapInputModel>/SwapJobs}" suggestionItemSelected="onSelectSuggestedItem" showSuggestion="true" filterSuggests="false">
+					<suggestionItems>
+						<core:ListItem key="{SwapInputModel>Jobnr}"  text="{SwapInputModel>JobName}" additionalText="{SwapInputModel>Jobnr}"/>
+					</suggestionItems>
+				</Input>
+				</VBox>
+			</form:content>
+		</form:SimpleForm>
+		
+		<beginButton>
+			<Button text="Cancel" type="Reject" press="onSwapDiagCancel"></Button>
+		</beginButton>
+		<endButton>
+			<Button text="Select" type="Emphasized" press="onSelectSwapJobs"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

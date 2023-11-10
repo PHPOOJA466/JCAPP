@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:ui="sap.ui.table"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc">
+	<Dialog title="Service Advisor Assign" contentHeight="80%" contentWidth="50%" class="Assigndlg">
+		<buttons>
+			<Button text="Unassign" type="Reject" press="handleUnAssignData"></Button>
+			<Button id="idAssignbtn" type="Accept" text="Assign" press="handleAssignData" enabled="false"/>
+			<Button text="Cancel" press="onCancelDialog"/>
+		</buttons>
+		<content>
+			<f:SimpleForm width="90%" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" labelSpanS="4"
+				emptySpanS="0" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" class="sapUiResponsiveMargin">
+				<f:content>
+					<MessageStrip id="idMsgStripHoldError" type="Error" showIcon="true" visible="None" class="sapUiMediumMarginBottom"></MessageStrip>
+					<Label text="VINNo"/>
+					<Text id="idROText" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/VinNo}"/>
+					<Label text="Registration Number"/>
+					<Text id="VehRegNo" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/RegNo}"></Text>
+					<Label text="Veh Model"/>
+					<Text id="VehModel" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/VehType}"/>
+					<Label text="Customer Name"/>
+					<Text id="SrvAdvisor" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/Cust_Name}"/>
+					<Label text="Mobile Number" required="true"/>
+					<Text id="mbl" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/Mobile_No}"/>
+					<Label text="Service Advisor No" required="true"/>
+					<Select id="idBayComboBox" width="70%" items="{path: 'oLocalJsonModel>/SAListSet'}" change="handleSelectionSA"
+						selectedKey="{oLocalJsonModel>/AssignSAModelPopup/SA_No}">
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Description}"/>
+					</Select>
+					<Label text="Service Advisor Name"/>
+					<Text id="SAname" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/SA_Name}"></Text>
+					<Label text="Booking Id"/>
+					<Text id="BKid" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/Booking_ID}"/>
+					<Label text="SA Allocation Start Time"/>
+					<DateTimePicker id="StartDate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a"
+						displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="ondatechange"/>
+					<Label text="SA Allocation End Time"/>
+					<DateTimePicker id="EndDate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a"
+						required="true" change="ondatechange"/>
+					<Label text="Gate-In Time"/>
+					<Text id="PromisedTime" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/Gate_IN_Time}"/>
+					<Label text="Service Reason " labelFor="inputInfo"/>
+					<Text id="SAreason" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/Service_Rsn}"/>
+					<Label text="Last Visit Mileage"/>
+					<Text id="LVMilage" width="70%" text="{oLocalJsonModel>/AssignSAModelPopup/Last_Vst_Milg}"></Text>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

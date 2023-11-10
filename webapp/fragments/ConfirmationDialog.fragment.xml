@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog id="fragConfirm" title="Images">
+		<VBox>
+			<Text text="Please select which Image you captured?"/>
+			<HBox>
+				<RadioButtonGroup id="idcaptureImage" valueState="Success">
+					<RadioButton text="Vehicle Image" selected="true"/>
+					<RadioButton text="Odometer Image"/>
+				</RadioButtonGroup>
+			</HBox>
+		</VBox>
+		<buttons>
+			<Button text="Confirm" press="onConfimImageDialog"/>
+			<Button text="Close" press="onCloseConfimDialog"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

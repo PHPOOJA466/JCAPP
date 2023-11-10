@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog contentWidth="100rem" title="Warranty Category Details">
+		<content>
+			<Table items="{warrantySettingInfoModel>/}" alternateRowColors="true">
+				<columns>
+					<Column hAlign="Begin" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Warranty}"/>
+					</Column>
+					<Column hAlign="Begin" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Package}"/>
+					</Column>
+					<Column hAlign="Begin" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>From}"/>
+					</Column>
+					<Column hAlign="Begin" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>To}"/>
+					</Column>
+					<Column hAlign="Begin" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>StartKMS}"/>
+					</Column>
+					<Column hAlign="Center" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>EndKMS}"/>
+					</Column>
+					<Column hAlign="Center" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>StartHr}"/>
+					</Column>
+					<Column hAlign="Center" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>EndHr}"/>
+					</Column>
+					<Column hAlign="Center" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Status}"/>
+					</Column>
+					<Column hAlign="End" width="7rem" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Indicator}"/>
+					</Column>
+					<Column hAlign="End" width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Info}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{warrantySettingInfoModel>Wty_Type}"></Text>
+							<Text text="{warrantySettingInfoModel>Package}"></Text>
+							<Text text="{warrantySettingInfoModel>Wty_Start_Dt}"></Text>
+							<Text text="{warrantySettingInfoModel>Wty_End_Dt}"></Text>
+							<Text text="{warrantySettingInfoModel>Start_Kms}"></Text>
+							<Text text="{warrantySettingInfoModel>End_Kms}"></Text>
+							<Text text="{warrantySettingInfoModel>Start_Hr}"></Text>
+							<Text text="{warrantySettingInfoModel>End_Hr}"></Text>
+							<Text text="{warrantySettingInfoModel>Status}"></Text>
+							<!--<ProgressIndicator class="sapUiMediumMarginBegin DicmProgressIndicatorClass" percentValue="100" showValue="false"
+								state="{path:'warrantySettingInfoModel>Indicator', formatter:'.formatter.IndicatorState'}"/>
+							<core:Icon press="onPressInfo" class="InfoClass" src="sap-icon://hint"></core:Icon>-->
+							<ProgressIndicator class="sapUiMediumMarginBegin DicmProgressIndicatorClass" percentValue="100" showValue="false" tooltip="{parts:['warrantySettingInfoModel>Indicator','warrantySettingInfoModel>Status'], formatter: '.formatter.WarrantyIndicatorState'}" 
+								state="{parts:['warrantySettingInfoModel>Indicator','warrantySettingInfoModel>Status'], formatter: '.formatter.WarrantyIndicatorState'}"/>
+							<core:Icon press="onPressInfo" class="InfoClass"  src="sap-icon://hint"></core:Icon>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<endButton>
+			<Button text="Close" press="onCloseWarrantySettings"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

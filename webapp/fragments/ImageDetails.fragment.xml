@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table">
+	<Dialog title="Select the Details">
+		<content>
+			<Label text="{oLocalJsonModel>/coordinates}" visible="{oLocalJsonModel>/coordinatesflag}"></Label>
+			<Label text="Criticality" ></Label>
+			<RadioButtonGroup columns="5" id="idsizetype" valueState="Error" class="sapUiMediumMarginBottom">
+				<RadioButton text="Mild"/>
+				<RadioButton text="Moderate"/>
+				<RadioButton text="Severe"/>
+			</RadioButtonGroup>
+		</content>
+		<buttons>
+			<Button text="Ok" press="onselectingOk"/>
+			<Button text="Cancel" press="onselectingcancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,86 @@
+<mvc:View controllerName="ndbs.Z_JobCard.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:table="sap.ui.table" xmlns:unified="sap.ui.unified" xmlns:fl="ndbs.Z_JobCard.Custom">
+	<App id="app">
+		<pages>
+			<Page title="{i18n>title}" showHeader="false" id="page" showFooter="{oLocalJsonModel>/saveCancelButtonFlag}">
+				<content>
+					<tnt:ToolHeader height="5rem" class="TNTHearder">
+						<IconTabHeader id="iconTabHeader" selectedKey="Invalidkey" select="onSelectTab" backgroundDesign="Transparent" class="TNTTabBar">
+							<layoutData>
+								<OverflowToolbarLayoutData priority="NeverOverflow" shrinkable="true"/>
+							</layoutData>
+							<items>
+								<IconTabFilter icon="sap-icon://customize" text="Job Card List" key="JobCard"></IconTabFilter>
+								<IconTabFilter icon="sap-icon://shipping-status" text="Estimation" key="Estimation"></IconTabFilter>
+								<IconTabFilter visible="false" text="Vehicle Details" key="VehicleDetails" icon="sap-icon://shipping-status"></IconTabFilter>
+								<IconTabFilter visible="false" text="Inspection" key="Inspection" icon="sap-icon://inspection">
+									<!--<core:Fragment fragmentName="ndbs.Z_JobCard.fragments.Inspection" type="XML"></core:Fragment>-->
+								</IconTabFilter>
+								<IconTabFilter visible="false" text="Job Card Details" key="JobDetails" icon="sap-icon://settings"></IconTabFilter>
+								<IconTabFilter visible="false" text="Deputation" key="Deputation" icon="sap-icon://message-popup"></IconTabFilter>
+								<IconTabFilter visible="false" text="Sublet" key="Sublet" icon="sap-icon://inspection">
+									<!--<core:Fragment fragmentName="ndbs.Z_JobCard.fragments.Sublet" type="XML"></core:Fragment>-->
+								</IconTabFilter>
+								<IconTabFilter visible="false" text="Check In" key="CheckIn" icon="sap-icon://sound-loud"></IconTabFilter>
+								<IconTabFilter visible="false" text="Road Test" key="RoadTest" icon="sap-icon://message-popup"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://message-popup" text="Assignment" key="Assignment"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Approval Log" key="ApprovalLog"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Accident TAT" key="AccidentTAT"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Invoice" key="Invoice"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Job Log" key="Joblog"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="More Info" key="MoreInfo"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Feedback" key="Feedback"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Checklist" key="Checklist"></IconTabFilter>
+								<IconTabFilter visible="false" icon="sap-icon://documents" text="Deferred Jobs" key="DefferredJobs"></IconTabFilter>
+							</items>
+						</IconTabHeader>
+						<!-- <ToolbarSpacer/> -->
+						<VBox>
+							<core:Icon id="toolheaderButtonsId" size="1.5rem" src="sap-icon://appointment" class="iconsId" tooltip="Upcoming Appointments"/>
+							<Text id="toolheaderTextId" text="Upcoming Appt"></Text>
+						</VBox>
+						<VBox>
+							<core:Icon id="toolheaderButtonsId1" size="1.5rem" src="sap-icon://user-settings" class="iconsId" tooltip="Upcoming Delivery"
+								press="onPressUpcomingDelivery"></core:Icon>
+							<Text id="toolheaderTextId1" text="Upcoming Delivery"></Text>
+						</VBox>
+						<VBox>
+							<core:Icon id="toolheaderButtonsId2" class="plusClass" src="sap-icon://add" size="3rem" press="onPressPlusIcon"/>
+						</VBox>
+					</tnt:ToolHeader>
+				</content>
+				<footer>
+					<Bar>
+						<contentLeft>
+							<Button id="messagePopoverBtn" icon="{ path: '/', formatter: '.formatter.buttonIconFormatter' }" type="Reject" visible="false"
+								press="onMessagePopoverPress"></Button>
+						</contentLeft>
+						<contentRight>
+							<Button text="Payment" type="Emphasized" visible="false"></Button>
+							<Button text="Point of Contact" type="Emphasized" press="onPressPointofContact" visible="{oLocalJsonModel>/CheckInButtonsVisible}"></Button>
+							<Button text="Temp Pass" type="Emphasized" visible="{oLocalJsonModel>/CheckInButtonsVisible}" press="onPressTempPass"></Button>
+							<Button text="Gate Pass" type="Emphasized" visible="{oLocalJsonModel>/CheckInButtonsVisible}" press="onPressGatePass"></Button>
+							<Button text="Estimate" type="Emphasized" visible="{oLocalJsonModel>/CheckInButtonsVisible}" press="onPressEstimate"></Button>
+							<Button text="Job Card" type="Emphasized" visible="{oLocalJsonModel>/CheckInButtonsVisible}" press="onPressJobCard"></Button>
+							<Button text="Pro Forma" type="Emphasized" press="onPressProforma" visible="{oLocalJsonModel>/CheckInButtonsVisible}"></Button>
+							<Button text="Create Invoice" type="Emphasized" press="onPressCreateInvoice" visible="{oLocalJsonModel>/CheckInButtonsVisible}" enabled="{= ${checkInInfoModel>/CREATE_INVOICE} === ''? false: true}"></Button>
+							<Button text="Approval" type="Accept" press="onPressCheckInApproval" visible="{oLocalJsonModel>/CheckInButtonsVisible}"></Button>
+							<unified:FileUploader  fileType="jpg,bmp,png,jpeg,pdf" tooltip="Upload your file to the local server" type="Emphasized"
+								change="OnAttachfilemoreinfo" buttonOnly="true" buttonText="Attach Files"  visible="{oLocalJsonModel>/AttachFilesButtonFlag}"/>
+							<!-- <Button text="Attach Files" type="Emphasized" visible="{oLocalJsonModel>/AttachFilesButtonFlag}" press="OnAttachfilemoreinfo"></Button> -->
+							<Button text="Print Checklist" type="Emphasized" press="onPressprintchecklist" visible="{oLocalJsonModel>/printchecklist}"></Button>
+							<!--<Button text="Cancel" type="Reject" visible="{oLocalJsonModel>/saveCancelButtonFlag}"></Button>-->
+							<Button text="Reject" type="Reject" visible="{oLocalJsonModel>/RejButtonFlag}" press="onPressCheckInReject"></Button>
+								<!--<Button text="{oLocalJsonModel>/rejectcancelBtnText}" type="Reject" visible="{oLocalJsonModel>/saveCancelButtonFlag}" press="onPressCheckInReject"></Button>-->
+							<Button text="Save" type="Emphasized" enabled="{oLocalJsonModel>/saveFlagEnabled}" press="onSave"
+								visible="{oLocalJsonModel>/saveCancelButtonFlag}"></Button>
+							<Button text="Update Split" type="Emphasized" press="onUpdateSplit" enabled="{= ${oLocalJsonModel>/UpdateSplit} === true? true: false}"
+								visible="{oLocalJsonModel>/SplitButton}"></Button>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

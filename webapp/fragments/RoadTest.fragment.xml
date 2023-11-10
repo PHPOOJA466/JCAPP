@@ -1,0 +1,77 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:unified="sap.ui.unified">
+	<VBox id="RoadTest" visible="{oLocalJsonModel>/RoadTestTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+			<core:Icon src="sap-icon://add" color="#2e6da6" press="onPressRoadTestAdd"></core:Icon>
+		</OverflowToolbar>
+		<Table id="roadTestTableId" growing="true" alternateRowColors="true" items="{RoadTestInfoModel>/}" inset="false"
+			class="sapUiTinyMarginTop mobileTableView">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Purpose" maxLines="2" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Gate Out Kms" maxLines="2" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Gate In Kms"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Total Kms"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="GateOut Date Time"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="GateIn Date Time" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Instruction" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Observations" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Driver/Foreman" maxLines="2" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Vehicle Status"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Inactive" press="onRoute">
+					<cells>
+						<Text text="{RoadTestInfoModel>Purpose}"/>
+						<Text text="{RoadTestInfoModel>Gate_Out_Kms}"/>
+						<!-- <Text text="{RoadTestInfoModel>GateInKms}"/> -->
+						<Input
+						value="{RoadTestInfoModel>Gate_In_Kms}" change="ongateinchange" type="Number"/>
+							<!-- <Text text="{RoadTestInfoModel>TotalKms}"/> -->
+							<!-- <Text text="{= ${RoadTestInfoModel>Gate_In_Kms} - ${RoadTestInfoModel>Gate_Out_Kms}}"/> -->
+						<Text text="{= ${RoadTestInfoModel>Gate_In_Kms} - ${RoadTestInfoModel>Gate_Out_Kms} >=0 ? ${RoadTestInfoModel>Gate_In_Kms} - ${RoadTestInfoModel>Gate_Out_Kms} : 0}"/>
+						<Text text="{RoadTestInfoModel>Gate_Out_Tm}"/>
+						<Text text="{RoadTestInfoModel>Gate_In_Dt_Tm}"/>
+						<!-- <Text text="{RoadTestInfoModel>Duration}"/> -->
+						<Text text="{RoadTestInfoModel>Instruction}"/>
+						<!-- <Text text="{RoadTestInfoModel>Observations}"/> -->
+						<core:Icon 	src="sap-icon://edit"  press="onJCRTobservations" />
+						<Text text="{RoadTestInfoModel>Driver_Foreman}"/>
+						<Text text="{RoadTestInfoModel>Veh_Status}"/>
+					</cells>
+				</ColumnListItem>
+			</items> 
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

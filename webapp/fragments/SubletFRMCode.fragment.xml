@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="SubletFRMCodeListId" title="FRM Code" confirm="onConfirmSubletFRMCode" liveChange="subletFRMCodeSearch" items="{ path:'FRMCodeSub>/'}">
+		<StandardListItem title="{FRMCodeSub>Description}" description="{FRMCodeSub>Value}" type="Active" press="onListItemPress"/>
+	</SelectDialog>
+</core:FragmentDefinition>

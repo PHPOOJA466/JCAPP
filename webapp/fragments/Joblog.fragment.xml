@@ -1,0 +1,255 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table">
+	<VBox id="Joblog" visible="{oLocalJsonModel>/JoblogTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<Panel expandable="true" headerText="Team Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form>
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Service Advisor">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/SA}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Foreman">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Foreman}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Floor Supervisor">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/FS}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Main Technician">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Main_Technician}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Bay">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Bay}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Reasons and Reference" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Wrong Reading Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Wrong_Reading_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Road Test Not done Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/RT_Not_Done_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="SM/Recall Not done Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Recall_Not_Done_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Hold Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Hold_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Cancellation Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Cancellation_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Promised Delay Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Promised_Delay_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="24 Hours Delay Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Two_Four_Hr_Delay_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Reopen Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Reopen Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Reopen_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Reopen Date and Time">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Reopen_DT}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Reopen Closure Date and Time">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Reopen_Closure_DT}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Parts Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Parts Delay Reason">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Parts_Delay_Rsn}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Parts Purchase Order">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Parts_PO}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Parts Purchase Date and Time">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{jobLogInfoModel>/Parts_Pur_DT}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Table growing="true" alternateRowColors="true" inset="false" class="sapUiTinyMarginTop mobileTableView">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Complaint Number" maxLines="2" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Complaint Date and Time" maxLines="2" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Voice"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Complaint Status"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Action Taken"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Complaint Closed Date and Time" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Under Observation" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Observation Closure Target" maxLines="3" class="textBoldClass"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Reasons"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Remarks"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Inactive" press="onRoute">
+					<cells>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<Text text=""/>
+						<HBox>
+							<core:Icon src="sap-icon://edit" color="#4b4b4b" class="Icons"></core:Icon>
+							<core:Icon src="sap-icon://document-text" color="#045fa0" class="Icons"></core:Icon>
+							<core:Icon src="sap-icon://decline" color="red" class="Icons"></core:Icon>
+							<core:Icon src="sap-icon://alert" color="#045fa0" class="Icons"></core:Icon>
+							<core:Icon src="sap-icon://camera" color="#292929" class="Icons"></core:Icon>
+							<core:Icon src="sap-icon://picture" color="#292929" class="Icons"></core:Icon>
+						</HBox>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

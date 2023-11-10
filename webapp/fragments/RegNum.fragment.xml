@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog title="Update Registration Number" state="Success" contentHeight="auto" contentWidth="35%">
+		<VBox class="sapUiSmallMargin">
+			<f:Form editable="false" width="auto">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:FormElement>
+							<Label text="Registration Number" required="true"/>
+							<f:fields>
+								<Input value="{objRegEditModel>/DBM_LICEXT}" maxLength="10" liveChange="onRegNoLiveChange"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Registration Date" required="true"/>
+							<f:fields>
+								<DatePicker value="{objRegEditModel>/REG_DATE}" placeholder="Enter Date" change="handleChangeRegDate"/>
+							</f:fields>
+						</f:FormElement>
+						<!--start - 2000053535 RE: Total loss: undertaking from salvage buyer by sravani 6/16/21-->
+						<f:FormElement>
+							<Label text="{i18n>RcUpload}"/>
+							<f:fields>
+								<u:FileUploader id="rcFileUploadId" buttonOnly="true" iconOnly="true" tooltip="Click to upload your file" change="onCopyRcAttachment"
+									uploadComplete="onuploadComplete" icon="sap-icon://attachment"/>
+							</f:fields>
+						</f:FormElement>
+						<!--end - 2000053535 RE: Total loss: undertaking from salvage buyer by sravani 6/16/21-->
+						<f:FormElement>
+							<Label text="{i18n>RCDisplay}"/>
+							<f:fields>
+								<Button icon="sap-icon://display" type="Transparent" width="10px" class="icon-edit" press="onCopyRcDisplay"/>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Submit" press="registrationChange"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="DialogClose"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

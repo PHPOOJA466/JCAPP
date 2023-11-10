@@ -1,0 +1,13 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="popoverCLRemarks"
+		placement="Left"
+       showHeader="false"
+        >
+		<content>
+        		<TextArea class="Textarea" liveChange="onCLRemarkschange"  value="{oLocalJsonModel>/PopoverModelCLRemarks/Remarks}" />
+               </content>
+	</Popover>
+</core:FragmentDefinition>

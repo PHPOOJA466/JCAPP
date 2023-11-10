@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<TableSelectDialog noDataText="No Technicians" search="handleSearchassignment" liveChange="handleSearchFilterReapiroder" confirm="onConfirmJCLevelTech"
+		cancel="handleCloserepair" growingThreshold="15" items="{path:'jcLevelTechniciansModel>/'}" multiSelect="true" rememberSelections="true"
+		showClearButton="true" growing="true" contentWidth="30px" contentHeight="70%">
+		<ColumnListItem selected="{jcLevelTechniciansModel>selected}">
+			<cells>
+				<ObjectIdentifier text="{jcLevelTechniciansModel>Description}"/>
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column>
+				<!--<header>-->
+				<!--	<Title text="Repair Orders" visible="false"/>-->
+				<!--</header>-->
+			</Column>
+		</columns>
+	</TableSelectDialog>
+</core:FragmentDefinition>

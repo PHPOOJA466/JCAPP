@@ -1,0 +1,1102 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" height="100%">
+	<VBox id="VehicleDetails" visible="{oLocalJsonModel>/VehicleDetailsTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<!--<Label text="Service Type"/>-->
+			<Label text="Service Category"/>
+			<VBox>
+				<ComboBox id="serviceTypeId" items="{path:'serviceTypeModel>/', templateShareable: false}" selectedKey="{localJCDeatils>/ServiceTypeCode}"
+					class="sapUiSizeCompact" selectionChange="onChangeServiceType" visible="{localJCDeatils>/createDrpAll}" width="9rem">
+					<core:Item text="{serviceTypeModel>Description}" key="{serviceTypeModel>Value}"/>
+				</ComboBox>
+				<Input value="{localJCDeatils>/ServiceType}" visible="{localJCDeatils>/createInputAll}" class="sapUiSizeCompact" editable="false"
+					width="9rem"></Input>
+			</VBox>
+			<!--<Label text="Service Sub Type"/>-->
+			<Label text="Service Type"/>
+			<VBox>
+				<ComboBox id="subServiceTypeID" items="{path:'serviceSubTypeModel>/', templateShareable: false}" class="sapUiSizeCompact"
+					selectedKey="{localJCDeatils>/SubSrvTypeCode}" change="onChangeSubServiceType" visible="{localJCDeatils>/createDrpAll}" width="9rem">
+					<core:Item text="{serviceSubTypeModel>Description}" key="{serviceSubTypeModel>Value}"/>
+				</ComboBox>
+				<Input value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact" visible="{localJCDeatils>/createInputAll}" editable="false"
+					width="9rem"></Input>
+			</VBox>
+			<!--<Label text="Location Type"/>-->
+			<Label text="Service Sub Type"/>
+			<VBox>
+				<ComboBox id="locTypeId" items="{locationTypeModel>/}" visible="{localJCDeatils>/createDrpAll}" change="onChangeLocationType"
+					class="sapUiSizeCompact" width="8rem">
+					<core:Item text="{locationTypeModel>Value}" key="{locationTypeModel>Value}"/>
+				</ComboBox>
+				<Input width="8rem" class="sapUiSizeCompact" value="{vehicleInfoModel>/LocTyp}" visible="{localJCDeatils>/createInputAll}" editable="false"></Input>
+			</VBox>
+			<Label text="Location"/>
+			<VBox>
+				<Input id="locId" class="sapUiSizeCompact" visible="{localJCDeatils>/createDrpAll}" width="8rem"></Input>
+				<Input value="{vehicleInfoModel>/Location}" class="sapUiSizeCompact" width="8rem" visible="{localJCDeatils>/createInputAll}"
+					editable="false"></Input>
+			</VBox>
+			<Label text="Bill To"/>
+			<VBox>
+				<ComboBox id="BilltoOverveiwId" items="{billToModel>/}" visible="{localJCDeatils>/createInputAll}" class="sapUiSizeCompact" width="8rem">
+					<core:Item text="{billToModel>Description}" key="{billToModel>Value}"/>
+				</ComboBox>
+				<Input width="8rem" value="{vehicleInfoModel>/Bill_To}" visible="{localJCDeatils>/createDrpAll}" class="sapUiSizeCompact" editable="false"></Input>
+			</VBox>
+			<Button text="Bill To change" press="onPressBillToChange" enabled="{localJCDeatils>/createInputAll}"/>
+			<!--<Label text="Ship To"/>-->
+			<!--<ComboBox items="{shipToModel>/}" change="onBillTo" class="sapUiSizeCompact" width="10rem">-->
+			<!--	<core:Item text="{shipToModel>Description}" key="{shipToModel>Code}"/>-->
+			<!--</ComboBox>-->
+			<!--<Label text="Sold To"/>-->
+			<!--<ComboBox items="{soldToModel>/}" change="onBillTo" class="sapUiSizeCompact" width="10rem">-->
+			<!--	<core:Item text="{soldToModel>Description}" key="{soldToModel>Value}"/>-->
+			<!--</ComboBox>-->
+		</OverflowToolbar>
+		<f:Form id="idCustomerInfoDispForm" editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+					emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Customer Information" expandable="true" expanded="true">
+					<f:formElements>
+						<f:FormElement label="Customer ID ">
+							<f:fields>
+								<Text text="{customerInfoModel>/Cust_ID}" id="nameText"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Customer Type">
+							<f:fields>
+								<Text text="{customerInfoModel>/Cust_Type}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label=" Customer Name">
+							<f:fields>
+								<Text text="{customerInfoModel>/Cust_Name}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Address">
+							<f:fields>
+								<Text text="{customerInfoModel>/Address}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Mobile">
+							<f:fields>
+								<Text text="{customerInfoModel>/Mobile}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Landline">
+							<f:fields>
+								<Text text="{customerInfoModel>/Driver_Phno}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Email">
+							<f:fields>
+								<Text text="{customerInfoModel>/Email}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Driver/Contact Name">
+							<f:fields>
+								<Text text="{customerInfoModel>/Driver_Name}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Driver/Contact Number">
+							<f:fields>
+								<Text text="{customerInfoModel>/Driver_Phno}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Customer GST Number">
+							<f:fields>
+								<Text text="{customerInfoModel>/Cust_GST}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<HBox>
+									<Label class="sapUiTinyMarginTop" text="KAM"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{customerInfoModel>/KAM_Toggle}" enabled="false" customTextOn=" "
+										customTextOff=" "></Switch>
+									<Label class="sapUiTinyMarginTop" text="Rakshana"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{customerInfoModel>/Rakshana}" enabled="false" customTextOn=" "
+										customTextOff=" "></Switch>
+									<Label class="sapUiTinyMarginTop" text="SEZ"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{customerInfoModel>/SEZ_Toggle}" enabled="false" customTextOn=" "
+										customTextOff=" "></Switch>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="Vehicle Information" expandable="true" expanded="true">
+					<f:formElements>
+						<f:FormElement label="RegNo">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/Reg_No}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="VIN">
+							<f:fields>
+								<Link text="{vehicleInfoModel>/VIN}" press="onPressVinNumber"></Link>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Model">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/Model}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Variant and Description">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/Variant}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Vehicle Segment">
+						<f:fields>
+							<Text text="{vehicleInfoModel>/Vsegm}"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Emission Status">
+						<f:fields>
+							<Text text="{vehicleInfoModel>/Estat}"/>
+						</f:fields>
+					</f:FormElement>
+						<f:FormElement label="Sale Date">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/Sale_Date}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Application and Sub">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/Application} - {vehicleInfoModel>/Sub}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="FC Due Date">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/FC_Due}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Next Service Due Date">
+							<f:fields>
+								<Text text="{vehicleInfoModel>/Nxt_Srv_Dt}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Previous Odometer">
+							<f:fields>
+								<HBox>
+									<Label text="Kms" class="sapUiTinyMarginTop sapUiTinyMarginEnd"></Label>
+									<Input value="{vehicleInfoModel>/Prev_Kms}" class="sapUiTinyMarginBegin" enabled="false"  width="8rem"></Input>
+									<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" text="hrs"></Label>
+									<Input value="{vehicleInfoModel>/Prev_Hrs}" class="sapUiTinyMarginBegin"  enabled="false"  width="8rem"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Current Odometer">
+							<f:fields>
+								<HBox>
+									<Label text="Kms" class="sapUiTinyMarginTop sapUiTinyMarginEnd" required="true"></Label>
+									<Input enabled="{localJCDeatils>/saveFlagDisable}" liveChange="onLiveChangeCurrentOdometer" value="{vehicleInfoModel>/Curr_Kms}"
+										maxLength="7"  width="8rem"></Input>
+									<Label class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" text="hrs" required="true"></Label>
+									<Input enabled="{localJCDeatils>/saveFlagDisable}" liveChange="onLiveChangeCurrentOdometer" maxLength="15"
+										value="{vehicleInfoModel>/Curr_Hrs}"  width="8rem"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="TC Odometer">
+							<f:fields>
+								<HBox>
+									<Label text="Kms" class="sapUiTinyMarginTop sapUiTinyMarginEnd"></Label>
+									<Input value="{vehicleInfoModel>/TC_Kms}" class="sapUiTinyMarginBegin" enabled="false"  width="8rem"></Input>
+									<Label text="hrs" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd"></Label>
+									<Input value="{vehicleInfoModel>/TC_Hrs}" class="sapUiTinyMarginBegin" enabled="false"  width="8rem"></Input>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<HBox>
+									<Label text="Chassis" class="sapUiTinyMarginTop"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{vehicleInfoModel>/Chassis}" enabled="false" customTextOn=" " customTextOff=" "></Switch>
+									<Label text="PDI1" class="sapUiTinyMarginTop"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{vehicleInfoModel>/PDI1}" enabled="false" customTextOn=" " customTextOff=" "></Switch>
+									<Label text="PDI2" class="sapUiTinyMarginTop"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{vehicleInfoModel>/PDI2}" enabled="false" customTextOn=" " customTextOff=" "></Switch>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="JC Information" expandable="true" expanded="true">
+					<f:formElements>
+						<f:FormElement label="JC Number">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/JC_No}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="JC Source">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/JC_Src}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Gate-In Date and Time">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Gate_In_Dt_Tm}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="JC Date and Time">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/JC_Dt_Tm}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="JC Close Date and Time">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/JC_Clsd_Dt_Tm}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GateOut Date and Time">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Gate_Out_Dt_Tm}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Appointment Number">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Appointment_No}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Appointment Date and Time">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Appointment_Dt_Tm}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Complaint Number">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Comp_No}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Complaint Date and Time">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Comp_Dt_Tm}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Complaint Location">
+							<f:fields>
+								<Text text="{jobCardInfoModel>/Comp_Loc}"></Text>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="">
+							<f:fields>
+								<HBox>
+									<Label text="Rework" class="sapUiTinyMarginTop"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{jobCardInfoModel>/Rework}" enabled="false" customTextOn=" " customTextOff=" "></Switch>
+									<Label text="AddJob" class="sapUiTinyMarginTop"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{jobCardInfoModel>/Add_Job}" enabled="false" customTextOn=" " customTextOff=" "></Switch>
+									<Label text="Physical Status" class="sapUiTinyMarginTop"></Label>
+									<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{jobCardInfoModel>/Physical_Status}" enabled="false" customTextOn="IN"
+										customTextOff="OUT"></Switch>
+								</HBox>
+							</f:fields>
+						</f:FormElement>
+						<!--<f:FormElement>-->
+						<!--	<f:fields>-->
+						<!--		<HBox>-->
+						<!--			<Label text="Physical Status" class="sapUiTinyMarginTop"></Label>-->
+						<!--			<Switch class="sapUiSmallMarginEnd sapUiSizeCompact" state="{jobCardInfoModel>/Physical_Status}" enabled="false" customTextOn="IN"-->
+						<!--				customTextOff="OUT"></Switch>-->
+						<!--		</HBox>-->
+						<!--	</f:fields>-->
+						<!--</f:FormElement>-->
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="Other Information" expandable="true" expanded="true">
+					<f:formElements>
+						<f:FormElement label="Express Service" class="sapUiTinyMarginTop">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Express_Service}" enabled="{localJCDeatils>/saveFlagDisable}" customTextOn=" " customTextOff=" "
+									class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Appointment Flag">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Appointment_Flag}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Connectivity">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Connectivity}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Revisit">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Revisit}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Repeat">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Repeat}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Reopen">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Reopen}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Instant Feedback">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Instant_Feedback}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="3rd Day PSF">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Third_Day_PSF}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="10th Day PSF">
+							<f:fields>
+								<Switch state="{otherInfoModel>/Tenth_Day_PSF}" enabled="false" customTextOn=" " customTextOff=" " class="sapUiSizeCompact"></Switch>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Warranty">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table id="warrantyTableId" rows="{path:'warrantyInfoModel>/'}" selectionMode="MultiToggle" width="auto" alternateRowColors="true"
+									visibleRowCount="4" ariaLabelledBy="title">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+											<Label class="sapUiTinyMarginTop" visible="{parts:['warrantyInfoModel>/','i18n>AMC'], formatter:'.formatter.WarSwitchVis'}"
+											  text="{i18n>AMC}"></Label>
+											<Switch class="Mainswitch" customTextOn=" " customTextOff=" " visible="{parts:['warrantyInfoModel>/','i18n>AMC'], 
+											formatter:'.formatter.WarSwitchVis'}" state="{parts:['warrantyInfoModel>/','i18n>AMC'], formatter:'.formatter.WarSwitchState'}" 
+											enabled="false"></Switch>
+											<Label class="sapUiTinyMarginTop" text="{i18n>EW}"  visible="{parts:['warrantyInfoModel>/','i18n>EW'], 
+											formatter:'.formatter.WarSwitchVis'}" ></Label>
+											<Switch class="Mainswitch" customTextOn=" " customTextOff=" " visible="{parts:['warrantyInfoModel>/','i18n>EW'], 
+											formatter:'.formatter.WarSwitchVis'}" state="{parts:['warrantyInfoModel>/','i18n>EW'], formatter:'.formatter.WarSwitchState'}" 
+											  enabled="false"></Switch>
+											<Label class="sapUiTinyMarginTop" text="{i18n>EV}" visible="{parts:['warrantyInfoModel>/','i18n>EV'],
+											 formatter:'.formatter.WarSwitchVis'}" ></Label>
+											<Switch class="Mainswitch" customTextOn=" " customTextOff=" " visible="{parts:['warrantyInfoModel>/','i18n>EV'], 
+											formatter:'.formatter.WarSwitchVis'}" state="{parts:['warrantyInfoModel>/','i18n>EV'], formatter:'.formatter.WarSwitchState'}" 
+											 enabled="false"></Switch>
+											<Label class="sapUiTinyMarginTop" text="{i18n>PT}" visible="{parts:['warrantyInfoModel>/','i18n>PT'], 
+											formatter:'.formatter.WarSwitchVis'}" ></Label>
+											<Switch class="Mainswitch"  customTextOn=" " customTextOff=" " visible="{parts:['warrantyInfoModel>/','i18n>PT'], 
+											
+											formatter:'.formatter.WarSwitchVis'}" state="{parts:['warrantyInfoModel>/','i18n>PT'], formatter:'.formatter.WarSwitchState'}"
+											 enabled="false"></Switch>
+
+												<Button icon="sap-icon://settings" tooltip="Settings" press="onPressWarrantySettings"></Button>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns hAlign="Start">
+										<t:Column width="7rem">
+											<Label text="Warranty"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Wty_Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Package"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<Label text="Start Date"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Wty_Start_Dt}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<Label text="End Date"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Wty_End_Dt}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Start KMS"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Start_Kms}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="End KMS"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>End_Kms}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<Label text="Start Hours"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Start_Hr}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<Label text="End Hours"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>End_Hr}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Status"/>
+											<t:template>
+												<Text text="{warrantyInfoModel>Status}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Indicator"/>
+											<t:template>
+												<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+													state="{path:'warrantyInfoModel>Indicator', formatter:'.formatter.IndicatorState'}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Info"/>
+											<t:template>
+												<core:Icon src="sap-icon://information" color="#1470dc"></core:Icon>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Service Measures and Recall">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table enableSelectAll="false" rows="{path:'measuresRecallsInfoModel>/'}" selectionMode="MultiToggle" visibleRowCount="4" width="auto"
+									rowSelectionChange="onSrvMeasureRowSelection" id="idSrvMeasure">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://synchronize" press="onSaveRecalls" color="#1470dc"></core:Icon>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<!--<t:Column width="45px">-->
+										<!--	<Label text=""/>-->
+										<!--	<t:template>-->
+										<!--		<CheckBox id="checkbox" select="onSelectRecall"></CheckBox>-->
+										<!--	</t:template>-->
+										<!--</t:Column>-->
+										<t:Column width="5rem">
+											<Label text="Type"/>
+											<t:template>
+												<Text text="{measuresRecallsInfoModel>Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="9rem">
+											<Label text="Campaign Number"/>
+											<t:template>
+												<Link text="{measuresRecallsInfoModel>Campaign_No}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Campaign Name"/>
+											<t:template>
+												<Text text="{measuresRecallsInfoModel>Campaign_Name}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="6rem">
+											<Label text="End date"/>
+											<t:template>
+												<Text text="{measuresRecallsInfoModel>Valid_To}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Fault type"/>
+											<t:template>
+												<Text text="{measuresRecallsInfoModel>Fault_Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Remaining Days"/>
+											<t:template>
+												<Text text="{measuresRecallsInfoModel>Remaining_Days}" wrapping="false"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Stock"/>
+											<t:template>
+												<!--<Switch class="sapUiSizeCompact"></Switch>-->
+												<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+													state="{path:'measuresRecallsInfoModel>Stock', formatter:'.formatter.IndicatorState'}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Info"/>
+											<t:template>
+												<core:Icon src="sap-icon://information" color="#1470dc" press="onPressRecallsInfo"></core:Icon>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Attachments" tooltip="Attachments"/>
+											<t:template>
+												<core:Icon src="sap-icon://show" color="#1470dc" press="onPressRecallsAtt"></core:Icon>
+											</t:template>
+										</t:Column>
+										<!-- <t:Column width="5rem">
+											<Label text="Remarks"/>
+											<t:template>
+												<core:Icon src="sap-icon://edit" color="#1470dc"></core:Icon>
+											</t:template>
+										</t:Column> -->
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Insurance">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table id="idInsuranceTable" rows="{path:'oInsuranceModel>/'}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title"
+									width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://add" press="onPressAddInsurance" color="#1470dc"></core:Icon>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="12rem">
+											<Label text="Insurance Name"/>
+											<t:template>
+												<Text text="{oInsuranceModel>Insurance_Name}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="DICV"/>
+											<t:template>
+												<Text text="{oInsuranceModel>DICV}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Policy No"/>
+											<t:template>
+												<Text text="{oInsuranceModel>Policy_No}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Policy Type"/>
+											<t:template>
+												<Text text="{oInsuranceModel>Policy_Type}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="10rem">
+											<Label text=" Valid From"/>
+											<t:template>
+												<Text text="{oInsuranceModel>Valid_From}"></Text>
+												<!--<DatePicker id="idValidFrm" valueState="{insuranceEditModel>valueState}" value="{oInsuranceModel>Valid_From}"-->
+												<!--	tooltip="{oInsuranceModel>Valid_From}" change="onDtValidFrom" editable="{insuranceEditModel>/insuranceEditMode}" valueFormat="yyyyMMdd"-->
+												<!--	maxDate="{oInsuranceModel>Future_Date}" displayFormat="dd.MM.yyyy" width="100%"/>-->
+											</t:template>
+										</t:Column>
+										<t:Column width="10rem">
+											<Label text=" Valid Upto"/>
+											<t:template>
+												<Text text="{oInsuranceModel>Valid_To}"></Text>
+												<!--<DatePicker id="idValidTo" valueState="{insuranceEditModel>valueState}" minDate="{oInsuranceModel>Valid_To_minDate}"-->
+												<!--	value="{oInsuranceModel>Valid_To}" change="onDtValidTo" editable="{insuranceEditModel>/insuranceEditMode}"-->
+												<!--	tooltip="{oInsuranceModel>Valid_To}" valueFormat="yyyyMMdd" displayFormat="dd.MM.yyyy" width="100%"/>-->
+											</t:template>
+										</t:Column>
+										<t:Column width="9rem">
+											<Label text="GSTIN"/>
+											<t:template>
+												<Text text="{oInsuranceModel>GSTN_No}" tooltip="{oInsuranceModel>GSTN_No}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="9rem">
+											<Label text="Remaining days"/>
+											<t:template>
+												<Text text="{oInsuranceModel>Remaining_Days}" tooltip="{oInsuranceModel>Remaining_Days}"></Text>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Status"></Label>
+											<t:template>
+												<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+													state="{path:'oInsuranceModel>Status', formatter:'.formatter.IndicatorState'}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Info"/>
+											<t:template>
+												<core:Icon src="sap-icon://information" color="#1470dc"></core:Icon>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Complaints">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table id="idOpenComplaints" rows="{openCompl>/}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title" width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://synchronize" press="" color="#1470dc"></core:Icon>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="7rem">
+											<Label text="Complaint Date"/>
+											<t:template>
+												<Text text="{openCompl>COMPLAINTID}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Complaint Status"/>
+											<t:template>
+												<Text text="{openCompl>COMPLAINTID}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Complaint No"/>
+											<t:template>
+												<Text text="{openCompl>OPEN_DT}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Dealer Name and Location"/>
+											<t:template>
+												<Text text="{openCompl>COMPLAINT_DESC}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Attended"/>
+											<t:template>
+												<Text text="{openCompl>WERKS}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Reasons"/>
+											<t:template>
+												<Text text="{openCompl>WERKS}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Review"/>
+											<t:template>
+												<Text text="{openCompl>WERKS}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Voice"/>
+											<t:template>
+												<Text text="{openCompl>WERKS}"/>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Service History">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table id="idJobHistory" rows="{path:'serviceHistoryModel>/'}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title"
+									width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<Button icon="sap-icon://document-text" press="printjobHistory"/>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="8rem">
+											<Label text="JC Number"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>JC_No}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="JC Date and Time"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>JC_Date_Time}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Service Subtype"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>Service_Sub_Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Description"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>Description}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="KMS"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>Kms}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Hrs"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>Hrs}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Dealer Name and Location"/>
+											<t:template>
+												<Text text="{serviceHistoryModel>Dealer_Name_Loc}"/>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Diagnostics">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table rows="{path:'diagnosticsModel>/'}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title" width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://add" color="#1470dc"/>
+												<core:Icon src="sap-icon://synchronize" color="#1470dc"/>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="2rem">
+											<Label text=""/>
+											<t:template>
+												<CheckBox select="onChangeRecallJobAdd"></CheckBox>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="DCT Code"/>
+											<t:template>
+												<Text text="{diagnosticsModel>DTC_Code}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="DTC Description"/>
+											<t:template>
+												<Text text="{diagnosticsModel>DTC_Desc}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Concern Code"/>
+											<t:template>
+												<Text text="{diagnosticsModel>Concern_Code}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Concern and Description"/>
+											<t:template>
+												<Text text="{diagnosticsModel>Concern_Desc}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Fault Category"/>
+											<t:template>
+												<Text text="{diagnosticsModel>Fault_Category}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Status"/>
+											<t:template>
+												<Text text="{diagnosticsModel>Status}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Stock"/>
+											<t:template>
+												<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+													state="{path:'diagnosticsModel>Stock', formatter:'.formatter.IndicatorState'}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Remarks"/>
+											<t:template>
+												<Switch class="sapUiSizeCompact"></Switch>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Rejected/Deferred Job">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table rows="{path:'rejectedJobsModel>/'}" selectionMode="MultiToggle" visibleRowCount="4" rowSelectionChange="onRejDefRowSelection"
+									ariaLabelledBy="title" width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<Title text="Rejected/Deferred Jobs"></Title>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://synchronize" press="onSaveRejectedJobs" color="#1470dc"/>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="7rem">
+											<Label text="Rejected Code"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Rejected_Code}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Job Source"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Job_Source}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="10rem">
+											<Label text="Voice"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Voice}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Reason"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Reason}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="JC No"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Job_Card_No}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="JC Date and Time"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Job_Card_Dt_Tm}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="9rem">
+											<Label text="Dealer Name and Location"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>Dealer_Name_Loc}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="NA Reason"/>
+											<t:template>
+												<Text text="{rejectedJobsModel>NA_Reason}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="7rem">
+											<Label text="Stock"/>
+											<t:template>
+												<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+													state="{path:'rejectedJobsModel>Stock', formatter:'.formatter.IndicatorState'}"/>
+											</t:template>
+										</t:Column>
+										<t:Column hAlign="Begin" width="4rem">
+										<Label text="{i18n>Info}"/>
+										<t:template>
+											<core:Icon src="sap-icon://hint" class="InfoClass" press="onPressRejDefInfo">
+												<core:layoutData>
+													<FlexItemData growFactor="1"/>
+												</core:layoutData>
+											</core:Icon>
+										</t:template>
+									</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Service Campaign">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table rows="{path:'serviceCampaignModel>/'}" selectionMode="None" visibleRowCount="4" ariaLabelledBy="title" width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://synchronize" color="#1470dc"/>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="2rem">
+											<Label text=""/>
+											<t:template>
+												<CheckBox select="onChangeRecallJobAdd"></CheckBox>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Type"/>
+											<t:template>
+												<Text text="{serviceCampaignModel>Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Campaign Number"/>
+											<t:template>
+												<Text text="{serviceCampaignModel>Campaign_No}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Campaign Name"/>
+											<t:template>
+												<Text text="{serviceCampaignModel>Campaign_Name}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="End date"/>
+											<t:template>
+												<Text text="{serviceCampaignModel>End_Date}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Fault type"/>
+											<t:template>
+												<Text text="{serviceCampaignModel>Fault_Type}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Remaining Days"/>
+											<t:template>
+												<Text text="{serviceCampaignModel>Remaining_Days}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Stock"/>
+											<t:template>
+												<Switch state="{serviceCampaignModel>Stock}" class="sapUiSizeCompact"></Switch>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Info"/>
+											<t:template>
+												<core:Icon src="sap-icon://information" color="#1470dc"></core:Icon>
+											</t:template>
+										</t:Column>
+										<t:Column width="5rem">
+											<Label text="Remarks"/>
+											<t:template>
+												<Switch class="sapUiSizeCompact"></Switch>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer expandable="true" expanded="true" title="Quotations">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<t:Table rows="{path:'QuotationModel>/'}" selectionMode="MultiToggle" visibleRowCount="4" ariaLabelledBy="title"
+									rowSelectionChange="onQuotationRowSelection" width="auto">
+									<t:extension>
+										<Toolbar>
+											<content>
+												<ToolbarSpacer/>
+												<core:Icon src="sap-icon://synchronize" color="#1470dc"/>
+											</content>
+										</Toolbar>
+									</t:extension>
+									<t:columns>
+										<t:Column width="8rem">
+											<Label text="Dealer Code"/>
+											<t:template>
+												<Text text="{QuotationModel>Dealer_Code}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Dealer Name"/>
+											<t:template>
+												<Text text="{QuotationModel>Dealer_Name}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="9rem">
+											<Label text="Quotation Number"/>
+											<t:template>
+												<Text text="{QuotationModel>Quotation_No}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Service Type"/>
+											<t:template>
+												<Text text="{QuotationModel>Srv_Type_Desc}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Date"/>
+											<t:template>
+												<Text text="{QuotationModel>Date}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Amount"/>
+											<t:template>
+												<Text text="{QuotationModel>Amount}"/>
+											</t:template>
+										</t:Column>
+										<t:Column width="8rem">
+											<Label text="Status"/>
+											<t:template>
+												<Text text="{QuotationModel>Status}"></Text>
+											</t:template>
+										</t:Column>
+									</t:columns>
+								</t:Table>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

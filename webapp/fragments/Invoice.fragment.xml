@@ -1,0 +1,376 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table">
+	<VBox id="Invoice" visible="{oLocalJsonModel>/InvoiceTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<!-- <Label text="Invoice Number"></Label>
+			<Input width="8rem" class="sapUiSizeCompact"></Input> -->
+			<!-- <ToolbarSeparator></ToolbarSeparator>
+			<Button text="Request IRN" type="Accept" press="onPressCNIRNs"></Button>
+			<Button text="Request QR Code" type="Accept"></Button>
+			<ToolbarSeparator></ToolbarSeparator> -->
+			<Button text="Print Proforma" type="Emphasized" press="oninvoiceprintprofroma" enabled="{oLocalJsonModel>/invoiceprintoroframa}" ></Button>
+			<Button text="Print Invoice" type="Emphasized" press="oninvoiceprintinvoice" enabled="{oLocalJsonModel>/invoiceprint}" ></Button>
+			<Button text="Print Creditnote" type="Emphasized" press="oninvoiceprintcreditnote" enabled="{oLocalJsonModel>/incrdvoiceprint}" ></Button>
+			<Button text="Cancel" type="Reject" press="Oncancelinvoice" enabled="{oLocalJsonModel>/Clickancelflag}"></Button>
+			<!-- <Button text="Generate CN" type="Reject"></Button>
+			<Button text="Request CN IRN" type="Reject" press="onPressCNIRNs"></Button> -->
+			<!-- <ToolbarSeparator></ToolbarSeparator> -->
+			<!-- <Button text="Close" type="Accept"></Button> -->
+		</OverflowToolbar>
+		<Table growing="true" alternateRowColors="true" items="{InvoiceListInfoModel>/}" inset="false" class="sapUiTinyMarginTop mobileTableView" mode="SingleSelectMaster" selectionChange="onSelectInvoice">
+			<columns>
+				<!-- <Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text=""/>
+				</Column> -->
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Type"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Invoice Number"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Invoice Date and Time"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Status"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Bill To"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Active" >
+					<cells>
+						<!-- <CheckBox select="onSelectInvoice"></CheckBox> -->
+						<Text text="{InvoiceListInfoModel>Type}"/>
+						<Text text="{InvoiceListInfoModel>Invoice_No}"/>
+						<Text text="{InvoiceListInfoModel>Invoice_Date_Time}"/>
+						<Text text="{InvoiceListInfoModel>Status}"/>
+						<Text text="{InvoiceListInfoModel>Bill_To}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<Panel visible="false" expandable="true" headerText="Invoice Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="GST Invoice">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/GST_Invoice1}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Status">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Status}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IRN Requested Date">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/IRN_Requested_Date}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IRN Error Message">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/IRN_Error_Msg}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Invoice Date">
+								<f:fields>
+								<!-- <DatePicker value="{'path':'oLocalJsonModel>/InvoiceInfoModel/Invoice_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					class="sapUiSmallMarginBottom"/> -->
+					<!-- <DateTimePicker
+									value="{'path':'oLocalJsonModel>/InvoiceInfoModel/Invoice_Date','type': 'sap.ui.model.type.DateTime', 'formatOptions': { 'pattern': 'M/d/yy h:mm a' }}"
+									class="sapUiSizeCompact" visible="{= ${subletModel>Flag} === '' ? true:false}" enabled="false"></DateTimePicker> -->
+								
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Invoice_Date}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Invoice Amount">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Invoice_Amount}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IRN Number">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/IRN_Number}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Invoice Type">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Invoice_Type}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Remarks">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Remarks}" enabled="{oLocalJsonModel>/invoiceactiveflag}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="IRN Received Date">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/IRN_Received_Date}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel visible="false" expandable="true" headerText="Payment Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Payment Mode">
+								<f:fields>
+								<Select  width="70%" items="{path: 'oLocalJsonModel>/invoicepaymentmodeset'}"  selectedKey="{oLocalJsonModel>/InvoiceInfoModel/Payment_Mode}" enabled="{oLocalJsonModel>/invoiceactiveflag}">
+						<core:Item key="{oLocalJsonModel>payMode}" text="{oLocalJsonModel>payMode}"/>
+									</Select>
+								<!-- <Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Payment_Mode}" ></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Bank Name">
+								<f:fields>
+								<Select  width="70%" items="{path: 'oLocalJsonModel>/invoicebanknamesset'}"  selectedKey="{oLocalJsonModel>/InvoiceInfoModel/Bank_Name}" enabled="{oLocalJsonModel>/invoiceactiveflag}">
+						<core:Item key="{oLocalJsonModel>bankName}" text="{oLocalJsonModel>bankName}"/>
+									</Select>
+									<!-- <Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Bank_Name}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+						<f:FormElement label="UTR#">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/UTR}" enabled="{= ${oLocalJsonModel>/invoiceactiveflag} === true ? ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'CASH' || ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'DEBIT CARD' || ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'CREDIT CARD' ? true : false : false}" ></Input>
+								</f:fields>
+							</f:FormElement>
+							
+							<f:FormElement label="UTR Date">
+								<f:fields>
+								<DatePicker value="{'path':'oLocalJsonModel>/InvoiceInfoModel/UTR_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					class="sapUiSmallMarginBottom" enabled="{= ${oLocalJsonModel>/invoiceactiveflag} === true ? ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'CASH' || ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'DEBIT CARD' || ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'CREDIT CARD' ? true : false : false}" />
+									<!-- <Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/UTR_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="DD/Cheque #">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/DD_Check}" enabled="{= ${oLocalJsonModel>/invoiceactiveflag} === true ? ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'DD' || ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'CHEQUE' ? true : false : false}" ></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="DD/Cheque Date">
+								<f:fields>
+								<DatePicker value="{'path':'oLocalJsonModel>/InvoiceInfoModel/DD_Check_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					class="sapUiSmallMarginBottom" enabled="{= ${oLocalJsonModel>/invoiceactiveflag} === true ? ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'DD' || ${oLocalJsonModel>/InvoiceInfoModel/Payment_Mode} === 'CHEQUE' ? true : false : false}" />
+									<!-- <Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/DD_Check_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel visible="false" expandable="true" headerText="Customer Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Bill To Account">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Biil_To_Account}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Customer Total Amount">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Customer_Total_Amt}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Aggrement Name">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Agreement_Name}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Customer GSTIN">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Customer_GSTIN}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Customer Amount">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Customer_Amount}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Loyalty Points Redeemed">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Loyalty_Points_Redeemed}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="SEZ Flag">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/SEZ_Flag}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Parts TCS Tax Amount">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Parts_TCS_Tax_Amount}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="KAM Discount">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/KAM_Discount}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel visible="false" expandable="true" headerText="Insurer Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Insurer Name">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Insurer_Name}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Insurer Total">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Insurer_Total}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Insurer GSTIN">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Insurer_GSTIN}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Insurance Policy Deductible">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Insurance_Policy_Deductible}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel visible="false" expandable="true" headerText="Cancellation Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Cancelled Invoice No">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Cancelled_Invoice_No}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CN IRN Requested Date">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/CN_IRN_Requested_Date}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CN IRN Error Message">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/CN_IRN_Error_Msg}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Cancelled/Returned Date">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Cancelled_Date}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CN IRN Number">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/CN_IRN_No}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Credit Note Number">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/Credit_Note_No}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="CR IRN Received Date">
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{oLocalJsonModel>/InvoiceInfoModel/CN_IRN_Received_Date}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+	</VBox>
+</core:FragmentDefinition>

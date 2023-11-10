@@ -1,0 +1,183 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZJOB_CARD_SRV" xml:lang="en" sap:schema-version="1">
+            <Annotation
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+                <EntityType Name="Ass_Veh_List" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Reg_No"/>
+                        <PropertyRef Name="VIN"/>
+                    </Key>
+                    <Property Name="Reg_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Reg_No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Cust_Name" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cust_Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Appmnt_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Appmnt_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Srv_Sub_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Srv_Sub_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Veh_Entry_Date" Type="Edm.DateTime" Precision="0" sap:unicode="false" sap:label="Veh_Entry_Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Appmnt_Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Appmnt_Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Cust_Info" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Cust_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cust_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Cust_Name" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cust_Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="City" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Postal_Code" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Postal_Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Street" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Country" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Mobile" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mobile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Email" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Email" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Cust_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Cust_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Vehicle_Info" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Reg_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Reg_No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Model" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Model" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Sale_Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Sale_Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Prev_Kms" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Prev_Kms" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Curr_Kms" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Curr_Kms" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Prev_Hrs" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Prev_Hrs" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Curr_Hrs" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Curr_Hrs" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Variant" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Variant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Warranty_Info" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                        <PropertyRef Name="Wty_Type"/>
+                        <PropertyRef Name="Start_Date"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Wty_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wty_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Start_Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Start_Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="End_Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="End_Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Kms" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kms" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Status" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Color" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Color" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Open_Recall_Mkt_Camp" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                        <PropertyRef Name="Campaign"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Campaign" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Campaign" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Priority" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Priority" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Attachment" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Attachment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Remarks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Remarks" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Insurance_Details" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                        <PropertyRef Name="Ins_Type"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Ins_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ins_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Policy_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Policy_No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Policy_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Policy_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Valid_From" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Valid_From" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Valid_To" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Valid_To" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="GSTN_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="GSTN_No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Open_Complaints" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                        <PropertyRef Name="Ticket_No"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Ticket_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ticket_No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Complaint_Det" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Complaint_Det" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Dealer" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Dealer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Remarks" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Remarks" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Service_History" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="VIN"/>
+                        <PropertyRef Name="RO_No"/>
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="RO_No" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="RO_No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="RO_Date" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="RO_Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Dealership" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Dealership" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Service_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Service_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Job_Desc" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Job_Desc" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Mileage" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mileage" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Drop_Down" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Value"/>
+                        <PropertyRef Name="Input"/>
+                    </Key>
+                    <Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Input" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Input" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Sub_Srv_SH" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Service_Type"/>
+                        <PropertyRef Name="Value"/>
+                    </Key>
+                    <Property Name="Service_Type" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Service_Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityType Name="Labor_SH" sap:content-version="1">
+                    <Key>
+                        <PropertyRef Name="Value"/>
+                        <PropertyRef Name="VIN"/>
+                    </Key>
+                    <Property Name="Value" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Value" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VIN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Flag" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                    <Property Name="Msg" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Msg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                </EntityType>
+                <EntityContainer Name="ZJOB_CARD_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                    <EntitySet Name="Ass_Veh_ListSet" EntityType="ZJOB_CARD_SRV.Ass_Veh_List" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Cust_InfoSet" EntityType="ZJOB_CARD_SRV.Cust_Info" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Veh_InfoSet" EntityType="ZJOB_CARD_SRV.Vehicle_Info" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Warranty_InfoSet" EntityType="ZJOB_CARD_SRV.Warranty_Info" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Open_Recall_Mkt_CampSet" EntityType="ZJOB_CARD_SRV.Open_Recall_Mkt_Camp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Insurance_DetailsSet" EntityType="ZJOB_CARD_SRV.Insurance_Details" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Open_ComplaintsSet" EntityType="ZJOB_CARD_SRV.Open_Complaints" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Service_HistorySet" EntityType="ZJOB_CARD_SRV.Service_History" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Drop_DownSet" EntityType="ZJOB_CARD_SRV.Drop_Down" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Sub_Srv_SHSet" EntityType="ZJOB_CARD_SRV.Sub_Srv_SH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                    <EntitySet Name="Labor_SHSet" EntityType="ZJOB_CARD_SRV.Labor_SH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                </EntityContainer>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZJOB_CARD_SRV/$metadata"/>
+                    <atom:link
+                        xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZJOB_CARD_SRV/$metadata"/>
+                    </Schema>
+                </edmx:DataServices>
+            </edmx:Edmx>

@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog title="" contentWidth="35%" contentHeight="auto">
+		<VBox class="sapUiSmallMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:FormElement>
+							<Label text="JC" />
+							<f:fields>
+								<Input value="{localJCDeatils>/RepairOrderNo}" enabled="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Reg No" />
+							<f:fields>
+								<Input value="{localJCDeatils>/RegNo}" enabled="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Purpose"/>
+							<f:fields>
+								<ComboBox items="{path: 'PurposeModel>/'}" class="sapUiSizeCompact" selectedKey="{RoadTestPopUpInfoModel>/Purpose}" >
+									<core:Item key="{PurposeModel>Value}" text="{PurposeModel>Description}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Gate Out Kms"/>
+							<f:fields>
+								<Input value="{RoadTestPopUpInfoModel>/Gate_Out_Kms}" enabled="false"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Driver/Foreman" required="true"/>
+							<f:fields>
+								<ComboBox items="{path: 'ForemanModel>/'}" class="sapUiSizeCompact" selectedKey="{RoadTestPopUpInfoModel>/Driver_Foreman}" change="handleSelectionForemanDPJC">
+									<core:Item key="{ForemanModel>Value}" text="{ForemanModel>Description}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Instruction" required="true"/>
+							<f:fields>
+								<Input value="{RoadTestPopUpInfoModel>/Instruction}"/>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Cancel" press="onCancelRoadTest" type="Reject"/>
+		</beginButton>
+		<endButton>
+			<Button text="Create" press="onCreateRoadTestPopupInfo" type="Accept"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

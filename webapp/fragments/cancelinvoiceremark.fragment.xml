@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="Remark">
+		<content>
+			<HBox>
+			<Label required="true" text="Reason for cancel" class="sapUiSmallMarginBegin sapUiTinyMarginTop"></Label>
+			<!-- <Text text="Remarks if any" class="sapUiSmallMarginBegin sapUiTinyMarginTop"></Text> -->
+			<Select  items="{path: 'oLocalJsonModel>/invoicecancelremarksset'}" selectedKey="{oLocalJsonModel>/Cancleinvoiceremarks}" >
+						<core:Item key="{oLocalJsonModel>RejectionReason}" text="{oLocalJsonModel>RejectionReason}"/>
+					</Select>
+			</HBox>
+		</content>
+		<buttons>
+			<Button text="Cancel" type="Reject" press="oninvoiceCanceldial"></Button>
+			<Button text="Submit" press="oninvoicecancleconfirmDial" type="Accept"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

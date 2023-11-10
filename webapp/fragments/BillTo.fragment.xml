@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<Dialog id="BillToDialog" title="Bill To"  resizable="true" draggable="true"
+		xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<HBox>
+		<Label text="Bill To" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+			<ComboBox id="PCRBillto" class="sapUiTinyMarginBegin" change="onBillToChange"
+				items="{
+					path: 'PCRBillToModel>/'
+				}">
+				<core:Item key="{PCRBillToModel>BILL_TO}" text="{PCRBillToModel>BILL_TO}"  />
+			</ComboBox>
+		</HBox>
+	    <beginButton>
+		<Button text="ok"   press="onBilltoSelect"/>
+		</beginButton>
+		<endButton>
+			<Button text="close"  press="onBilltoClose" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

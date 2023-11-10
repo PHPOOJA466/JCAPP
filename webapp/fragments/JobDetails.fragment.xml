@@ -1,0 +1,446 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:table="sap.ui.table">
+	<VBox id="JobDetails" visible="{oLocalJsonModel>/JobDetailsTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="8rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="8rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+			<Button icon="sap-icon://add" press="onAddJobItems" class="plusClass" enabled="{oLocalJsonModel>/jobTypeEnable}"></Button>
+		</OverflowToolbar>
+		<VBox id="jobDetailsID">
+			<OverflowToolbar class="sapUiSmallMarginTop">
+				<Label text="Packages" class="sapUiSizeCompact"></Label>
+				<Input id="packageListId" width="10rem" class="sapUiSizeCompact" submit="onPackage"></Input>
+				<!--<SearchField width="10rem" class="sapUiTinyMarginEnd" search="onPackageSearch"/>-->
+				<core:Icon class="sapUiSmallMarginBegin" src="sap-icon://synchronize" press="onLoadSelectedPakages"></core:Icon>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Label text="Packages History" class="sapUiSizeCompact"></Label>
+				<!-- <SearchField width="10rem" class="sapUiSizeCompact" search="onPackageHistory"/> -->
+				<Input width="10rem"  showSuggestion="true" class="sapUiSizeCompact"
+									suggestionItems="{oLocalJsonModel>/Packagehistorydata}" 
+									>
+									<suggestionItems>
+										<core:ListItem  text="{oLocalJsonModel>Description}" key="{oLocalJsonModel>Description}"/>
+									</suggestionItems>
+								</Input>
+			</OverflowToolbar>
+			<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+				<List id="idList" items="{path:'PackageModel>/'}" rememberSelections="true" selectionChange="onCheckSelect" mode="MultiSelect"
+					includeItemInSelection="true" width="300px" visible="false" class="sapUiSmallMarginBegin">
+					<items>
+						<StandardListItem  title="{PackageModel>Package}"/>
+					</items>
+				</List>
+				<List id="IdPackHistory" items="{PackageHistoryModel>/}" visible="false">
+					<StandardListItem title="{PackageHistoryModel>Package_Name}"/>
+				</List>
+			</FlexBox>
+			<ScrollContainer width="100%" height="auto" horizontal="true" vertical="true">
+				<Table growing="true" items="{jobDetailsModel>/}" alternateRowColors="true" inset="false"
+					class="sapUiTinyMarginTop mobileTableView">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Customer Voice" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+							<Text text="Concern Description" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Job Source"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="11rem">
+							<Label text="Status" required="true" design="Bold"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Approval"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Action taken and Observation" maxLines="4" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Not Attending Reason" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Repeat" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Repeat Reason" maxLines="3" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="Fault Category" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+							<Text text="QI Rework and New Job" maxLines="2" class="textBoldClass"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+							<Text text="Stock"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+							<Text text="Remarks"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="9rem">
+							<Text text=""/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle" type="Navigation" press="onNavToJobItemDetails">
+							<cells>
+								<Input id="CustVoiceId" value="{jobDetailsModel>Package}" submit="onCustomerVoice"
+									editable="{= ${jobDetailsModel>editable} === 'true'? true: false }" class="sapUiSizeCompact"></Input>
+								<Text text="{jobDetailsModel>Description}"/>
+								<Text text="{jobDetailsModel>JobSource}"/>
+								<!--<Text text="{jobDetailsModel>Status}"/>-->
+								<ComboBox id="idJCDStatus" items="{path:'JobDetailStatus>/', templateShareable: false}" selectedKey="{jobDetailsModel>Status}" change="onChangeJobStatus"
+									class="sapUiSizeCompact" showValueStateMessage="false" valueState="{path:'jobDetailsModel>Status',formatter:'.formatter.formatIssueType'}">
+									<core:Item text="{JobDetailStatus>Description}" key="{JobDetailStatus>Value}"/>
+								</ComboBox>
+								<Text text="{jobDetailsModel>Approval}"/>
+								<core:Icon src="sap-icon://edit" color="#4b4b4b" press="onPressActionTakenObs" class="Icons"></core:Icon>
+								<!--<Input value="{jobDetailsModel>Observation}" class="sapUiSizeCompact"/>-->
+								<ComboBox items="{path:'MotAttendingReasonsModel>/'}" class="sapUiSizeCompact" selectedKey="{jobDetailsModel>NtAttendRsn}">
+									<core:Item key="{MotAttendingReasonsModel>Value}" text="{MotAttendingReasonsModel>Description}"/>
+								</ComboBox>
+								<Switch enabled="false" state="{jobDetailsModel>Repeat}" customTextOn=" " customTextOff=" " class="sapUiSizeCompact Mainswitch"></Switch>
+								<ComboBox items="{path:'RepeatReasonsModel>/'}" class="sapUiSizeCompact" selectedKey="{jobDetailsModel>RptRsn}" enabled="false">
+									<core:Item key="{RepeatReasonsModel>Value}" text="{RepeatReasonsModel>Description}"/>
+								</ComboBox>
+								<Text text="{jobDetailsModel>FaultCat}"/>
+								<!--<Switch class="sapUiSizeCompact Mainswitch" customTextOn="Y" customTextOff="N"></Switch>-->
+								<!--<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"/>-->
+								<Switch state="{jobDetailsModel>QI_Rework}" enabled="false" class="sapUiSizeCompact Mainswitch" customTextOn=" " customTextOff=" "></Switch>
+								<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+									state="{path:'jobDetailsModel>Stock', formatter:'.formatter.IndicatorState'}"/>
+								<HBox>
+									<core:Icon src="sap-icon://edit" color="#4b4b4b" press="onEdit" class="Icons"></core:Icon>
+								</HBox>
+								<HBox>
+									<core:Icon src="sap-icon://document-text" color="#045fa0" class="Icons sapUiTinyMarginBegin"></core:Icon>
+									<core:Icon src="sap-icon://decline" color="red"  class="Icons sapUiTinyMarginBegin" press="onPressJobDetailsDelete"></core:Icon>
+									<core:Icon src="sap-icon://alert" color="#045fa0" press="onPressPCR" class="Icons sapUiTinyMarginBegin"></core:Icon>
+									<core:Icon  src="sap-icon://camera" color="#045fa0" class="Icons sapUiTinyMarginBegin"  press="JCCapturecamera"></core:Icon>
+									<core:Icon src="sap-icon://card" color="#045fa0" class="Icons sapUiTinyMarginBegin" press="JCDisplayimages"></core:Icon>
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</VBox>
+		<VBox id="jobItemDetailsID" visible="false">
+			<Button icon="sap-icon://nav-back" press="onPressNavBackJobDetails"></Button>
+			<OverflowToolbar>
+				<content>
+					<Label text="Customer Voice" design="Bold"></Label>
+					<Input value="{oLocalJsonModel>/SelectedJobItem/Package}" class="sapUiSizeCompact" width="9rem" editable="false"></Input>
+					<ToolbarSeparator></ToolbarSeparator>
+					<Label text="Concern Description" design="Bold"></Label>
+					<Input value="{oLocalJsonModel>/SelectedJobItem/Description}" class="sapUiSizeCompact" width="15rem" editable="false"></Input>
+					<ToolbarSeparator></ToolbarSeparator>
+					<Label text="Status" design="Bold"></Label>
+					<Input value="{localJCDeatils>/JobStatusDesc}" class="sapUiSizeCompact" width="10rem" editable="false"></Input>
+					<ToolbarSeparator></ToolbarSeparator>
+					<Label text="Stock" design="Bold"></Label>
+					<ProgressIndicator class="DicmProgressIndicatorClass" percentValue="100" showValue="false"
+						state="{path:'oLocalJsonModel>/SelectedJobItem/Stock', formatter:'.formatter.IndicatorState'}"/>
+					<ToolbarSpacer></ToolbarSpacer>
+				</content>
+			</OverflowToolbar>
+			<OverflowToolbar>
+				<ToolbarSpacer></ToolbarSpacer>
+				<Button text="OEM Vendor Service" type="Emphasized" press="onPressOEMVendorService"></Button>
+				<Button text="Request for Bypass" type="Emphasized" press="onPressByPass"></Button>
+				<Button text="Swap" type="Emphasized" press="onPressSwap"></Button>
+				<Button text="Regroup" type="Emphasized" press="onpressRegroup"></Button>
+				<Button visible="true" icon="sap-icon://action" press="onFileUploadBtn" type="Emphasized"></Button>
+			</OverflowToolbar>
+			<table:TreeTable id="TreeTableitem" rows="{path:'jobItemDetailsModel>/Data', parameters: {arrayNames:['JobItmDtls']}}"
+				selectionMode="MultiToggle" threshold="100" rowSelectionChange="onRowSelected" enableSelectAll="false" ariaLabelledBy="title"
+				toggleOpenState="toggleOpenState" visibleRowCount="10" alternateRowColors="true" width="100%" class="sapUiTinyMarginTop mobileTableView">
+				<table:columns>
+					<table:Column width="10rem" hAlign="Center">
+						<Label text="Item Type" required="true"/>
+						<table:template>
+							<VBox>
+								<ComboBox id="idCombo" items="{path:'jobItemTypeModel>/'}" selectedKey="{jobItemDetailsModel>Item_Type}"
+									visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }" enabled="{= ${jobItemDetailsModel>Db_Flg} === 'X'? false: true }"
+									class="sapUiSizeCompact" change="onChangetItemType">
+									<core:Item key="{jobItemTypeModel>Value}" text="{jobItemTypeModel>Value}"/>
+								</ComboBox>
+								<Text text="{jobItemDetailsModel>Item_Type}" visible="{= ${jobItemDetailsModel>Flag} === ''? true: false }"></Text>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="12rem" hAlign="Center">
+						<Label text="Sublet/Deput Number"/>
+						<table:template>
+							<HBox>
+								<Text text="{jobItemDetailsModel>Sublet_ID}"></Text>
+							</HBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Code"/>
+						<table:template>
+							<Input value="{jobItemDetailsModel>Code}" enabled="false" class="sapUiSizeCompact"></Input>
+						</table:template>
+					</table:Column>
+					<table:Column width="18rem" hAlign="Center">
+						<Label text="Description"/>
+						<table:template>
+							<VBox>
+								<Input class="sapUiSizeCompact" enabled="false"
+									visible="{= ${jobItemDetailsModel>Flag} === 'X' &amp;&amp; ${jobItemDetailsModel>Item_Type} !== 'P' &amp;&amp; ${jobItemDetailsModel>Item_Type} !== 'L'}"></Input>
+								<Input value="{jobItemDetailsModel>Description}" suggest="onSuggest" showSuggestion="true" class="sapUiSizeCompact"
+									enabled="{= ${jobItemDetailsModel>Db_Flg} === 'X'? false: true }"
+									suggestionItems="{path:'DescriptionPartsModel>/',templateShareable: false}" suggestionItemSelected="onSuggestedItemSelected"
+									valueHelpOnly="true" visible="{= ${jobItemDetailsModel>Flag} === 'X' &amp;&amp; ${jobItemDetailsModel>Item_Type} === 'P'}">
+									<suggestionItems>
+										<core:ListItem additionalText="{DescriptionPartsModel>Value}" text="{DescriptionPartsModel>Description}" key="{DescriptionPartsModel>Value}"/>
+									</suggestionItems>
+								</Input>
+								<Input value="{jobItemDetailsModel>Description}" suggest="onSuggest" showSuggestion="true" class="sapUiSizeCompact"
+									suggestionItems="{path:'DescriptionLabourModel>/',templateShareable: false}" suggestionItemSelected="onSuggestedItemSelected"
+									valueHelpOnly="true" enabled="{= ${jobItemDetailsModel>Db_Flg} === 'X'? false: true }"
+									visible="{= ${jobItemDetailsModel>Flag} === 'X' &amp;&amp; ${jobItemDetailsModel>Item_Type} === 'L'}">
+									<suggestionItems>
+										<core:ListItem additionalText="{DescriptionLabourModel>Value}" text="{DescriptionLabourModel>Description}"
+											key="{DescriptionLabourModel>Value}"/>
+									</suggestionItems>
+								</Input>
+								<Text text="{jobItemDetailsModel>Description}" visible="{= ${jobItemDetailsModel>Flag} === '' ? true:false}"></Text>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Ordered Qty" required="true"/>
+						<table:template>
+							<VBox>
+								<Input required="true" value="{jobItemDetailsModel>Ordered_Qty}" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"
+									class="sapUiSizeCompact" editable="{= ${jobItemDetailsModel>Item_Type} === 'L' ? false: true}"></Input>
+								<Input value="{jobItemDetailsModel>Ordered_Qty}" visible="{= ${jobItemDetailsModel>Flag} === ''? true: false }" class="sapUiSizeCompact"
+									editable="{= ${jobItemDetailsModel>Flag} === ''? false: true }"></Input>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="UOM"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>UOM}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Bill To" required="true"/>
+						<table:template>
+							<VBox>
+								<ComboBox id="idBillTo" items="{path:'jobItemBillToModel>/'}" selectedKey="{jobItemDetailsModel>Bill_To}" class="sapUiSizeCompact"
+									change="onChangeBillTo" selectionChange="onSelectionValueChange" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }">
+									<core:Item key="{jobItemBillToModel>Value}" text="{jobItemBillToModel>Value}"/>
+								</ComboBox>
+								<Text text="{jobItemDetailsModel>Bill_To}" visible="{= ${jobItemDetailsModel>Flag} === ''? true: false }"></Text>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Damage Code"/>
+						<table:template>
+							<VBox>
+								<Input value="{jobItemDetailsModel>Damage_Code}" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }" class="sapUiSizeCompact"
+									showValueHelp="true" valueHelpRequest="onDamageCodeValueHelp"></Input>
+								<Input value="{jobItemDetailsModel>Damage_Code}" visible="{= ${jobItemDetailsModel>Flag} === ''? true: false }" class="sapUiSizeCompact"
+									editable="{= ${jobItemDetailsModel>Flag} === ''? false: true }"></Input>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="8rem" hAlign="Center">
+						<Label text="WTY Type" design="Bold"/>
+							<table:template>
+								<VBox>
+									<ComboBox id="idWarrentyType" items="{path:'warrentyModel>/LocalWarrenty',templateShareable: false}" 
+									selectedKey="{jobItemDetailsModel>WtyTyp}">
+										<core:Item key="{warrentyModel>WtyTyp}" text="{warrentyModel>WtyTyp}"/>
+									</ComboBox>
+								</VBox>
+							</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Casual/Conseq"/>
+						<table:template>
+							<SegmentedButton visible="{= ${jobItemDetailsModel>Flag} === '' ? false:true}" class="casualConsequesl" selectionChange="onCasualChange"
+								selectedKey="{= ${jobItemDetailsModel>Casual_Part} === 'X' ? 'X' : (${jobItemDetailsModel>Casual_Part} === 'Y' ? 'Y' : '') || 'O'}" 
+								enabled="{= ${jobItemDetailsModel>Db_Flg} === '' ? true : false}" >
+									<items>
+										<SegmentedButtonItem text="CSL" key="X"/>
+										<SegmentedButtonItem text="O" key="O"/>
+										<SegmentedButtonItem text="CQL" key="Y" enabled="{jobItemDetailsModel>enableCQL}"/>
+									</items>
+							</SegmentedButton>
+							<!-- <Switch class="sapUiSizeCompact Mainswitch" state="{jobItemDetailsModel>Casual_Part}" customTextOff=" " customTextOn=" "
+								enabled="{= ${jobItemDetailsModel>Db_Flg} === ''? true:false}" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"
+								change="onCasualChange"></Switch> -->
+							<!--<Switch state="{jobItemDetailsModel>Casual_Part}" class="sapUiSizeCompact Mainswtch" customTextOn=" " customTextOff=" "></Switch>-->
+						</table:template>
+					</table:Column>
+					
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Split%"/>
+						<table:template>
+							<VBox>
+								<Text text="{jobItemDetailsModel>Split}" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"></Text>
+								<Input value="{jobItemDetailsModel>Split}" visible="{= ${jobItemDetailsModel>Flag} === ''? true: false }" class="sapUiSizeCompact"
+									liveChange="handleLiveChangeSplit" change="onSplitValue"></Input>
+							</VBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Status" required="true"/>
+						<table:template>
+							<ComboBox id="ComboJobItmStatus" items="{path:'JobDetailStatus>/', templateShareable: false}" selectedKey="{jobItemDetailsModel>Status}" class="sapUiSizeCompact"
+								visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }">
+								<core:Item text="{JobDetailStatus>Description}" key="{JobDetailStatus>Value}"/>
+							</ComboBox>
+							<!--<Text text="{jobItemDetailsModel>Status}"></Text>-->
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Stock"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Stock}" visible="{= ${jobItemDetailsModel>Db_Flg} === 'X' }"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Reserved Qty"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Reserved_Qty}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Higher Assembly Flag"/>
+						<table:template>
+							<CheckBox selected="{jobItemDetailsModel>Higher_Assembly_Flag}" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"></CheckBox>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Child Part Code"/>
+						<table:template>
+							<Input value="{jobItemDetailsModel>Child_Part_Code}" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"/>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Child Part Quantity"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Child_Part_Qty}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Unit Price"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Unit_Price}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Total Price"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Total_Price}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="CGST %"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>CGST_Percent}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="CGST INR"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>CGST_INR}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="SGST %"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>SGST_percent}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="SGST INR"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>SGST_INR}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="IGST %"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>IGST_Percent}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="IGST INR"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>IGST_INR}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Tax Total"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Tax_Total}"></Text>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Total Amount"/>
+						<table:template>
+							<Text text="{jobItemDetailsModel>Total_Amount}"></Text>
+						</table:template>
+					</table:Column>
+					<!--<table:Column width="9rem" hAlign="Center">
+						<Label text="Discount %"/>
+						<table:template>
+							<Input value="{jobItemDetailsModel>Discount_Percent}"></Input>
+						</table:template>
+					</table:Column>-->
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Discount INR"/>
+						<table:template>
+							<Input value="{jobItemDetailsModel>Discount_INR}"></Input>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Rework"/>
+						<table:template>
+							<Switch state="{jobItemDetailsModel>Rework}" enabled="false" class="sapUiSizeCompact Mainswitch" customTextOn=" " customTextOff=" " visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"></Switch>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="First Fill"/>
+						<table:template>
+							<Switch state="{jobItemDetailsModel>First_Fill}"  enabled="false" class="sapUiSizeCompact Mainswitch" customTextOn=" " customTextOff=" " visible="{= ${jobItemDetailsModel>Item_Type} === 'P' ? ${jobItemDetailsModel>Flag} === 'X'? true: false :false }"></Switch>
+						</table:template>
+					</table:Column>
+					<table:Column width="9rem" hAlign="Center">
+						<Label text="Remark"/>
+						<table:template>
+							<HBox>
+								<core:Icon src="sap-icon://edit" press="onEdit" color="#4b4b4b" class="Icons"></core:Icon>
+								<core:Icon src="sap-icon://decline" visible="{= ${jobItemDetailsModel>Flag} === 'X' &amp;&amp; ${oLocalJsonModel>/jobDeleteEnable} === true }"   color="red"
+									class="Icons sapUiTinyMarginBegin" press="onPressJobItemsDelete"></core:Icon>
+									<!--visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }"-->
+								<core:Icon src="sap-icon://camera" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }" color="#045fa0"
+									class="Icons sapUiTinyMarginBegin" press="JCCapturecamera"></core:Icon>
+								<core:Icon src="sap-icon://card" visible="{= ${jobItemDetailsModel>Flag} === 'X'? true: false }" color="#045fa0"
+									class="Icons sapUiTinyMarginBegin" press="JCDisplayimages"></core:Icon>
+							</HBox>
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:TreeTable>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

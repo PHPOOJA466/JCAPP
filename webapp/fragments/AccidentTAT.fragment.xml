@@ -1,0 +1,506 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified" xmlns:t="sap.ui.table">
+	<VBox id="AccidentTAT" visible="{oLocalJsonModel>/AccidentTATTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+		</OverflowToolbar>
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Nature of Accident"></Label>
+			<Input width="8rem" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Nature_of_accident}"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Overall TAT"></Label>
+			<!-- <DatePicker width="8rem"  value="{'path':'accidentTATInfoModel>/Overall_TAT','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+			<Input width="8rem" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Overall_TAT}" enabled="false"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="Vehicle Ready TAT"></Label>
+			<!-- <DatePicker width="8rem" value="{'path':'accidentTATInfoModel>/Vehicle_ready_TAT_date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+			<Input width="8rem" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Vehicle_ready_TAT_date}" enabled="false"></Input>
+			<ToolbarSeparator></ToolbarSeparator>
+			<Label text="VOR Since Incident"></Label>
+			<!-- <DatePicker width="8rem"  value="{'path':'accidentTATInfoModel>/VOR_since_incident','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+			<Input width="8rem" class="sapUiSizeCompact" value="{accidentTATInfoModel>/VOR_since_incident}" enabled="false"></Input>
+		</OverflowToolbar>
+		<!--<Label text="Accident Details" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+		<!--<Label text="Approval Details" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+		<!--<Label text="Documentation Details" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+		<!--<Label text="Survey Details" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+		<!--<Label text="Work Details" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+		<!--<Label text="Payment Details" design="Bold" class="sapUiSmallMarginTop"></Label>-->
+		<Panel expandable="true" headerText="Accident Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Job Type" >
+								<!--<Label text="Job Type:" required="true"/>-->
+								<f:fields>
+									<!--<Text text="{customerInfoModel>/Cust_ID}"/>-->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Job_Type}"></Input> -->
+									<Select required="true" width="100%" items="{path: 'oLocalJsonModel>/Acctypeofjobset'}" change="handleSelectionSA" selectedKey="{accidentTATInfoModel>/Job_Type}">
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Value}"/>
+					</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Insurance Company" >
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<Select required="true" width="100%" items="{path: 'oLocalJsonModel>/inscmpnyset'}" change="handleSelectionSA" selectedKey="{accidentTATInfoModel>/Insurance_Company}">
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Value}"/>
+					</Select>
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Insurance_Company}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Type of Accident">
+								<!--<Label text="Type of Accident:"/>-->
+								<f:fields>
+								<Select width="100%" items="{path: 'oLocalJsonModel>/TYPEOFACCIDENTset'}" change="handleSelectionSA" selectedKey="{accidentTATInfoModel>/Type_Of_Accident}">
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Value}"/>
+					</Select>
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Type_Of_Accident}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Date of Accident" >
+								<!--<Label text="Date of Accident:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker required="true" id="iddateofaccident" value="{'path':'accidentTATInfoModel>/Date_Of_Accident','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker class="sapUiSizeCompact" value="{accidentTATInfoModel>/Date_Of_Accident}" placeholder="Enter Date-Time" id="iddateofaccident" width="100%"   required="true"  />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Date_Of_Accident}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Current Status">
+								<!--<Label text="Current Status:" required="true"/>-->
+								<f:fields>
+									<Select  width="100%" items="{path: 'oLocalJsonModel>/AccCurrentstatset'}" change="handleSelectionSA" selectedKey="{accidentTATInfoModel>/Current_Status}">
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Value}"/>
+					</Select>
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Current_Status}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Comments">
+								<!--<Label text="Comments:" required="true"/>-->
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Comments}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Survey Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Spot Survey Date">
+								<!--<Label text="Job Type:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Date_Of_Accident}" id="idsptsurveydate" value="{'path':'accidentTATInfoModel>/Spot_Survey_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker minDate="{path:'accidentTATInfoModel>/Date_Of_Accident',formatter:'.formatter.stringtodatetimeconversion'}" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Spot_Survey_Date}" id="idsptsurveydate" width="100%"   />
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Spot_Survey_Date}" id="idsptsurveydate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Spot_Survey_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Survey Date After Dismantle">
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<DateTimePicker minDate="{path:'accidentTATInfoModel>/Dismantling_End_Date',formatter:'.formatter.stringtodatetimeconversion'}"  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Survey_Date_After_Dismantle}" id="idsptsurveydateaftdism" width="100%"  />
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Dismantling_End_Date}" id="idsptsurveydateaftdism" value="{'path':'accidentTATInfoModel>/Survey_Date_After_Dismantle','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Survey_Date_After_Dismantle}" id="idsptsurveydateaftdism" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Survey_Date_After_Dismantle}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Survey Date">
+								<!--<Label text="Type of Accident:"/>-->
+								<f:fields>
+								<DateTimePicker minDate="{path:'accidentTATInfoModel>/Spot_Survey_Date',formatter:'.formatter.stringtodatetimeconversion'}"  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Survey_Date}" id="idsurveydate" width="100%"    />
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Spot_Survey_Date}" id="idsurveydate" value="{'path':'accidentTATInfoModel>/Survey_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Survey_Date}" id="idsurveydate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Survey_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Final Survey Date">
+								<!--<Label text="Date of Accident:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Vehicle_Ready_Date}" id="idfnlsurveydate" value="{'path':'accidentTATInfoModel>/Final_Survey_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker required="true" minDate="{path:'accidentTATInfoModel>/Vehicle_Ready_Date',formatter:'.formatter.stringtodatetimeconversion'}"  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Final_Survey_Date}" id="idfnlsurveydate" width="100%"    />
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Final_Survey_Date}" id="idfnlsurveydate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Final_Survey_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Vehicle Ready to Final Survey">
+								<!--<Label text="Current Status:" required="true"/>-->
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Vehicle_Ready_To_Final_Survey}"></Input>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Final Survey to Delivery">
+								<!--<Label text="Comments:" required="true"/>-->
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Final_Survey_To_Delivery}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Documentation Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Documentation Submission Date">
+								<!--<Label text="Job Type:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Date_Of_Accident}" id="iddocsubdate" value="{'path':'accidentTATInfoModel>/Doc_Submission_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  minDate="{path:'accidentTATInfoModel>/Date_Of_Accident',formatter:'.formatter.stringtodatetimeconversion'}" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Doc_Submission_Date}" id="iddocsubdate" width="100%"    />
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Doc_submission_date}" id="iddocsubdate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Doc_Submission_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Estimation Submission Date">
+								<!--<Label text="Type of Accident:"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Gate_In_Date_Time}" id="idestsubdate" value="{'path':'accidentTATInfoModel>/Estimate_Submission_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker minDate="{path:'accidentTATInfoModel>/Gate_In_Date_Time',formatter:'.formatter.stringtodatetimeconversion'}"  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Estimate_Submission_Date}" id="idestsubdate" width="100%"   />
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Estimate_Submission_Date}" id="idestsubdate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Estimate_Submission_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Approval Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Insurance Partial Approval Date">
+								<!--<Label text="Job Type:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Spot_Survey_Date}" id="idInsPartapprdate" value="{'path':'accidentTATInfoModel>/Ins_Partial_Approval_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker minDate="{path:'accidentTATInfoModel>/Spot_Survey_Date',formatter:'.formatter.stringtodatetimeconversion'}" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Ins_Partial_Approval_Date}" id="idInsPartapprdate" width="100%"    />
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Estimate_Submission_Date}" id="idInsPartapprdate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Ins_Partial_Approval_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Customer Final Approval Date" >
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker required="true" minDate="{accidentTATInfoModel>/Survey_Date_After_Dismantle}" id="idCustfinalapprdate" value="{'path':'accidentTATInfoModel>/Customer_Final_Approval_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker required="true"  minDate="{path:'accidentTATInfoModel>/Survey_Date_After_Dismantle',formatter:'.formatter.stringtodatetimeconversion'}" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Customer_Final_Approval_Date}" id="idCustfinalapprdate" width="100%"   />
+								<!-- <DateTimePicker value="{accidentTATInfoModel>/Estimate_Submission_Date}" id="idCustfinalapprdate" width="70%" placeholder="Enter Date-Time" valueFormat="dd/MM/yyyy, hh:mm a" displayFormat="dd/MM/yyyy, hh:mm a" required="true" change="onAsschange" /> -->
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Customer_Final_Approval_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Insurance Final Approval Date">
+								<!--<Label text="Type of Accident:"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idInsfinalapprdate" value="{'path':'accidentTATInfoModel>/Ins_Final_Approval_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker class="sapUiSizeCompact" value="{accidentTATInfoModel>/Ins_Final_Approval_Date}" id="idInsfinalapprdate" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Ins_Final_Approval_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Approval to Work Completion">
+								<!--<Label text="Current Status:" required="true"/>-->
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Approval_To_Work_Completion}" enabled="false"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Work Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="6" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Gate In Date and Time">
+								<!--<Label text="Job Type:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker enabled="false" id="idgateindttime" value="{'path':'accidentTATInfoModel>/Gate_In_Date_Time','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<!-- value="{ 'path': 'accidentTATInfoModel>/Gate_In_Date_Time', 'type': 'sap.ui.model.type.DateTime', 'formatOptions': { 'pattern': 'dd.MM.yyyy h:mm:ss' } }" -->
+					<!-- <DateTimePicker enabled="false" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Gate_In_Date_Time}"  id="idgateindttime" width="70%" placeholder="Enter Date-Time" /> -->
+						<DateTimePicker enabled="false" class=" sapUiSizeCompact" value="{accidentTATInfoModel>/Gate_In_Date_Time}"/>
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Gate_In_Date_Time}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Dismantling Start Date">
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Spot_Survey_Date}" id="idDismanstartdate" value="{'path':'accidentTATInfoModel>/Dismantling_Start_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+
+					<DateTimePicker minDate="{path:'accidentTATInfoModel>/Spot_Survey_Date',formatter:'.formatter.stringtodatetimeconversion'}" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Dismantling_Start_Date}" id="idDismanstartdate" width="100%"/>
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Dismantling_Start_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Parts Order Date">
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idpartorddate" value="{'path':'accidentTATInfoModel>/Parts_Order_No_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Parts_Order_No_Date}" id="idpartorddate" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Parts_Order_No_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Part Order No">
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Parts_Order_Number}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Work Start Date">
+								<!--<Label text="Type of Accident:"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idworkstartdate" value="{'path':'accidentTATInfoModel>/Work_Start_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Work_Start_Date}" id="idworkstartdate" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Work_Start_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Dismantling End Date">
+								<!--<Label text="Date of Accident:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker minDate="{accidentTATInfoModel>/Dismantling_Start_Date}" id="idDismanenddate" value="{'path':'accidentTATInfoModel>/Dismantling_End_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  minDate="{path:'accidentTATInfoModel>/Dismantling_Start_Date',formatter:'.formatter.stringtodatetimeconversion'}"  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Dismantling_End_Date}" id="idDismanenddate" width="100%"   />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Dismantling_End_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Last Parts Received Date">
+								<!--<Label text="Date of Accident:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idlastpartrecdate" value="{'path':'accidentTATInfoModel>/Last_Parts_Received_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Last_Parts_Received_Date}" id="idlastpartrecdate" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Last_Parts_Received_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Reason for delay">
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<Select  width="100%" items="{path: 'oLocalJsonModel>/delayreasonset'}" change="handleSelectionSA" selectedKey="{accidentTATInfoModel>/Reason_For_Delay}">
+						<core:Item key="{oLocalJsonModel>Value}" text="{oLocalJsonModel>Value}"/>
+					</Select>
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Parts_Order_No_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Expected Date of Readiness" >
+								<!--<Label text="Current Status:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker required="true" enabled="false" id="idexpecteddateofred" value="{'path':'accidentTATInfoModel>/Expected_Date_of_Readiness','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  enabled="false" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Expected_Date_of_Readiness}" id="idexpecteddateofred" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Expected_Date_of_Readiness}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Vehicle Ready Date" >
+								<!--<Label text="Comments:" required="true"/>-->
+								<f:fields>
+							<!-- <DatePicker required="true" minDate="{accidentTATInfoModel>/Dismantling_End_Date}" id="idvehreaddate" value="{'path':'accidentTATInfoModel>/Vehicle_Ready_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  required="true" minDate="{path:'accidentTATInfoModel>/Dismantling_End_Date',formatter:'.formatter.stringtodatetimeconversion'}" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Vehicle_Ready_Date}" id="idvehreaddate" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Vehicle_Ready_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Delivery Date" >
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker required="true" enabled="false" id="idDelvierydate" value="{'path':'accidentTATInfoModel>/Delivery_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  enabled="false" class="sapUiSizeCompact" value="{accidentTATInfoModel>/Delivery_Date}" id="idDelvierydate" width="100%"  />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Delivery_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+		<Panel expandable="true" headerText="Payment Details" width="auto" class="sapUiResponsiveMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="5" labelSpanM="6" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="3" columnsM="3" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Insurance Payment Settlement Date">
+								<!--<Label text="Job Type:" required="true"/>-->
+								<f:fields>
+									<!--<Text text="{customerInfoModel>/Cust_ID}"/>-->
+									<!-- <DatePicker id="idinspaysetdt" value="{'path':'accidentTATInfoModel>/Ins_Payment_Settlement_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Ins_Payment_Settlement_Date}" id="idinspaysetdt" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Ins_Payment_Settlement_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Customer Payment Date">
+								<!--<Label text="Insurance Company:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idcustpaydt" value="{'path':'accidentTATInfoModel>/Customer_Payment_Date','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Customer_Payment_Date}" id="idcustpaydt" width="100%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Customer_Payment_Date}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Advance Payment Date #1">
+								<!--<Label text="Type of Accident:"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idadvpaydt" value="{'path':'accidentTATInfoModel>/Advance_Payment_Date1','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Advance_Payment_Date1}" id="idadvpaydt" width="100%"   />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Advance_Payment_Date1}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Advance Payment Amount #1">
+								<!--<Label text="Date of Accident:" required="true"/>-->
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Advance_Payment_Amt1}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement label="Advance Payment Date #2">
+								<!--<Label text="Current Status:" required="true"/>-->
+								<f:fields>
+								<!-- <DatePicker id="idadvpaydt2" value="{'path':'accidentTATInfoModel>/Advance_Payment_Date2','type':'sap.ui.model.type.Date','formatOptions': {'pattern': 'dd/MM/y'}}"
+					change="handleChange"
+					class="sapUiSmallMarginBottom"/> -->
+					<DateTimePicker  class="sapUiSizeCompact" value="{accidentTATInfoModel>/Advance_Payment_Date2}" id="idadvpaydt2" width="70%"    />
+									<!-- <Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Advance_Payment_Date2}"></Input> -->
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement label="Advance Payment Amount #2">
+								<!--<Label text="Comments:" required="true"/>-->
+								<f:fields>
+									<Input class="sapUiSizeCompact" value="{accidentTATInfoModel>/Advance_Payment_Amt2}"></Input>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</Panel>
+	</VBox>
+</core:FragmentDefinition>

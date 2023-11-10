@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<Dialog title="Insurance Details" contentWidth="40%" contentHeight="auto">
+		<VBox class="sapUiSmallMargin">
+			<f:Form editable="false">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:FormElement>
+							<Label text="Insurance Name" required="true"/>
+							<f:fields>
+								<Input showValueHelp="true" class="sapUiSizeCompact" value="{InsuranceDetailModel>/Insurance_Name}" valueHelpRequest="onInsNameValueHelp"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Policy NO" required="true"/>
+							<f:fields>
+								<Input value="{InsuranceDetailModel>/Policy_No}" class="sapUiSizeCompact"></Input>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Policy Type"/>
+							<f:fields>
+								<ComboBox items="{PolicyTypeModel>/}" selectedKey="{InsuranceDetailModel>/Policy_Type}" class="sapUiSizeCompact" width="10rem">
+									<core:Item text="{PolicyTypeModel>Description}" key="{PolicyTypeModel>Value}"/>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Valid From"/>
+							<f:fields>
+								<DatePicker value="{InsuranceDetailModel>/Valid_From}" maxDate="{InsuranceDetailModel>/MaxMinDate}" class="sapUiSizeCompact"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Valid Upto"/>
+							<f:fields>
+								<DatePicker value="{InsuranceDetailModel>/Valid_To}" minDate="{InsuranceDetailModel>/MaxMinDate}" class="sapUiSizeCompact"/>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Cancel" press="onCancelInsuranceAdd"/>
+		</beginButton>
+		<endButton>
+			<Button text="Create" press="onCreateInsuranceAdd"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

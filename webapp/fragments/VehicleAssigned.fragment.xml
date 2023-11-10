@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Table items="{path:'vihicleAssignedModel>/',templateShareable:false}" growing="true" growingThreshold="100"
+		noDataText="Data not available">
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<SearchField width="30%" class="sapUiSmallMargin" liveChange="onSearch"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<ObjectIdentifier title="{i18n>VehicleRegNo}"/>
+			</Column>
+			<Column>
+				<ObjectIdentifier title="{i18n>ModelNo}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<ObjectIdentifier title="{i18n>Customer}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<ObjectIdentifier title="{i18n>Gate-InTime}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<ObjectIdentifier title="{i18n>ServiceType}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<ObjectIdentifier title="{i18n>BookingID}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation">
+				<cells>
+					<Text text="{vihicleAssignedModel>Veh_Reg_No}"/>
+					<Text text="{vihicleAssignedModel>Model_No}"/>
+					<Text text="{vihicleAssignedModel>SA_Name}"/>
+					<Text text="{vihicleAssignedModel>GateIn_Time}"/>
+					<Text text="{vihicleAssignedModel>Srv_Type_Desc}"/>
+					<Text text="{vihicleAssignedModel>SA_No}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

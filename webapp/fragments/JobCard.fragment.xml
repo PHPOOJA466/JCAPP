@@ -1,0 +1,295 @@
+<core:FragmentDefinition xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:table="sap.ui.table" xmlns:unified="sap.ui.unified" xmlns:DT="ndbs.Z_JobCard.Custom" xmlns:dnd="sap.ui.core.dnd">
+	<VBox visible="{oLocalJsonModel>/JoBCardTabFlag}">
+		<HBox>
+			<Label text="Workshop" class="buttonsHeadingClass"></Label>
+			<Label text="Onsite" class="buttonsHeadingClass1"></Label>
+			<Label text="Hold" class="buttonsHeadingClass2"></Label>
+		</HBox>
+		<OverflowToolbar class="TopToolBar" height="7rem">
+			<GenericTile class="totalId" header="{buttonsCountsModel>/Total}" subheader="Total"></GenericTile>
+			<!--<GenericTag text="Total" design="StatusIconHidden" press="onPressTagsTypes" class="customtagboxTotal">-->
+			<!--	<ObjectNumber emphasized="false" class="custTotalButton" number="{buttonsCountsModel>/Total}"/>-->
+			<!--</GenericTag>-->
+			<GenericTag tooltip="Front Office" text="Front Office" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Reception}"/>
+			</GenericTag>
+			<GenericTag tooltip="Creation" text="Creation" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Creation}"/>
+			</GenericTag>
+			<GenericTag tooltip="Approval" text="Approval" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Approval}"/>
+			</GenericTag>
+			<!--<VBox>-->
+			<!--	<Label text="Workshop"></Label>-->
+			<GenericTag tooltip="Allocation" text="Allocation" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Assigment}"/>
+			</GenericTag>
+			<!--</VBox>-->
+			<GenericTag tooltip="Perform(WIP)" text="Perform" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Perform}"/>
+			</GenericTag>
+			<GenericTag tooltip="Final Inspection" text="Inspection" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Inspection}"/>
+			</GenericTag>
+			<GenericTag tooltip="Invoice" text="Invoiced" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/WS_Invoice}"/>
+			</GenericTag>
+			<ToolbarSeparator></ToolbarSeparator>
+			<GenericTag tooltip="Creation" text="Creation" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Creation}"/>
+			</GenericTag>
+			<GenericTag tooltip="Approval" text="Approval" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Approval}"/>
+			</GenericTag>
+			<GenericTag tooltip="Allocation" text="Allocation" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Assignment}"/>
+			</GenericTag>
+			<GenericTag tooltip="Perform(WIP)" text="Perform" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Perform}"/>
+			</GenericTag>
+			<GenericTag tooltip="Final Inspection" text="Inspection" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Inspection}"/>
+			</GenericTag>
+			<GenericTag tooltip="Invoice" text="Invoiced" design="StatusIconHidden" press="onPressTagsTypes" class="customtagbox">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Invoice}"/>
+			</GenericTag>
+			<ToolbarSeparator></ToolbarSeparator>
+			<GenericTag tooltip="Hold" text="Hold" design="StatusIconHidden" press="onPressTagsTypes" class="customtagboxHold">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/ON_Hold}" class="custHoldButtonText"/>
+			</GenericTag>
+		</OverflowToolbar>
+		<OverflowToolbar class="TopToolBar">
+			<GenericTag  text="KAM" design="StatusIconHidden" status="none" class="TagGenericKAM" press="getAssignedCalendarData">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/KAM}" class="TagKAMNum"/>
+			</GenericTag>
+			<GenericTag text="Rakshana" design="StatusIconHidden" status="none" class=" TagGenericRak" press="getAssignedCalendarData">
+				<ObjectNumber emphasized="false" number="{buttonsCountsModel>/Rakshana}" class="TagKAMNum"/>
+			</GenericTag>
+		</OverflowToolbar>
+		<!--<ScrollContainer height="20rem" class="PCScrollcontainer" vertical="true">-->
+		<PlanningCalendar id="planningCalID" startDate="{oLocalJsonModel>startdatePC}" rows="{path: 'oLocalJsonModel>/calendarModel'}" stickyHeader="true"
+			appointmentsVisualization="Filled" class="PlanCalRowCount" appointmentSelect="handleAppointmentSelect">
+			<toolbarContent>
+				<Title text="Vehicle Monitoring Sheet" titleStyle="H3"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow title="{oLocalJsonModel>SaNo} {oLocalJsonModel>SaName}" text="{oLocalJsonModel>Zcount}" 
+					enableAppointmentsDragAndDrop="true" enableAppointmentsResize="true" enableAppointmentsCreate="true" appointmentDrop="handleAppointmentDrop"
+					appointmentDragEnter="handleAppointmentDragEnter" appointmentResize="handleAppointmentResize" appointmentCreate="handleAppointmentCreate"
+					appointments="{oLocalJsonModel>SA_CAL/results}">
+					<customData>
+						<core:CustomData key="mydatacalrowstatus" value="{oLocalJsonModel>Status}" writeToDom="true"></core:CustomData>
+					</customData>
+					<appointments>
+						<unified:CalendarAppointment startDate="{oLocalJsonModel>STimestamp}" endDate="{oLocalJsonModel>ETimestamp}" id="Idappt"
+							title="{= ${oLocalJsonModel>RegNo} === '' ? ${oLocalJsonModel>VinNo} : ${oLocalJsonModel>RegNo}}" text="{oLocalJsonModel>VehType}">
+							<unified:customData>
+								<core:CustomData key="mydatacal" value="{oLocalJsonModel>BookingType}" writeToDom="true"></core:CustomData>
+								<core:CustomData key="mydatacal1" value="{oLocalJsonModel>Status}" writeToDom="true"></core:CustomData>
+								<core:CustomData key="mydatacal2" value="{oLocalJsonModel>CustPriority}" writeToDom="true"></core:CustomData>
+							</unified:customData>
+							<unified:dependents>
+								<ResponsivePopover showHeader="true" title="Vehicle Details" titleAlignment="Center">
+									<content>
+										<f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false"
+											emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
+											<f:content>
+												<Label text="Reg No"></Label>
+												<Text text="{PopoverModel>/RegNo}"/>
+												<Label text="VIN"></Label>
+												<Text text="{PopoverModel>/VinNo}"/>
+												<Label text="Customer Name"></Label>
+												<Text text="{PopoverModel>/CustName}"/>
+												<Label text="Sales Date"></Label>
+												<Text text="{PopoverModel>/VehSalesDate}"/>
+												<Label text="Model"></Label>
+												<Text text="{PopoverModel>/Model}"/>
+												<Label text="Variant"></Label>
+												<Text text="{PopoverModel>/Variant}" width="100px"/>
+											</f:content>
+										</f:SimpleForm>
+									</content>
+								</ResponsivePopover>
+							</unified:dependents>
+						</unified:CalendarAppointment>
+					</appointments>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+		<!--</ScrollContainer>-->
+		<Toolbar>
+			<Button icon="sap-icon://legend" press="onPressAssignedTable" class="sapUiSmallMarginBegin"></Button>
+			<Button icon="sap-icon://appointment-2" press="onPressAssignedTableCalendar"></Button>
+			<ToolbarSpacer/>
+			<Button text="To Be Attended" icon="sap-icon://less" type="Transparent" class="LegendButton whitelegbtn" press="onTableLegendpress"></Button>
+			<Button text="WIP" icon="sap-icon://less" type="Transparent" class="LegendButton yellowlegbtn" press="onTableLegendpress"></Button>
+			<Button text="Hold" icon="sap-icon://less" type="Transparent" class="LegendButton redlegbtn" press="onTableLegendpress"></Button>
+			<Button text="Invoiced" icon="sap-icon://less" type="Transparent" class="LegendButton bluelegbtn" press="onTableLegendpress"></Button>
+			<Button text="Delivered" icon="sap-icon://less" type="Transparent" class="LegendButton greenlegbtn" press="onTableLegendpress"></Button>
+		</Toolbar>
+		<Panel>
+			<PlanningCalendar id="assignedVehCalID" startDate="{oLocalJsonModel>/startdatePC}" rows="{path: 'oLocalJsonModel>/calendarVehModel'}"
+				stickyHeader="true" appointmentsVisualization="Filled" class="PlanCalRowCount" visible="false">
+				<toolbarContent>
+					<SearchField width="150px" placeholder="Search SA" class="serachField SASearch" search="OnSASearchcal"></SearchField>
+				</toolbarContent>
+				<rows >
+					<PlanningCalendarRow title="{oLocalJsonModel>Vin_No}" enableAppointmentsDragAndDrop="true" enableAppointmentsResize="true"
+						enableAppointmentsCreate="true" appointmentDrop="handleAppointmentDrop" appointmentDragEnter="handleAppointmentDragEnter"
+						appointmentResize="handleAppointmentResize" appointments="{oLocalJsonModel>Servicehdrtoitm/results}">
+						<customData>
+							<core:CustomData key="mydatacalrowstatus" value="{oLocalJsonModel>Status}" writeToDom="true"></core:CustomData>
+						</customData>
+						<appointments >
+							<unified:CalendarAppointment startDate="{oLocalJsonModel>Start_time}" endDate="{oLocalJsonModel>End_time}" id="Idappt4"
+								title="{oLocalJsonModel>Stagetext}({oLocalJsonModel>stageActualvalue}/{oLocalJsonModel>Stagetargetvalue})">
+								<unified:customData>
+									<core:CustomData key="mydatacalveh" value="{oLocalJsonModel>Stagecolor}" writeToDom="true"></core:CustomData>
+								</unified:customData>
+							</unified:CalendarAppointment>
+						</appointments>
+					</PlanningCalendarRow>
+				</rows>
+			</PlanningCalendar>
+			<table:Table id="AssignedTableId" class="CalTable" rows="{path:'asignedVehiclesListModel>/'}" selectionMode="None" visibleRowCount="5"
+				enableCellFilter="true" threshold="1000" enableBusyIndicator="true" ariaLabelledBy="title" filter="filterColumn"
+				firstVisibleRowChanged="firstVisibleRowChanged" fixedColumnCount="3" cellClick="onVehicleCellClick">
+				<table:columns>
+				<table:Column filterProperty="Reg_No" autoResizable="true" width="6rem">
+						<Label text="Reg No" tooltip="Reg No" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Reg_No}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Vin_No" autoResizable="true" width="10rem">
+						<Label text="Vehicle" tooltip="Vehicle" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Vin_No}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					
+					<table:Column filterProperty="Job_Card" autoResizable="true" width="6rem">
+						<Label text="Job Card" tooltip="Job Card" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Job_Card}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Service_Type" autoResizable="true" width="12rem">
+						<Label text="Service Type" tooltip="Service Type" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Service_Type}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Status" sortProperty="Status" autoResizable="true" width="7rem" >
+						<Label text="Status" tooltip="Status" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Status}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Appt" autoResizable="true" width="3.2rem">
+						<Label text="Appt" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Appt}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column filterProperty="Gate_In_Time" autoResizable="true" width="8.4rem">
+						<Label text="Gate In Time" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Gate_In_Time}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					
+					<table:Column autoResizable="true" width="8.4rem">
+						<Label text="Delivery Time" design="Bold"/>
+						<table:template>
+							<Text text="{asignedVehiclesListModel>Delivery_Time}" wrapping="false"/>
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="4.5rem">
+						<Label text="24" tooltip="24 Hours Delivery"/>
+						<table:template>
+							<Button  class="btnc" text="{asignedVehiclesListModel>Two_Four_Time}"  tootip="{path:'asignedVehiclesListModel>Two_Four_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>Two_Four_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>Two_Four_Time}"
+								offset1="{= ${asignedVehiclesListModel>Two_Four_Per} >= 100 ? 100 : ${asignedVehiclesListModel>Two_Four_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>Two_Four_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>Two_Four_Per}}%"
+								color1="{asignedVehiclesListModel>Two_Four_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="Fo" tooltip="Front Office"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>Re_Time}"  tootip="{path:'asignedVehiclesListModel>Re_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>Re_Time} === 0 ? false : true}" />
+							<!--<DT:Circle value="60" offset1="10%" offset2="90%" color1="red" color2="black"></DT:Circle>-->
+							<!-- <DT:Circle value="{asignedVehiclesListModel>Re_Time}"
+								offset1="{= ${asignedVehiclesListModel>Re_Per} >= 100 ? 100 : ${asignedVehiclesListModel>Re_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>Re_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>Re_Per}}%"
+								color1="{asignedVehiclesListModel>Re_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="Cr" tooltip="Creation"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>Cr_Time}"  tootip="{path:'asignedVehiclesListModel>Cr_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>Cr_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>Cr_Time}"
+								offset1="{= ${asignedVehiclesListModel>Cr_Per} >= 100 ? 100 : ${asignedVehiclesListModel>Cr_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>Cr_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>Cr_Per}}%"
+								color1="{asignedVehiclesListModel>Cr_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="Ap" tooltip="Approval"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>Ap_Time}" tootip="{path:'asignedVehiclesListModel>Ap_Time', formatter:'.formatter.getBtnToolTip'}"  visible="{= ${asignedVehiclesListModel>Ap_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>Ap_Time}"
+								offset1="{= ${asignedVehiclesListModel>Ap_Per} >= 100 ? 100 : ${asignedVehiclesListModel>Ap_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>Ap_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>Ap_Per}}%" color1="{asignedVehiclesListModel}"
+								color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="Al" tooltip="Allocation"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>As_Time}"  tootip="{path:'asignedVehiclesListModel>As_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>As_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>As_Time}"
+								offset1="{= ${asignedVehiclesListModel>As_Per} >= 100 ? 100 : ${asignedVehiclesListModel>As_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>As_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>As_Per}}%"
+								color1="{asignedVehiclesListModel>As_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="Pe" tooltip="Perform (WIP)"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>Pe_Time}"  tootip="{path:'asignedVehiclesListModel>Pe_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>Pe_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>Pe_Time}"
+								offset1="{= ${asignedVehiclesListModel>Pe_Per} >= 100 ? 100 : ${asignedVehiclesListModel}}%"
+								offset2="{= ${asignedVehiclesListModel>Pe_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>Pe_Per}}%"
+								color1="{asignedVehiclesListModel>Pe_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="In" tooltip="Final Inspection"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>In_Time}"  tootip="{path:'asignedVehiclesListModel>In_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>In_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>In_Time}"
+								offset1="{= ${asignedVehiclesListModel>In_Per} >= 100 ? 100 : ${asignedVehiclesListModel>In_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>In_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>In_Per}}%"
+								color1="{asignedVehiclesListModel>In_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+					<table:Column autoResizable="true" width="3rem">
+						<Label text="IV" tooltip="Invoice"/>
+						<table:template>
+						<Button  class="btnc" text="{asignedVehiclesListModel>Iv_Time}"  tootip="{path:'asignedVehiclesListModel>Iv_Time', formatter:'.formatter.getBtnToolTip'}" visible="{= ${asignedVehiclesListModel>Iv_Time} === 0 ? false : true}" />
+							<!-- <DT:Circle value="{asignedVehiclesListModel>Iv_Time}"
+								offset1="{= ${asignedVehiclesListModel>Iv_Per} >= 100 ? 100 : ${asignedVehiclesListModel>Iv_Per}}%"
+								offset2="{= ${asignedVehiclesListModel>Iv_Per} > 100 ? 0 : 100- ${asignedVehiclesListModel>Iv_Per}}%"
+								color1="{asignedVehiclesListModel>Iv_Color}" color2="black"></DT:Circle> -->
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+		</Panel>
+	</VBox>
+</core:FragmentDefinition>

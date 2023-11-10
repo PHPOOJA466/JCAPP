@@ -1,0 +1,207 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core" xmlns:unified="sap.ui.unified" xmlns:table="sap.ui.table">
+	<VBox id="Deputation" visible="{oLocalJsonModel>/DeputationTabFlag}">
+		<OverflowToolbar class="sapUiSmallMarginTop">
+			<Label text="Reg No:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RegNo}" class="sapUiSizeCompact"></Input>
+			<Label text="JC:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/RepairOrderNo}" class="sapUiSizeCompact"></Input>
+			<Label text="Type:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/SubServiceType}" class="sapUiSizeCompact"></Input>
+			<Label text="Date:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/OverViewHeadrerDate}" class="sapUiSizeCompact"></Input>
+			<Label text="Status:" design="Bold"></Label>
+			<Input width="10rem" enabled="false" value="{localJCDeatils>/Status}" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://search"></core:Icon>
+			<core:Icon src="sap-icon://lightbulb"></core:Icon>
+			<core:Icon src="sap-icon://add" press="onAddDeputation"></core:Icon>
+		</OverflowToolbar>
+		<OverflowToolbar>
+			<Label text="Complaint Date and Time"></Label>
+			<Input width="10rem" class="sapUiSizeCompact"></Input>
+			<Label text="Complaint Number"></Label>
+			<Input width="10rem" class="sapUiSizeCompact"></Input>
+			<Label text="Lat and Long"></Label>
+			<Input width="10rem" class="sapUiSizeCompact"></Input>
+			<Label text="Location"></Label>
+			<Input width="10rem" class="sapUiSizeCompact"></Input>
+			<core:Icon src="sap-icon://locate-me"></core:Icon>
+			<Label text="Reach TAT"></Label>
+			<Input width="10rem" class="sapUiSizeCompact"></Input>
+			<Label text="Recovery TAT"></Label>
+			<Input width="10rem" class="sapUiSizeCompact"></Input>
+		</OverflowToolbar>
+		<Toolbar class="sapUiSmallMarginTop" height="3rem">
+			<ToolbarSpacer/>
+			<Button text="Start" press="onPressDeputationButtons"></Button>
+			<Button text="Reach" type="Emphasized" press="onPressDeputationButtons"></Button>
+			<Button text="Recovery" type="Emphasized" press="onPressDeputationButtons"></Button>
+			<Button text="End" type="Reject" press="onPressDeputationButtons"></Button>
+		</Toolbar>
+		<!--<l:Grid defaultSpan="L8 M12 S12">-->
+		<ScrollContainer height="19rem" width="100%" horizontal="true" vertical="true">
+			<Table items="{DeputationInfoModel>/}" growing="true" growingThreshold="100" noDataText="Data not available">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Trip Number"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="Concern"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="13rem">
+						<Text text="FRM Code"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+						<Text text="Bill To"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="Deputation Type"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="Vehicle Type"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+						<Text text="Reg Number"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+						<Text text="Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Plain Terrain Kms"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Hilly Terrain Kms"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Total Kms"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Plain Amount"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Terrain Amount"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="7rem">
+						<Text text="Total Amount"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="9rem">
+						<Text text="Technical Name"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+						<Text text="Remarks"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="12rem">
+						<Text text="Route"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text=""/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="Start"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="Reach"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="Recovery"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+						<Text text="End"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{DeputationInfoModel>Trip_No}"/>
+							<ComboBox items="{ path: 'depuConcernModel>/'}" change="onSelectDeputationConcern" selectedKey="{DeputationInfoModel>Concern}"
+								showSecondaryValues="false" editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}">
+								<core:ListItem key="{depuConcernModel>Description}" text="{depuConcernModel>Description}" additionalText="{depuConcernModel>Value}"/>
+							</ComboBox>
+							<Input value="{DeputationInfoModel>FRM_Desc}" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpFRM"
+								editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<ComboBox id="idBill" items="{path:'DepuBillMod>/DepuBillSet'}" change="onDepuBillSelection" class="sapUiSizeCompact"
+								selectedKey="{DeputationInfoModel>Bill_To}" editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}">
+								<core:Item key="{DepuBillMod>Value}" text="{DepuBillMod>Value}"/>
+							</ComboBox>
+							<ComboBox items="{ path: 'depuTypeModel>/'}" selectedKey="{DeputationInfoModel>Deputation_Type}" class="sapUiSizeCompact"
+								selectionChange="onDeputationType" editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}">
+								<core:Item key="{depuTypeModel>Value}" text="{depuTypeModel>Value}"/>
+							</ComboBox>
+							<VBox>
+								<Input visible="{= ${DeputationInfoModel>edit} === ''? true:false}" value="{DeputationInfoModel>Vehicle_Type}" class="sapUiSizeCompact"
+									editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}" enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+								<Input value="{DeputationInfoModel>Vehicle_Type}" class="sapUiSizeCompact" visible="{= ${DeputationInfoModel>edit} === 'O'? true:false}"></Input>
+								<ComboBox items="{ path: 'VehTypeModel>/'}" selectedKey="{DeputationInfoModel>Vehicle_Type}" class="sapUiSizeCompact"
+									visible="{= ${DeputationInfoModel>edit} === 'D'? true:false}" selectionChange="onSelectVehicleType">
+									<core:Item key="{VehTypeModel>Value}" text="{VehTypeModel>Value}"/>
+								</ComboBox>
+							</VBox>
+							<VBox>
+								<Input visible="{= ${DeputationInfoModel>edit} === ''? true:false}" value="{DeputationInfoModel>Reg_No}" class="sapUiSizeCompact"
+									editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}" enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+								<Input value="{DeputationInfoModel>Reg_No}" class="sapUiSizeCompact" visible="{= ${DeputationInfoModel>edit} === 'O'? true:false}"></Input>
+								<ComboBox items="{ path: 'regNoModel>/'}" selectedKey="{DeputationInfoModel>Reg_No}" selectionChange="onDepuRegNoSelection"
+									class="sapUiSizeCompact" visible="{= ${DeputationInfoModel>edit} === 'D'? true:false}">
+									<core:Item key="{regNoModel>Value}" text="{regNoModel>Value}"/>
+								</ComboBox>
+							</VBox>
+							<Input value="{DeputationInfoModel>Status}" class="sapUiSizeCompact" editable="false"/>
+							<Input value="{DeputationInfoModel>Plain_Terrain_Kms}" editable="{DeputationInfoModel>Dedit}" change="checkValue" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<Input value="{DeputationInfoModel>Hilly_Terrain_Kms}" editable="false" class="sapUiSizeCompact" enabled="false"/>
+							<Input value="{DeputationInfoModel>Total_Kms}" editable="{DeputationInfoModel}" change="onCalculateTotalKMs" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<Input value="{DeputationInfoModel>Plain_Amount}" editable="{DeputationInfoModel>Oedit}" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<Input value="{DeputationInfoModel>Terrain_Amount}" editable="{DeputationInfoModel>Oedit}" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<Input value="{DeputationInfoModel>Total_Amount}" editable="{DeputationInfoModel>Oedit}" class="sapUiSizeCompact"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<Input valueHelpOnly="true" value="{DeputationInfoModel>Technician_Name}" class="sapUiSizeCompact" showValueHelp="true"
+								valueHelpRequest="onValueHelpTechnicianName" editable="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"
+								enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"></Input>
+							<HBox>
+								<core:Icon src="sap-icon://locate-me" press="onRemark"/>
+								<core:Icon src="sap-icon://bookmark-2" class="sapUiSmallMarginBegin"/>
+							</HBox>
+							<HBox>
+								<Button icon="sap-icon://camera" press="JCCapturecamera"/>
+								<Button icon="sap-icon://card" class="sapUiTinyMarginBegin" press="JCDisplayimages"/>
+								<Button icon="sap-icon://attachment" class="sapUiTinyMarginBegin"/>
+								<Button icon="sap-icon://decline" color="red" enabled="{= ${DeputationInfoModel>Db_flg} === 'X'? false:true}"
+									press="onPressDeputationDelete" class="sapUiTinyMarginBegin"/>
+							</HBox>
+							<VBox items="{DeputationInfoModel>Deputation_Nav/results}">
+								<!-- <Text text="{DeputationInfoModel>NAME}"></Text> -->
+								<Input value="{DeputationInfoModel>NAME}" enabled="false" />
+							</VBox>
+							<VBox items="{DeputationInfoModel>Deputation_Nav/results}">
+								<Input name="start" class="sapUiSizeCompact" value="{DeputationInfoModel>START}" change="onChangeDeputationSubs" enabled="{= ${DeputationInfoModel>NAME} === 'Odometer'}" ></Input>
+								<!-- <Text text="{DeputationInfoModel>START}" visible="{= ${DeputationInfoModel>NAME} !== 'Odometer'}"></Text> -->
+								
+							</VBox>
+							<VBox items="{DeputationInfoModel>Deputation_Nav/results}">
+								<!--<Text class="sapUiSizeCompact" text="{DeputationInfoModel>REACH}" visible="{= ${DeputationInfoModel>NAME} === 'Odometer'? false:true}"></Text>-->
+								<Input name="reach" class="sapUiSizeCompact" value="{DeputationInfoModel>REACH}" change="onChangeDeputationSubs" enabled="{= ${DeputationInfoModel>NAME} === 'Odometer'}"></Input>
+								<!-- <Text class="sapUiSizeCompact" text="{DeputationInfoModel>REACH}" visible="{= ${DeputationInfoModel>NAME} !== 'Odometer'}"></Text> -->
+							</VBox>
+							<VBox items="{DeputationInfoModel>Deputation_Nav/results}">
+								<!--<Text class="sapUiSizeCompact" text="{DeputationInfoModel>RECOVERY}" visible="{= ${DeputationInfoModel>NAME} === 'Odometer'? false:true}"></Text>-->
+								<Input class="sapUiSizeCompact" value="{DeputationInfoModel>RECOVERY}" change="onChangeDeputationSubs" enabled="{= ${DeputationInfoModel>NAME} === 'Odometer'}"></Input>
+							</VBox>
+							<VBox items="{DeputationInfoModel>Deputation_Nav/results}">
+								<!--<Text class="sapUiSizeCompact" text="{DeputationInfoModel>END}" visible="{= ${DeputationInfoModel>NAME} === 'Odometer'? false:true}"></Text>-->
+								<Input class="sapUiSizeCompact" value="{DeputationInfoModel>END}" change="onChangeDeputationSubs" enabled="{= ${DeputationInfoModel>NAME} === 'Odometer'}"></Input>
+							</VBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--</l:Grid>-->
+	</VBox>
+</core:FragmentDefinition>

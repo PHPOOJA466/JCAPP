@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog>
+		<Table id="custVoiceTableId" items="{CustomerVoiceModel>/}" mode="MultiSelect" noDataText="No Data Available" alternateRowColors="true"
+			selectionChange="onSelChangeCusVoice" class="sapUiTinyMarginTop mobileTableView">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Button icon="sap-icon://synchronize" press="handleslectConcerncode"/>
+					<ToolbarSpacer></ToolbarSpacer>
+					<content>
+						<SearchField id="idCustVocSearch" width="20rem" placeholder="Search" search="onCustomerVoiceSearch" liveChange="handleliveCustSearch"></SearchField>
+					</content>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<!--<Column minScreenWidth="Tablet" demandPopin="true" width="5rem"></Column>-->
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Aggregate" maxLines="2"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Sub Aggregate" maxLines="2"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Concern Description"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Concern Code"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" id="listItem">
+					<cells>
+						<!--<CheckBox select="onCheckCustVoice"/>-->
+						<Text text="{CustomerVoiceModel>Aggregate}"/>
+						<Text text="{CustomerVoiceModel>Sub_Aggregate}"/>
+						<Text text="{CustomerVoiceModel>Concern_Desc}"/>
+						<Text text="{CustomerVoiceModel>Concern_Code}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<!--	<Button text="Select" press="handleslectConcerncode"/>-->
+			<Button text="Close" type="Default" press="onCloseCustVoice"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

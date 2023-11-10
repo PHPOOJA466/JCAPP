@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form">
+	<Dialog type="Standard" title="Request Bypass">
+	<!-- id="IdSimpleForm" -->
+		<form:SimpleForm  editable="true" backgroundDesign="Transparent">
+			<form:content>
+				<Label text="Claim Type" required="true"/>
+				<ComboBox  id="idClaimTypeByPass" selectionChange="onSelectionClaimType" items="{claimTypeByPassModel>/}"  showSecondaryValues="false">
+					<core:ListItem key="{claimTypeByPassModel>ClaimTyp}" text="{claimTypeByPassModel>ClaimTyp}" additionalText="{claimTypeByPassModel>ClaimTyp}"/>
+				</ComboBox>
+				<Label text="Reason" required="true"/>
+				<ComboBox id="idReasonByPass" items="{ReasonByPassModel>/}" showSecondaryValues="false">
+					<core:ListItem key="{ReasonByPassModel>Reason}" text="{ReasonByPassModel>Reason}"
+						additionalText="{ReasonByPassModel>Event}"/>
+				</ComboBox>
+			</form:content>
+		</form:SimpleForm>
+		<beginButton>
+			<Button tooltip="Ok" text="Ok" type="Emphasized" press="onOkByPass"/>
+		</beginButton>
+		<endButton>
+			<Button tooltip="Ok" text="Cancel" type="Reject" press="onCancelByPass"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

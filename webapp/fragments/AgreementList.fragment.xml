@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+<Dialog title="Agreement Data" showHeader="true">
+	<List  items="{path:'AgreementPointsModel>/results'}">
+		<StandardListItem title="{AgreementPointsModel>Agreement}" />
+	</List>
+	<buttons>
+			<Button text="Cancel" press="onAggCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

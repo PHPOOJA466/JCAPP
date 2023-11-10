@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:t="sap.ui.table" height="100%">
+		<Dialog contentHeight="auto" contentWidth="50%">
+		<VBox class="sapUiSmallMargin">
+			<f:Form editable="false" width="auto">
+				<f:layout>
+					<f:ResponsiveGridLayout labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="3" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0"
+						emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:FormElement>
+							<Label text="Body Building in this Vehicle Done by"/>
+							<f:fields>
+								<ComboBox items="{bodyBuildingSelectModel>/}" selectedKey="{bodyBuildingModel>/Vehicle_Done_By}"
+								enabled="{oLocalJsonModel>/bodyBuldingEnable}" class="sapUiSizeCompact">
+									<core:Item key="{bodyBuildingSelectModel>Value}" text="{bodyBuildingSelectModel>Value}" />
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Body Builder Name" required="true" />
+							<f:fields>
+								<Input class="sapUiSizeCompact" enabled="{oLocalJsonModel>/bodyBuldingEnable}" value="{bodyBuildingModel>/Name}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<Label text="Body Builder Location"/>
+							<f:fields>
+									<Input class="sapUiSizeCompact" enabled="{oLocalJsonModel>/bodyBuldingEnable}" value="{bodyBuildingModel>/Location}"/>
+							</f:fields>
+						</f:FormElement>
+					
+						<f:FormElement>
+							<Label text="Body Builder Check Date"/>
+							<f:fields>
+								<DatePicker value="{bodyBuildingModel>/Check_Date}" enabled="{oLocalJsonModel>/bodyBuldingEnable}" placeholder="Enter Date"/>
+							</f:fields>
+						</f:FormElement>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</VBox>
+		<beginButton>
+			<Button text="Update Body BLD" press="onUpdateBodyBLD"/>
+		</beginButton>
+		<endButton>
+			<Button text="Cancel" press="onCancelBodyBLD"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

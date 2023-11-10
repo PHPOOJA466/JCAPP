@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<MessageStrip id="camcomInfoID" showIcon="true" enableFormattedText="true" text="" type="Information"></MessageStrip>
+	<l:Grid id="buttonGrid" content="{path: 'ph>/photos'}" class="sapUiSmallMarginTop" defaultSpan="L4 M4 S4">
+		<l:content>
+			<HBox class="HboxCamcom">
+				<Image id="camcomImageID" src="{ph>src}" press="onHandleCamcomImages" class="box"/>
+				<CheckBox selected="{ph>selected}" class="stack-top" editable="false" valueState="Information"></CheckBox>
+			</HBox>
+		</l:content>
+	</l:Grid>
+</core:FragmentDefinition>

@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog contentWidth="400px" resizable="true" stretch="false">
+		<content>
+			<TextArea width="100%" height="60px" maxLength="150"/>
+		</content>
+		<buttons>
+			<Button text="Save" press="onSaveActionTakenObs"/>
+			<Button text="Cancel" press="onCancelTakenObs"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

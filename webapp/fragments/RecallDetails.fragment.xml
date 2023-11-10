@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog  title="ReCall Claim Details" contentWidth="100%" contentHeight="">
+		<content>
+			<Table items="{path:'recallModel>/'}" enableBusyIndicator="true" showSeparators="All" fixedLayout="true">
+				<columns>
+					<Column hAlign="Begin">
+						<Text text="Recall Id"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Text text="Part / Labour"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Text text="Description"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Text text="Quantity"/>
+					</Column>
+					<Column hAlign="Begin">
+						<Text text="Uom"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="{recallModel>Rclmno}" wrapping="true"/>
+							<Text text="{recallModel>P_And_L}" wrapping="true"/>
+							<Text text="{recallModel>Description}" wrapping="true"/>
+							<Text text="{recallModel>Quantity}" wrapping="true"/>
+							<Text text="{recallModel>UOM}" wrapping="true"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<endButton>
+			<Button text="Close" press="onRecallDetailsClose"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
